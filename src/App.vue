@@ -1,28 +1,52 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app style="background: linear-gradient(30deg, cadetblue, #b1b1b1);">
+    <navigation v-if="getLoginStatus"/>
+    <v-main style="color: black">
+      <router-view></router-view>
+    </v-main>
+    <snack-bar/>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import {setAuthToken} from "./service/AuthService";
+import Navigation from "./components/Navigation";
+import {mapGetters, mapMutations} from "vuex";
+import axios from "axios";
+import SnackBar from "./components/GeneralComponent/SnackBar";
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  components: {SnackBar, Navigation},
+  data: () => ({
+    //
+  }),
+  computed: {
+    ...mapGetters("user", ['getLoginStatus'])
+  },
+  methods: {
+    ...mapMutations("user", ['SET_LOGIN_STATUS'])
+  },
+  async created() {
+    const token = localStorage.getItem("token");
+    setAuthToken(token);
+    try {
+      await axios.get('http://127.0.0.1:8000/api/jahad/categories');
+      this.SET_LOGIN_STATUS(!!token);
+    } catch (e) {
+      setAuthToken();
+      await this.$router.replace("/login");
+    }
+  },
+};
 </script>
-
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@font-face {
+  font-family: "Iransans";
+  src: local("Iransans"), url("assets/fonts/Sans a4fran3.woff") format("woff");
+}
+
+* {
+  font-family: "Iransans";
 }
 </style>
