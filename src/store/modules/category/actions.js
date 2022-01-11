@@ -17,7 +17,7 @@ export default {
     },
     async showCategory({commit}, id) {
         try {
-            commit();
+            commit('SET_LOADING', false);
             return await repository.show(id);
         } catch (e) {
             return e;
