@@ -17,6 +17,7 @@ export default {
     },
     async showCategory({commit}, id) {
         try {
+            commit();
             return await repository.show(id);
         } catch (e) {
             return e;

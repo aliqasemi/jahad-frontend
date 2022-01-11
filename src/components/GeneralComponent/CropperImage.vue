@@ -1,7 +1,8 @@
 <template>
     <v-row style="width: 70%; height: 70%; border: inset black; margin: 20px auto">
         <cropper
-            :src="imageUrl ? imageUrl : 'images/insertPhoto.png'"
+            :src="imageUrl ? imageUrl : 'http://localhost:8000/images/insertPhoto.png'"
+            :canvas="false"
             @change="change"
         />
         <v-row>

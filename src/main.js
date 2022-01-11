@@ -9,8 +9,8 @@ Vue.config.productionTip = false
 Vue.mixin({});
 
 new Vue({
+    router: router,
     vuetify,
     store,
-    router: router,
     render: h => h(App),
 }).$mount('#app')

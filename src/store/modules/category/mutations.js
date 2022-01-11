@@ -1,3 +1,5 @@
+import Vue from "vue";
+
 export default {
     SET_CATEGORY(state, category) {
         Vue.set(state, "category", category);

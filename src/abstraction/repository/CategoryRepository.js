@@ -9,7 +9,6 @@ export default class CategoryRepository {
     async index() {
         try {
             let response = await axios.get('http://127.0.0.1:8000/api/jahad/categories');
-
             if (response && response.status === 200) {
                 return getArray(response.data.data);
             }

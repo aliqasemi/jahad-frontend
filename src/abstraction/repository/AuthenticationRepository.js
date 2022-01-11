@@ -1,7 +1,5 @@
 import {setAuthToken, setAuthUser} from "@/service/AuthService";
 import axios from "axios";
-axios.defaults.headers.common["content-type"] = "application/json";
-axios.defaults.headers.common["connection"] = "keep-alive";
 
 export default class AuthenticationRepository {
     async logIn(body) {
