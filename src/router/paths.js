@@ -12,6 +12,8 @@ import Requirements from "../views/Requirement/Requirements";
 import AddRequirement from "../views/Requirement/Add";
 import AttachByRequirement from "../views/Attachment/AttachByRequirement";
 import AttachByService from "../views/Attachment/AttachByService";
+import AddStep from "../views/Step/Add";
+import Steps from "@/views/Step/Steps";
 
 Vue.use(VueRouter)
 
@@ -97,6 +99,26 @@ const routes = [
         path: '/attachment/service/:service_id',
         name: 'AttachByService',
         component: AttachByService,
+        beforeEnter: isAuthenticated,
+        props: true,
+    },
+    //step
+    {
+        path: '/steps',
+        name: 'ListSteps',
+        component: Steps,
+        beforeEnter: isAuthenticated,
+    },
+    {
+        path: '/steps/add',
+        name: 'AddStep',
+        component: AddStep,
+        beforeEnter: isAuthenticated,
+    },
+    {
+        path: '/steps/edit/:step_id',
+        name: 'EditStep',
+        component: AddStep,
         beforeEnter: isAuthenticated,
         props: true,
     },
