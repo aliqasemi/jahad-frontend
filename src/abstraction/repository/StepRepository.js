@@ -6,11 +6,11 @@ import {
 import axios from "axios"
 
 export default class StepRepository {
-    async index(data) {
+    async index() {
         try {
             let response = await axios.get('http://127.0.0.1:8000/api/jahad/steps');
             if (response && response.status === 200) {
-                return getArray(response.data);
+                return getArray(response.data.data);
             }
         } catch (e) {
             return e;
@@ -70,7 +70,7 @@ export default class StepRepository {
     async moveUp(id) {
         try {
             let response = await axios.post(
-                "steps/move-up/" + id
+                "http://127.0.0.1:8000/api/jahad/steps/move-up/" + id
             );
             if (response && response.status === 200) {
 
@@ -84,7 +84,7 @@ export default class StepRepository {
     async moveDown(id) {
         try {
             let response = await axios.post(
-                "steps/move-down/" + id
+                "http://127.0.0.1:8000/api/jahad/steps/move-down/" + id
             );
             if (response && response.status === 200) {
                 return response;

@@ -4,12 +4,11 @@ import {store} from "../../index";
 let repository = new StepRepository();
 
 export default {
-    async loadStepList({commit, state}) {
+    async loadStepList({commit}) {
         try {
             commit("SET_LOADING", true);
             const step = await repository.index();
-            commit("SET_STEP", step.data);
-            commit("SET_STEP_PAGINATION", step.pagination);
+            commit("SET_STEP", step);
             return step;
         } catch (e) {
             return e;
@@ -52,7 +51,7 @@ export default {
     async removeStep({commit}, stepId) {
         try {
             const response = await repository.destroy(stepId);
-            commit("REMOVE_SERVICE", stepId);
+            commit("REMOVE_STEP", stepId);
             store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
             store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: response.data})
             return response;

@@ -1,4 +1,4 @@
 export default {
-    getListStep: (state) => state.service,
+    getListStep: (state) => state.steps,
     getStepLoading: (state) => state.loading,
 }

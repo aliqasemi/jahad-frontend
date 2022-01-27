@@ -22,46 +22,31 @@
     <v-form @submit.prevent="registerRequest" style="margin-top: 20px">
       <div style="margin: 0 auto; direction: rtl">
         <v-row style="direction: rtl;">
-          اضافه کردن خدمت
+          اضافه کردن مرحله
         </v-row>
         <br>
         <hr style="display: block; width: 75%"/>
         <v-row>
-          <v-col lg="3">
-            <v-text-field style="text-align: right" label="عنوان" v-model="form.title"
+          <v-col lg="6" style="margin: 0 auto">
+            <v-text-field style="text-align: right" label="نام مرحله" v-model="form.name"
                           reverse></v-text-field>
             <v-textarea style="text-align: right" label="توضیحات" v-model="form.description"
                         reverse></v-textarea>
-          </v-col>
-          <v-col lg="4">
-            <category-select v-model="form.category_id"/>
-          </v-col>
-          <v-col lg="12">
-            <city-select v-model="form.city_id"/>
-            <v-text-field style="text-align: right; width: 60%" label="آدرس" v-model="form.address"
-                          reverse></v-text-field>
-          </v-col>
-          <v-col lg="6" md="12" style="direction: ltr">
-            <v-select
-                v-model="form.available_province_ids"
-                :items="provinces"
-                item-text="name"
-                item-value="id"
-                label="انتخاب نمایید"
-                multiple
-                chips
-                hint="در صورتی که تنها در استان خاصی قادر به فعالیت هستید آن استان خاص را انتخاب نمایید"
-                persistent-hint
-            ></v-select>
+            <v-switch
+                style="text-align: left;direction: ltr"
+                v-model="form.send_sms"
+                inset
+                label="فعالیت سرویس پیامک"
+            ></v-switch>
           </v-col>
         </v-row>
         <v-row>
           <v-col>
-            <v-btn v-if="service_id" type="submit">
-              ویرایش خدمت
+            <v-btn v-if="step_id" type="submit">
+              ویرایش مرحله
             </v-btn>
             <v-btn v-else type="submit">
-              اضافه کردن خدمت
+              اضافه کردن مرحله
             </v-btn>
           </v-col>
         </v-row>
@@ -71,37 +56,23 @@
 </template>
 
 <script>
-import CitySelect from "../../components/GeneralComponent/CitySelect";
-import CategorySelect from "../../components/GeneralComponent/CategorySelect";
 import {mapActions} from "vuex";
-import CityRepository from "../../abstraction/repository/CityRepository";
 
-let repository = new CityRepository();
 var defaultForm = {
-  title: null,
+  name: null,
   description: null,
-  city_id: null,
-  address: null,
-  category_id: [],
-  available_province_ids: [],
-  crop_data: "",
-  image: "",
-  thumbnail: "",
+  send_sms: 0
 };
 
 export default {
   name: "Add",
   props: {
-    service_id: {default: null}
+    step_id: {default: null}
   },
-  components: {
-    CitySelect,
-    CategorySelect
-  },
+  components: {},
   data() {
     return {
       form: {...defaultForm},
-      provinces: [],
       items: [
         {
           text: 'صفحه اصلی',
@@ -110,41 +81,40 @@ export default {
           icon: "fa fa-home"
         },
         {
-          text: 'خدمت ها',
+          text: 'مرحله ها',
           disabled: false,
-          routeName: "ListServices",
+          routeName: "ListSteps",
           icon: "fa fa-wrench"
         },
         {
-          text: 'خدمت',
+          text: 'مرحله',
           disabled: true,
-          routeName: "AddService",
+          routeName: "AddStep",
           icon: "fa fa-wrench"
         },
       ],
     }
   },
   methods: {
-    ...mapActions("service", ['storeService', 'showService', 'updateService']),
+    ...mapActions("step", ['storeStep', 'showStep', 'updateStep']),
     async registerRequest() {
-      if (this.service_id) {
-        let response = await this.updateService({data: this.form});
+      if (this.step_id) {
+        let response = await this.updateStep({data: this.form});
         if (!(response instanceof Error)) {
-          await this.$router.replace("/services");
+          await this.$router.replace("/steps");
         }
       } else {
-        let response = await this.storeService({data: this.form});
+        let response = await this.storeStep({data: this.form});
         if (!(response instanceof Error)) {
-          await this.$router.replace("/services");
+          await this.$router.replace("/steps");
         }
       }
     }
   },
   async created() {
-    if (this.service_id) {
-      this.form = await this.showService(this.service_id)
+    if (this.step_id) {
+      this.form = await this.showStep(this.step_id)
     }
-    this.provinces = await repository.indexProvinces();
   }
 }
 </script>

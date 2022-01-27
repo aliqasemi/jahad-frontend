@@ -8,6 +8,7 @@ import state from './state'
 import user from './modules/user/index'
 import category from './modules/category/index'
 import service from './modules/service/index'
+import step from './modules/step/index'
 import requirement from './modules/requirement/index'
 import snackbar from './modules/snackBar/index'
 
@@ -23,6 +24,7 @@ export const store = new Vuex.Store({
         category,
         service,
         requirement,
-        snackbar
+        snackbar,
+        step
     }
 })

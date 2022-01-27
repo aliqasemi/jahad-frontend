@@ -1,22 +1,22 @@
 <template>
   <div>
     <v-progress-linear
-        v-if="getServiceLoading"
+        v-if="getStepLoading"
         color="black accent-4"
         indeterminate
         rounded
         height="10"
         style="margin: 10px"
     ></v-progress-linear>
-    <div v-else v-for="(step , key) in getListService">
-      <item :item="step" :index="key"/>
-    </div>
+    <v-row style="margin-top: 5px" v-else>
+      <item :item="step" v-for="(step , key) in getListStep" :index="key" v-bind:key="key"/>
+    </v-row>
   </div>
 </template>
 
 <script>
 import Item from "../Step/Item";
-import {mapActions, mapGetters, mapMutations} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "items",
@@ -25,25 +25,13 @@ export default {
     return {}
   },
   computed: {
-    ...mapGetters("service", ['getListService', 'getServiceLoading'])
+    ...mapGetters("step", ['getListStep', 'getStepLoading'])
   },
   methods: {
-    ...mapActions("service", ['loadServiceList']),
-    ...mapMutations("service", ['SET_SERVICE_PAGINATION'])
-  },
-  watch: {
-    page: {
-      deep: true,
-      immediate: true,
-      async handler() {
-        this.SET_SERVICE_PAGINATION({page: this.page, itemsPerPage: this.itemsPerPage})
-        await this.loadServiceList()
-      },
-    },
+    ...mapActions("step", ['loadStepList']),
   },
   async created() {
-    let response = await this.loadServiceList();
-    this.pageNumber = response.pagination.pageCount
+    await this.loadStepList();
   }
 }
 </script>

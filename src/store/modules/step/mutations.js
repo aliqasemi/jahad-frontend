@@ -1,8 +1,8 @@
 import Vue from "vue";
 
 export default {
-    SET_STEP(state, service) {
-        Vue.set(state, "steps", service);
+    SET_STEP(state, step) {
+        Vue.set(state, "steps", step);
     },
 
     UPDATE_STEP(state, step) {
@@ -13,6 +13,7 @@ export default {
     },
 
     REMOVE_STEP(state, id) {
+        console.log(id)
         const Index = state.steps.findIndex((x) => x.id === id);
         Vue.delete(state.steps, Index);
     },
@@ -20,7 +21,7 @@ export default {
     ADD_STEP(state, step) {
         Vue.set(
             state.steps,
-            state.step.length,
+            state.steps.length,
             step
         );
     },

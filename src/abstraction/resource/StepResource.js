@@ -8,7 +8,7 @@ const getJson = (data) => {
 };
 
 const getArray = (data) => {
-    return data;
+    return data.map((Item) => getJson(Item));
 };
 
 const setData = (data, hasUpdate = false) => {
@@ -16,7 +16,8 @@ const setData = (data, hasUpdate = false) => {
         id: data.id,
         name: data.name,
         description: data.description,
-        sort: data.sort,
+        send_sms: data.send_sms,
+        template_id: 0,
         _method: hasUpdate ? "put" : "post",
     };
 };

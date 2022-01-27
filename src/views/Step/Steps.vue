@@ -20,14 +20,14 @@
             </v-breadcrumbs>
         </div>
         <v-row style="direction: rtl;margin-top: 20px">
-            لیست خدمت ها
+            لیست مرحله ها
         </v-row>
         <br>
         <hr style="display: block; width: 75%"/>
         <items/>
 
         <router-link :to="{name:'AddStep'}" style="text-decoration: none">
-            <v-btn>اضافه کردن مرحله جدید</v-btn>
+            <v-btn style="margin-top: 15px">اضافه کردن مرحله جدید</v-btn>
         </router-link>
     </div>
 </template>
@@ -47,7 +47,7 @@ export default {
                     icon: "fa fa-home"
                 },
                 {
-                    text: 'خدمت ها',
+                    text: 'مرحله ها',
                     disabled: true,
                     routeName: "ListSteps",
                     icon: "fa fa-wrench"
