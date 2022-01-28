@@ -7,6 +7,7 @@ const getJson = (data) => {
         description: data.description,
         service: data.service,
         requirement: data.requirement,
+        step: data.step,
     };
 };
 
@@ -23,6 +24,9 @@ const setQuery = (data) => {
 const setData = (data, hasUpdate = false) => {
     let params = {
         description: data.description,
+        service_id: data.service_id,
+        requirement_id: data.requirement_id,
+        step_id: data.step_id,
         _method: hasUpdate ? "put" : "post",
     };
 

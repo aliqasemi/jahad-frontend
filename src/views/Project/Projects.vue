@@ -20,15 +20,11 @@
       </v-breadcrumbs>
     </div>
     <v-row style="direction: rtl;margin-top: 20px">
-      لیست خدمت ها
+      لیست پروژه ها
     </v-row>
     <br>
     <hr style="display: block; width: 75%"/>
     <items/>
-
-    <router-link :to="{name:'ManageProject'}" style="text-decoration: none">
-      <v-btn>مدیریت پروژه</v-btn>
-    </router-link>
   </div>
 </template>
 

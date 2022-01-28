@@ -53,6 +53,21 @@ export default {
             return e;
         }
     },
+
+    async changeStep({commit}, {data}) {
+        try {
+            const project = await repository.update(data);
+            commit("UPDATE_PROJECT", project);
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true});
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'مرحله با موفقیت تغییر کرد'});
+            return project;
+        } catch (e) {
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: e})
+            return e;
+        }
+    },
+
     async removeProject({commit}, projectId) {
         try {
             const response = await repository.destroy(projectId);

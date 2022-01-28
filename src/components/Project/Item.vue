@@ -1,12 +1,16 @@
 <template>
-  <v-col lg="3" xl="3" md="6" class="item" style="padding: 25px; margin: 25px">
+  <v-col lg="12" xl="12" md="12" class="item" style="padding: 25px; margin: 25px">
     <v-col lg="2">
       {{ index + 1 }}
     </v-col>
-    <v-col lg="3">
-      {{ item.description }}
+    <v-col lg="5">
+     مرحله‌: {{ item.step.name }}
+      <br>
+   خدمت:   {{ item.service.title }}
+      <br>
+     نیازمندی: {{ item.requirement.title }}
     </v-col>
-    <v-col lg="5" style="text-align: left">
+    <v-col lg="12" style="text-align: right">
       <router-link :to="{name:'ManageProject',  params: { project_id: item.id },}" style="text-decoration: none;">
         <v-tooltip top>
 
@@ -37,7 +41,7 @@
         </template>
         <span>حذف</span>
       </v-tooltip>
-      <delete-modal v-model="deleteDialog" @action="removeProject(item.id)"/>
+      <delete-modal v-model="deleteDialog" @action="deleteProject(item.id)"/>
     </v-col>
   </v-col>
 </template>
@@ -62,7 +66,7 @@ export default {
   },
   methods: {
     ...mapActions("project", ['removeProject']),
-    async removeProject(id) {
+    async deleteProject(id) {
       let response;
       response = await this.removeProject(id);
       if (!(response instanceof Error)) {

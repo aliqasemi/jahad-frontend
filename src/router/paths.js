@@ -138,6 +138,13 @@ const routes = [
         beforeEnter: isAuthenticated,
         props: true,
     },
+    {
+        path: '/projects/management/requirement/:requirement_id/service/:service_id',
+        name: 'ManageProjectAttachment',
+        component: ManageProject,
+        beforeEnter: isAuthenticated,
+        props: true,
+    },
 ];
 
 export const router = new VueRouter({
