@@ -14,6 +14,8 @@ import AttachByRequirement from "../views/Attachment/AttachByRequirement";
 import AttachByService from "../views/Attachment/AttachByService";
 import AddStep from "../views/Step/Add";
 import Steps from "@/views/Step/Steps";
+import Projects from "@/views/Project/Projects";
+import ManageProject from "@/views/Project/Manage";
 
 Vue.use(VueRouter)
 
@@ -119,6 +121,20 @@ const routes = [
         path: '/steps/edit/:step_id',
         name: 'EditStep',
         component: AddStep,
+        beforeEnter: isAuthenticated,
+        props: true,
+    },
+    //project
+    {
+        path: '/projects',
+        name: 'ListProjects',
+        component: Projects,
+        beforeEnter: isAuthenticated,
+    },
+    {
+        path: '/projects/management/:project_id',
+        name: 'ManageProject',
+        component: ManageProject,
         beforeEnter: isAuthenticated,
         props: true,
     },

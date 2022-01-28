@@ -107,6 +107,21 @@
           </div>
         </router-link>
       </v-col>
+      <v-col lg="12">
+        <router-link :to="{name:'ListProjects'}" style="text-decoration: none;color: black">
+          <div class="flex-justified-space-between title-big">
+            <div>
+              <div>
+                <div class="desc"> جهت مشاهده پروژه های تعریف شده و بررسی آن ها کلیک کنید</div>
+                <div class="title-fa"> پروژه ها</div>
+              </div>
+            </div>
+            <div class="title-en">
+              <div style="position: absolute;text-align: left"> Step</div>
+            </div>
+          </div>
+        </router-link>
+      </v-col>
     </v-row>
   </div>
 </template>
