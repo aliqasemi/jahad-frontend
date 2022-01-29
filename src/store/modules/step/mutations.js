@@ -13,7 +13,6 @@ export default {
     },
 
     REMOVE_STEP(state, id) {
-        console.log(id)
         const Index = state.steps.findIndex((x) => x.id === id);
         Vue.delete(state.steps, Index);
     },

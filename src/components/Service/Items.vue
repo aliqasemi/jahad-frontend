@@ -8,7 +8,7 @@
             height="10"
             style="margin: 10px"
         ></v-progress-linear>
-        <div v-else v-for="(service , key) in getListService">
+        <div v-else v-for="(service , key) in getListService" v-bind:key="key">
             <item :item="service" :index="key"/>
         </div>
         <div class="text-center" style="direction: ltr">

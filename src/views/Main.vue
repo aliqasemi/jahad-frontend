@@ -117,7 +117,22 @@
               </div>
             </div>
             <div class="title-en">
-              <div style="position: absolute;text-align: left"> Step</div>
+              <div style="position: absolute;text-align: left"> Project</div>
+            </div>
+          </div>
+        </router-link>
+      </v-col>
+      <v-col lg="12">
+        <router-link :to="{name:'ListTemplates'}" style="text-decoration: none;color: black">
+          <div class="flex-justified-space-between title-big">
+            <div>
+              <div>
+                <div class="desc"> جهت مشاهده قالب های پیامکی تعریف شده و بررسی آن ها کلیک کنید</div>
+                <div class="title-fa"> قالب های پیامکی</div>
+              </div>
+            </div>
+            <div class="title-en">
+              <div style="position: absolute;text-align: left">Template</div>
             </div>
           </div>
         </router-link>

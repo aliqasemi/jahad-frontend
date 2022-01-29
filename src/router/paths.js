@@ -16,6 +16,8 @@ import AddStep from "../views/Step/Add";
 import Steps from "@/views/Step/Steps";
 import Projects from "@/views/Project/Projects";
 import ManageProject from "@/views/Project/Manage";
+import AddTemplate from "../views/MessageTemplate/Add";
+import Templates from "@/views/MessageTemplate/Templates";
 
 Vue.use(VueRouter)
 
@@ -142,6 +144,26 @@ const routes = [
         path: '/projects/management/requirement/:requirement_id/service/:service_id',
         name: 'ManageProjectAttachment',
         component: ManageProject,
+        beforeEnter: isAuthenticated,
+        props: true,
+    },
+    //message template
+    {
+        path: '/templates',
+        name: 'ListTemplates',
+        component: Templates,
+        beforeEnter: isAuthenticated,
+    },
+    {
+        path: '/templates/add',
+        name: 'AddTemplate',
+        component: AddTemplate,
+        beforeEnter: isAuthenticated,
+    },
+    {
+        path: '/templates/edit/:template_id',
+        name: 'EditTemplate',
+        component: AddTemplate,
         beforeEnter: isAuthenticated,
         props: true,
     },
