@@ -48,7 +48,7 @@ export default {
             immediate: true,
             async handler() {
                 this.SET_SERVICE_PAGINATION({page: this.page, itemsPerPage: this.itemsPerPage})
-                await this.loadServiceList()
+                await this.loadServiceList();
             },
         },
     },

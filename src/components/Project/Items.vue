@@ -37,10 +37,10 @@ export default {
   },
   computed: {
     ...mapGetters("project", ['getListProject', 'getProjectLoading']),
-    ...mapMutations("project", ['SET_PROJECT_PAGINATION'])
   },
   methods: {
     ...mapActions("project", ['loadProjectList']),
+    ...mapMutations("project", ['SET_PROJECT_PAGINATION'])
   },
   watch: {
     page: {

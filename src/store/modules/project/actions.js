@@ -35,6 +35,8 @@ export default {
         try {
             const project = await repository.store(data);
             commit("ADD_PROJECT", project);
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true});
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'پروژه با موفقیت ایجاد شد'});
             return project;
         } catch (e) {
             store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
@@ -46,6 +48,8 @@ export default {
         try {
             const project = await repository.update(data);
             commit("UPDATE_PROJECT", project);
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true});
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'تغییرات با موفقیت انجام شد'});
             return project;
         } catch (e) {
             store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})

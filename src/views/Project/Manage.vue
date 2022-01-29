@@ -26,7 +26,7 @@
         </v-row>
         <br>
         <hr style="display: block; width: 75%"/>
-        <v-container>
+        <v-container v-if="step.name">
           <v-row style="direction: rtl;padding: 10px">
             مرحله و مدیریت آن
           </v-row>
@@ -48,7 +48,7 @@
             </template>
             <span>مدیریت مرحله</span>
           </v-tooltip>
-          <step-modal :steps="steps" v-model="stepDialog" @action="changeStep"/>
+          <step-modal :steps="steps" v-model="stepDialog" @action="changeStepProject"/>
         </v-container>
         <v-container>
           <v-row style="direction: rtl;padding: 10px">
@@ -336,7 +336,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("project", ['storeProject', 'showProject', 'updateProject']),
+    ...mapActions("project", ['storeProject', 'showProject', 'updateProject', 'changeStep']),
     ...mapActions("service", ['showService']),
     ...mapActions("requirement", ['showRequirement']),
     ...mapActions("step", ['loadStepList']),
@@ -355,9 +355,9 @@ export default {
         }
       }
     },
-    async changeStep(value) {
+    async changeStepProject(value) {
       Object.assign(this.form, {step_id: value.step_id});
-      let response = await this.updateProject({data: this.form});
+      let response = await this.changeStep({data: this.form});
       this.step = response.step;
     }
   },
