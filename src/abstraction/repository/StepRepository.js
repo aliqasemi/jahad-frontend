@@ -6,9 +6,9 @@ import {
 import axios from "axios"
 
 export default class StepRepository {
-    async index() {
+    async index(project_id) {
         try {
-            let response = await axios.get('http://127.0.0.1:8000/api/jahad/steps');
+            let response = await axios.get('http://127.0.0.1:8000/api/jahad/project/' + project_id + '/steps');
             if (response && response.status === 200) {
                 return getArray(response.data.data);
             }
@@ -18,7 +18,7 @@ export default class StepRepository {
     }
 
     async show(id) {
-        let response = await axios.get("http://127.0.0.1:8000/api/jahad/steps/" + id);
+        let response = await axios.get('http://127.0.0.1:8000/api/jahad/steps/' + id);
         if (response && response.status === 200) {
             return getJson(response.data.data);
         }
@@ -27,7 +27,7 @@ export default class StepRepository {
     async store(data) {
         try {
             const params = setData(data);
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/steps", params);
+            let response = await axios.post('http://127.0.0.1:8000/api/jahad/project/' + data.project_id + '/steps', params);
 
             if (response && response.status === 201) {
                 return getJson(response.data.data);
@@ -42,7 +42,7 @@ export default class StepRepository {
             const params = setData(data, true);
 
             let response = await axios.post(
-                "http://127.0.0.1:8000/api/jahad/steps/" + data.id,
+                'http://127.0.0.1:8000/api/jahad/steps/' + data.id,
                 params
             );
 
@@ -57,7 +57,7 @@ export default class StepRepository {
     async destroy(id) {
         try {
             let response = await axios.delete(
-                "http://127.0.0.1:8000/api/jahad/steps/" + id
+                'http://127.0.0.1:8000/api/jahad/steps/' + id
             );
             if (response && response.status === 200) {
                 return response;

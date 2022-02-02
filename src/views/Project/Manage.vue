@@ -361,6 +361,7 @@ export default {
     },
     async changeStepProject(value) {
       Object.assign(this.form, {step_id: value.step_id});
+      Object.assign(this.form, {project_id: this.project_id});
       let response = await this.changeStep({data: this.form});
       this.step = response.step;
     }
@@ -368,7 +369,7 @@ export default {
   async created() {
     if (this.project_id) {
       this.form = await this.showProject(this.project_id);
-      this.steps = await this.loadStepList();
+      this.steps = await this.loadStepList(this.project_id);
       this.services = this.form.services;
       this.requirement = this.form.requirement;
       this.step = this.form.step;

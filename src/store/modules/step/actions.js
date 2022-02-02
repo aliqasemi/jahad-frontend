@@ -4,10 +4,10 @@ import {store} from "../../index";
 let repository = new StepRepository();
 
 export default {
-    async loadStepList({commit}) {
+    async loadStepList({commit}, project_id) {
         try {
             commit("SET_LOADING", true);
-            const step = await repository.index();
+            const step = await repository.index(project_id);
             commit("SET_STEP", step);
             return step;
         } catch (e) {
