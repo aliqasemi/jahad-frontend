@@ -8,7 +8,7 @@
             height="10"
             style="margin: 10px"
         ></v-progress-linear>
-        <div v-else v-for="(requirement , key) in getListRequirement">
+        <div v-else v-for="(requirement , key) in getListRequirement" v-bind:key="key">
             <item :item="requirement" :index="key"/>
         </div>
         <div class="text-center" style="direction: ltr">

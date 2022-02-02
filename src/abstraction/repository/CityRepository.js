@@ -1,5 +1,5 @@
 import {
-    getArray, getJson
+    getArray
 } from "../resource/CItyresource";
 import axios from "axios"
 

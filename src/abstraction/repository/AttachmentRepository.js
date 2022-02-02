@@ -1,5 +1,4 @@
 import {
-    getJson,
     getArray
 } from "../resource/AttachmentResource";
 import axios from "axios"

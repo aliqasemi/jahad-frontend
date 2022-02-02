@@ -1,15 +1,18 @@
 <template>
-    <div>
-        <v-overlay :value="overlay">
-            <v-progress-circular
-                indeterminate
-                size="64"
-            ></v-progress-circular>
-        </v-overlay>
-        <div v-if="attachments" v-for="(attachment , key) in attachments">
-            <item :item="attachment" :index="key" :maxPoint="maxPoint"/>
-        </div>
+  <div>
+    <v-overlay :value="overlay">
+      <v-progress-circular
+          indeterminate
+          size="64"
+      ></v-progress-circular>
+    </v-overlay>
+
+    <div v-if="attachments">
+      <item :item="attachment" :index="key" :maxPoint="maxPoint"
+            v-for="(attachment , key) in attachments" v-bind:key="key"/>
     </div>
+
+  </div>
 </template>
 
 <script>
@@ -18,28 +21,30 @@ import AttachmentRepository from "../../../abstraction/repository/AttachmentRepo
 
 let repository = new AttachmentRepository;
 export default {
-    name: "Items",
-    components: {Item},
-    props: {
-        requirement_id: '',
-    },
-    data() {
-        return {
-            overlay: false,
-            attachments: null,
-        }
-    },
-    computed: {
-        maxPoint() {
-            if (this.attachments)
-                return this.attachments[0].point
-        }
-    },
-    async created() {
-        this.overlay = true;
-        this.attachments = await repository.indexAttachmentByRequirement(this.requirement_id);
-        this.overlay = false;
+  name: "Items",
+  components: {Item},
+  props: {
+    requirement_id: {default: ''},
+  },
+  data() {
+    return {
+      overlay: false,
+      attachments: null,
     }
+  },
+  computed: {
+    maxPoint() {
+      if (this.attachments)
+        return this.attachments[0].point
+      else
+        return 0
+    }
+  },
+  async created() {
+    this.overlay = true;
+    this.attachments = await repository.indexAttachmentByRequirement(this.requirement_id);
+    this.overlay = false;
+  }
 }
 </script>
 

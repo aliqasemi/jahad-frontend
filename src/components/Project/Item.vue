@@ -4,11 +4,15 @@
       {{ index + 1 }}
     </v-col>
     <v-col lg="5">
-     مرحله‌: {{ item.step.name }}
+      مرحله‌: {{ item.step.name }}
       <br>
-   خدمت:   {{ item.service.title }}
+      نیازمندی: {{ item.requirement.title }}
       <br>
-     نیازمندی: {{ item.requirement.title }}
+      خدمت:
+      <div class="pa-1 ma-1 blue-grey rounded-pill" v-for="(service,key) in item.services"
+           v-bind:key="key">
+        {{ service.title }}
+      </div>
     </v-col>
     <v-col lg="12" style="text-align: right">
       <router-link :to="{name:'ManageProject',  params: { project_id: item.id },}" style="text-decoration: none;">

@@ -37,11 +37,11 @@
                         <category-select v-model="form.category_id"/>
                     </v-col>
                     <v-col lg="5">
+<!--                      :url.sync="form.thumbnail"-->
                         <cropper-image
                             :crop_data.sync="form.crop_data"
                             v-model="form.image"
-                            :url.sync="form.thumbnail"
-                            :url="form.url"
+                            :url="form.thumbnail"
                         />
                     </v-col>
                     <v-col lg="12">

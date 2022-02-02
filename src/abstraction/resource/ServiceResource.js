@@ -18,6 +18,7 @@ const getJson = (data) => {
         province: data.city.county.province.name,
         available_province: data.available_province,
     };
+
     if (data.available_province) {
         result.available_province_ids = data.available_province.map((e) => {
             return e.id;

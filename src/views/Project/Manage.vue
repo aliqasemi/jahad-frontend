@@ -51,12 +51,116 @@
           <step-modal :steps="steps" v-model="stepDialog" @action="changeStepProject"/>
         </v-container>
         <v-container>
+          <v-row style="direction: rtl; padding: 10px">
+            مشخصات نیازمندی
+          </v-row>
+          <br>
+          <hr style="display: block; width: 50%"/>
+          <v-row>
+            <v-col
+                cols="12"
+                md="4"
+            >
+              <v-card-text>
+                عنوان:
+              </v-card-text>
+              <v-card-text>
+                {{ requirement.title }}
+              </v-card-text>
+            </v-col>
+
+            <v-col
+                cols="12"
+                md="4"
+            >
+              <v-card-text>
+                توضیحات:
+              </v-card-text>
+              <v-card-text>
+                {{ requirement.description }}
+              </v-card-text>
+            </v-col>
+
+            <v-col
+                cols="12"
+                md="4"
+            >
+              <v-card-text>
+                آدرس:
+              </v-card-text>
+              <v-card-text>
+                {{ requirement.address }}
+              </v-card-text>
+            </v-col>
+
+            <v-col
+                cols="12"
+                md="4"
+            >
+              <v-card-text>
+                دسته بندی:
+              </v-card-text>
+              <v-card-text>
+                {{ requirement.category ? requirement.category.name : '' }}
+              </v-card-text>
+            </v-col>
+
+            <v-col
+            >
+              <v-card-text>
+                مستندات:
+              </v-card-text>
+              <v-img v-if="requirement.thumbnail" :src="requirement.thumbnail" width="700px" height="300px"
+                     alt="مستندات"/>
+              <v-card-text v-else>
+                ندارد
+              </v-card-text>
+            </v-col>
+
+            <v-col
+                cols="12"
+                md="4"
+            >
+              <v-card-text>
+                استان:
+              </v-card-text>
+              <v-card-text>
+                {{ requirement.province }}
+              </v-card-text>
+            </v-col>
+
+            <v-col
+                cols="12"
+                md="4"
+            >
+              <v-card-text>
+                شهر:
+              </v-card-text>
+              <v-card-text>
+                {{ requirement.county }}
+              </v-card-text>
+            </v-col>
+
+            <v-col
+                cols="12"
+                md="4"
+            >
+              <v-card-text>
+                مرکز:
+              </v-card-text>
+              <v-card-text>
+                {{ requirement.city }}
+              </v-card-text>
+            </v-col>
+          </v-row>
+        </v-container>
+        <v-container>
           <v-row style="direction: rtl;padding: 10px">
-            مشخصات سرویس
+            مشخصات سرویس ها
           </v-row>
           <br>
           <hr style="display: block; width: 50%;"/>
-          <v-row>
+          <v-row v-for="(service, key) in services" v-bind:key="key">
             <v-col
                 cols="12"
                 md="4"
@@ -161,110 +265,7 @@
                 </v-card-text>
               </div>
             </v-col>
-          </v-row>
-        </v-container>
-        <v-container>
-          <v-row style="direction: rtl; padding: 10px">
-            مشخصات نیازمندی
-          </v-row>
-          <br>
-          <hr style="display: block; width: 50%"/>
-          <v-row>
-            <v-col
-                cols="12"
-                md="4"
-            >
-              <v-card-text>
-                عنوان:
-              </v-card-text>
-              <v-card-text>
-                {{ requirement.title }}
-              </v-card-text>
-            </v-col>
-
-            <v-col
-                cols="12"
-                md="4"
-            >
-              <v-card-text>
-                توضیحات:
-              </v-card-text>
-              <v-card-text>
-                {{ requirement.description }}
-              </v-card-text>
-            </v-col>
-
-            <v-col
-                cols="12"
-                md="4"
-            >
-              <v-card-text>
-                آدرس:
-              </v-card-text>
-              <v-card-text>
-                {{ requirement.address }}
-              </v-card-text>
-            </v-col>
-
-            <v-col
-                cols="12"
-                md="4"
-            >
-              <v-card-text>
-                دسته بندی:
-              </v-card-text>
-              <v-card-text>
-                {{ requirement.category ? requirement.category.name : '' }}
-              </v-card-text>
-            </v-col>
-
-            <v-col
-            >
-              <v-card-text>
-                مستندات:
-              </v-card-text>
-              <v-img v-if="requirement.thumbnail" :src="requirement.thumbnail" width="700px" height="300px"
-                     alt="مستندات"/>
-              <v-card-text v-else>
-                ندارد
-              </v-card-text>
-            </v-col>
-
-            <v-col
-                cols="12"
-                md="4"
-            >
-              <v-card-text>
-                استان:
-              </v-card-text>
-              <v-card-text>
-                {{ requirement.province }}
-              </v-card-text>
-            </v-col>
-
-            <v-col
-                cols="12"
-                md="4"
-            >
-              <v-card-text>
-                شهر:
-              </v-card-text>
-              <v-card-text>
-                {{ requirement.county }}
-              </v-card-text>
-            </v-col>
-
-            <v-col
-                cols="12"
-                md="4"
-            >
-              <v-card-text>
-                مرکز:
-              </v-card-text>
-              <v-card-text>
-                {{ requirement.city }}
-              </v-card-text>
-            </v-col>
+            <hr style="display: block; width: 75%" v-if="key != services.length - 1"/>
           </v-row>
         </v-container>
         <v-row>
@@ -307,7 +308,7 @@ export default {
   data() {
     return {
       form: {...defaultForm},
-      service: {default: null},
+      services: [],
       requirement: {default: null},
       steps: {default: null},
       step: {default: null},
@@ -347,7 +348,10 @@ export default {
           await this.$router.replace("/projects");
         }
       } else {
-        Object.assign(this.form, {service_id: this.service_id})
+        let services = [{
+          id: this.service_id
+        }]
+        Object.assign(this.form, {services: services})
         Object.assign(this.form, {requirement_id: this.requirement_id})
         let response = await this.storeProject({data: this.form});
         if (!(response instanceof Error)) {
@@ -365,12 +369,12 @@ export default {
     if (this.project_id) {
       this.form = await this.showProject(this.project_id);
       this.steps = await this.loadStepList();
-      this.service = this.form.service;
+      this.services = this.form.services;
       this.requirement = this.form.requirement;
       this.step = this.form.step;
     } else {
       if (this.service_id) {
-        this.service = await this.showService(this.service_id)
+        this.services[0] = await this.showService(this.service_id)
       }
       if (this.requirement_id) {
         this.requirement = await this.showRequirement(this.requirement_id)
