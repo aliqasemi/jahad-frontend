@@ -32,6 +32,22 @@
           </v-row>
           <br>
           <hr style="display: block; width: 50%;"/>
+          <router-link :to="{name:'ListSteps', params:{project_id: project_id}}"
+                       style="text-decoration: none;color:black;padding: 5px">
+            <v-tooltip top>
+              <template v-slot:activator="{ on , attrs}">
+                <v-btn
+                    slot="activator"
+                    style="width: 100%;margin: 10px"
+                    v-bind="attrs"
+                    v-on="on"
+                >
+                  <v-icon>"fa fa-cog</v-icon>
+                </v-btn>
+              </template>
+              <span>مدیریت مراحل پروژه</span>
+            </v-tooltip>
+          </router-link>
           <v-tooltip top>
             <template v-slot:activator="{ on , attrs}">
               <v-btn

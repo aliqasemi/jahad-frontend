@@ -108,16 +108,18 @@ const routes = [
     },
     //step
     {
-        path: '/steps',
+        path: '/steps/project/:project_id',
         name: 'ListSteps',
         component: Steps,
         beforeEnter: isAuthenticated,
+        props: true,
     },
     {
-        path: '/steps/add',
+        path: '/steps/add/project/:project_id',
         name: 'AddStep',
         component: AddStep,
         beforeEnter: isAuthenticated,
+        props: true,
     },
     {
         path: '/steps/edit/:step_id',

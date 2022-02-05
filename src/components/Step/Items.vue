@@ -21,6 +21,9 @@ import {mapActions, mapGetters} from "vuex";
 export default {
   name: "items",
   components: {Item},
+  props: {
+    project_id: {default: null},
+  },
   data() {
     return {}
   },
@@ -31,7 +34,7 @@ export default {
     ...mapActions("step", ['loadStepList']),
   },
   async created() {
-    await this.loadStepList();
+    await this.loadStepList(this.project_id);
   }
 }
 </script>

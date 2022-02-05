@@ -67,7 +67,8 @@ var defaultForm = {
 export default {
   name: "Add",
   props: {
-    step_id: {default: null}
+    step_id: {default: null},
+    project_id: {default: null}
   },
   components: {},
   data() {
@@ -98,6 +99,7 @@ export default {
   methods: {
     ...mapActions("step", ['storeStep', 'showStep', 'updateStep']),
     async registerRequest() {
+      Object.assign(this.form, {project_id: this.project_id})
       if (this.step_id) {
         let response = await this.updateStep({data: this.form});
         if (!(response instanceof Error)) {

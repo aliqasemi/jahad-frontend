@@ -18,6 +18,7 @@ const setData = (data, hasUpdate = false) => {
         description: data.description,
         send_sms: data.send_sms,
         template_id: 0,
+        project_id: data.project_id,
         _method: hasUpdate ? "put" : "post",
     };
 };
