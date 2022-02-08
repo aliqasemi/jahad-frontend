@@ -93,7 +93,7 @@
         </router-link>
       </v-col>
       <v-col lg="12">
-        <router-link :to="{name:'ListSteps'}" style="text-decoration: none;color: black">
+        <router-link :to="{name:'ListSteps', params:{project_id : 0}}" style="text-decoration: none;color: black">
           <div class="flex-justified-space-between title-big">
             <div>
               <div>

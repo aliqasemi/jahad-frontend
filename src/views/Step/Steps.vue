@@ -24,11 +24,16 @@
     </v-row>
     <br>
     <hr style="display: block; width: 75%"/>
-    <items :project_id="project_id" />
+    <div v-if="project_id != 0">
+      <items :project_id="project_id"/>
+      <router-link :to="{name:'AddStep', params:{project_id: project_id}}"
+                   style="text-decoration: none">
+        <v-btn style="margin-top: 15px">اضافه کردن مرحله جدید</v-btn>
+      </router-link>
+    </div>
+    <div v-else>
 
-    <router-link :to="{name:'AddStep'}" style="text-decoration: none">
-      <v-btn style="margin-top: 15px">اضافه کردن مرحله جدید</v-btn>
-    </router-link>
+    </div>
   </div>
 </template>
 
@@ -58,7 +63,9 @@ export default {
       ]
     }
   },
-  components: {Items}
+  components: {
+    Items,
+  }
 }
 </script>
 
