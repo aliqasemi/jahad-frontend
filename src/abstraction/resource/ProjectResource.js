@@ -4,6 +4,7 @@ import {serialize} from 'object-to-formdata';
 const getJson = (data) => {
     let result = {
         id: data.id,
+        name: data.name,
         description: data.description,
         step: data.step,
         requirement: data.requirement,
@@ -74,6 +75,7 @@ const setFilterQuery = (values, type = 'and') => {
 
 const setData = (data, hasUpdate = false) => {
     let params = {
+        name: data.name,
         description: data.description,
         service_id: data.service_id,
         requirement_id: data.requirement_id,

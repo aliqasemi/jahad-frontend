@@ -1,18 +1,19 @@
 <template>
-  <div class="v-card">
+  <div class="v-card" style="direction: rtl; text-align: right">
     <v-autocomplete
         v-model="model"
         :items="items"
         :loading="isLoading"
         :search-input.sync="search"
         chips
-        clearable
         hide-details
         hide-selected
+        no-filter
         item-text="name"
-        item-value="symbol"
-        label="Search for a coin..."
+        item-value="id"
+        label="پروژه خود را جست و جو کنید"
         solo
+        reverse
     >
       <template v-slot:no-data>
         <v-list-item>
@@ -29,9 +30,6 @@
             class="white--text"
             v-on="on"
         >
-          <v-icon left>
-            mdi-bitcoin
-          </v-icon>
           <span v-text="item.name"></span>
         </v-chip>
       </template>
@@ -42,15 +40,15 @@
         >
           {{ item.name.charAt(0) }}
         </v-list-item-avatar>
-        <v-list-item-content>
+        <v-list-item-content style="direction: rtl">
           <v-list-item-title v-text="item.name"></v-list-item-title>
-          <v-chip v-text="item.requirement.title"></v-chip>
+          <v-chip>{{ item.requirement.title }} : نیازمندی</v-chip>
           <v-chip v-for="(service,key) in item.services" v-bind:key="key">
-            {{ service.title }}
+            سرویس‌ : {{ service.title }}
           </v-chip>
         </v-list-item-content>
         <v-list-item-action>
-          <v-icon>mdi-bitcoin</v-icon>
+          <v-icon>fa fa-edit</v-icon>
         </v-list-item-action>
       </template>
     </v-autocomplete>
@@ -79,7 +77,7 @@ export default {
 
   watch: {
     model(val) {
-      console.log(val)
+      this.$router.push({name: 'ListSteps', params: {project_id: val}})
     },
     async search(value) {
 

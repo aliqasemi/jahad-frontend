@@ -286,6 +286,10 @@
         </v-container>
         <v-row>
           <v-col lg="6" style="margin: 0 auto">
+            <v-text-field style="text-align: right" label="نام پروژه" v-model="form.name"
+                          reverse></v-text-field>
+          </v-col>
+          <v-col lg="6" style="margin: 0 auto">
             <v-textarea style="text-align: right" label="توضیحات" v-model="form.description"
                         reverse></v-textarea>
           </v-col>
@@ -311,6 +315,7 @@ import StepModal from "@/components/GeneralComponent/StepModal";
 
 var defaultForm = {
   description: null,
+  name: null
 };
 
 export default {

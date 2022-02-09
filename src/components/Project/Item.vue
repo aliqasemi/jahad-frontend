@@ -3,6 +3,9 @@
     <v-col lg="2">
       {{ index + 1 }}
     </v-col>
+    <v-col lg="3">
+      {{ item.name }}
+    </v-col>
     <v-col lg="5">
       مرحله‌: {{ item.step.name }}
       <br>
