@@ -32,13 +32,14 @@
       </router-link>
     </div>
     <div v-else>
-
+      <project-search/>
     </div>
   </div>
 </template>
 
 <script>
 import Items from "../../components/Step/Items";
+import ProjectSearch from "@/views/Step/ProjectSearch";
 
 export default {
   name: "Steps",
@@ -64,6 +65,7 @@ export default {
     }
   },
   components: {
+    ProjectSearch,
     Items,
   }
 }
