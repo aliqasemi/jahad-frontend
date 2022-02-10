@@ -36,7 +36,7 @@
       </router-link>
     </v-col>
     <v-col lg="1">
-      <router-link :to="{name:'ManageProjectAttachment',  params: { requirement_id: item.id , service_id: service_id}}"
+      <router-link v-if="!item.project" :to="{name:'ManageProjectAttachment',  params: { requirement_id: item.id , service_id: service_id}}"
                    style="text-decoration: none">
         <v-tooltip top>
           <template v-slot:activator="{ on,attrs }">
@@ -51,6 +51,9 @@
           <span>ایجاد پروژه</span>
         </v-tooltip>
       </router-link>
+      <v-card-text v-else>
+       نام پروژه‌: {{item.project.name}}
+      </v-card-text>
     </v-col>
   </v-row>
 </template>

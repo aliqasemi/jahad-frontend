@@ -284,7 +284,33 @@
             <hr style="display: block; width: 75%" v-if="key != services.length - 1"/>
           </v-row>
         </v-container>
-        <v-row>
+        <v-row v-if="project_id == null && requirement.project">
+          <v-col lg="6" style="margin: 0 auto">
+            <v-col
+                cols="12"
+                md="4"
+            >
+              <v-card-text>
+                نام پروژه
+              </v-card-text>
+              <v-card-text>
+                {{ requirement.project.name }}
+              </v-card-text>
+            </v-col>
+            <v-col
+                cols="12"
+                md="4"
+            >
+              <v-card-text>
+                توضیحات
+              </v-card-text>
+              <v-card-text>
+                {{ requirement.project.description }}
+              </v-card-text>
+            </v-col>
+          </v-col>
+        </v-row>
+        <v-row v-else>
           <v-col lg="6" style="margin: 0 auto">
             <v-text-field style="text-align: right" label="نام پروژه" v-model="form.name"
                           reverse></v-text-field>
@@ -314,8 +340,8 @@ import {mapActions} from "vuex";
 import StepModal from "@/components/GeneralComponent/StepModal";
 
 var defaultForm = {
-  description: null,
-  name: null
+  description: 'پروژه ..',
+  name: 'پروژه ..'
 };
 
 export default {

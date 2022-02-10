@@ -11,6 +11,7 @@ const getJson = (data) => {
                     user: data[key].user,
                     address: data[key].address,
                     description: data[key].description,
+                    project: data[key].project,
                     category: data[key].category,
                     available_province: data[key].available_province,
                 }

@@ -13,6 +13,7 @@ const getJson = (data) => {
         category: data.category,
         user: data.user,
         city: data.city.name,
+        project: data.project,
         city_id: data.city.id,
         county: data.city.county.name,
         province: data.city.county.province.name,
