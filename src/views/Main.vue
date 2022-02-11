@@ -137,6 +137,21 @@
           </div>
         </router-link>
       </v-col>
+      <v-col lg="12">
+        <router-link :to="{name:'ListProducts'}" style="text-decoration: none;color: black">
+          <div class="flex-justified-space-between title-big">
+            <div>
+              <div>
+                <div class="desc"> جهت مشاهده محصولات و کوجودی آن در انبار و بررسی آن ها کلیک کنید</div>
+                <div class="title-fa"> محصولات و موجودی</div>
+              </div>
+            </div>
+            <div class="title-en">
+              <div style="position: absolute;text-align: left">Template</div>
+            </div>
+          </div>
+        </router-link>
+      </v-col>
     </v-row>
   </div>
 </template>

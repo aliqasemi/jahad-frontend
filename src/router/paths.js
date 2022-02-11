@@ -18,6 +18,8 @@ import Projects from "@/views/Project/Projects";
 import ManageProject from "@/views/Project/Manage";
 import AddTemplate from "../views/MessageTemplate/Add";
 import Templates from "@/views/MessageTemplate/Templates";
+import Products from "@/views/Product/Products";
+import AddProduct from "@/views/Product/Add";
 
 Vue.use(VueRouter)
 
@@ -166,6 +168,26 @@ const routes = [
         path: '/templates/edit/:template_id',
         name: 'EditTemplate',
         component: AddTemplate,
+        beforeEnter: isAuthenticated,
+        props: true,
+    },
+    //product
+    {
+        path: '/products',
+        name: 'ListProducts',
+        component: Products,
+        beforeEnter: isAuthenticated,
+    },
+    {
+        path: '/products/add',
+        name: 'AddProducts',
+        component: AddProduct,
+        beforeEnter: isAuthenticated,
+    },
+    {
+        path: '/products/edit/:product_id',
+        name: 'EditProduct',
+        component: AddProduct,
         beforeEnter: isAuthenticated,
         props: true,
     },

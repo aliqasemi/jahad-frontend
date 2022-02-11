@@ -12,6 +12,7 @@ import step from './modules/step/index'
 import template from './modules/template/index'
 import project from './modules/project/index'
 import requirement from './modules/requirement/index'
+import product from './modules/product/index'
 import snackbar from './modules/snackBar/index'
 
 Vue.use(Vuex)
@@ -30,5 +31,6 @@ export const store = new Vuex.Store({
         step,
         project,
         template,
+        product
     }
 })
