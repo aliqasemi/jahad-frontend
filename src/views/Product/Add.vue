@@ -39,6 +39,14 @@
             <v-text-field type="number" style="text-align: right" label="مقدار موجودی" v-model="form.stock"
                           reverse></v-text-field>
           </v-col>
+          <v-col lg="6">
+            <!--                      :url.sync="form.thumbnail"-->
+            <cropper-image
+                :crop_data.sync="form.crop_data"
+                v-model="form.image"
+                :url="form.thumbnail"
+            />
+          </v-col>
         </v-row>
         <v-row>
           <v-col>
@@ -56,6 +64,7 @@
 </template>
 
 <script>
+import CropperImage from "../../components/GeneralComponent/CropperImage";
 import {mapActions} from "vuex";
 
 var defaultForm = {
@@ -63,6 +72,9 @@ var defaultForm = {
   description: '',
   stock: '',
   branch_id: 0,
+  crop_data: "",
+  image: "",
+  thumbnail: "",
 };
 
 export default {
@@ -70,7 +82,9 @@ export default {
   props: {
     product_id: {default: null},
   },
-  components: {},
+  components: {
+    CropperImage,
+  },
   data() {
     return {
       form: {...defaultForm},
