@@ -26,7 +26,7 @@
         <hr style="display: block; width: 75%"/>
         <items/>
 
-        <router-link :to="{name:'AddProducts'}" style="text-decoration: none">
+        <router-link :to="{name:'AddProduct'}" style="text-decoration: none">
             <v-btn style="margin-top: 15px">اضافه کردن محصول</v-btn>
         </router-link>
     </div>
@@ -36,7 +36,7 @@
 import Items from "../../components/Product/Items";
 
 export default {
-    name: "Templates",
+    name: "Products",
     data() {
         return {
             items: [

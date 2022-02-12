@@ -1,5 +1,5 @@
 export default {
-    products: [],
+    branches: [],
     loading: false,
     pagination: {
         page: 1,

@@ -1,15 +1,15 @@
 <template>
   <div>
     <v-progress-linear
-        v-if="getRequirementLoading"
+        v-if="getBranchLoading"
         color="black accent-4"
         indeterminate
         rounded
         height="10"
         style="margin: 10px"
     ></v-progress-linear>
-    <div v-else v-for="(requirement , key) in getListRequirement" v-bind:key="key">
-      <item :item="requirement" :index="key"/>
+    <div v-else v-for="(branch , key) in getListBranch" v-bind:key="key">
+      <item :item="branch" :index="key"/>
     </div>
     <div class="text-center" style="direction: ltr">
       <v-pagination
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Item from "../Requirement/Item";
+import Item from "../Branch/Item";
 import {mapActions, mapGetters, mapMutations} from "vuex";
 
 export default {
@@ -36,25 +36,25 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("requirement", ['getListRequirement', 'getRequirementLoading'])
+    ...mapGetters("branch", ['getListBranch', 'getBranchLoading'])
   },
   methods: {
-    ...mapActions("requirement", ['loadRequirementList']),
-    ...mapMutations("requirement", ['SET_REQUIREMENT_PAGINATION'])
+    ...mapActions("branch", ['loadBranchList']),
+    ...mapMutations("branch", ['SET_BRANCH_PAGINATION'])
   },
   watch: {
     page: {
       deep: true,
       immediate: true,
       async handler() {
-        this.SET_REQUIREMENT_PAGINATION({page: this.page, itemsPerPage: this.itemsPerPage})
-        await this.loadRequirementList()
+        this.SET_BRANCH_PAGINATION({page: this.page, itemsPerPage: this.itemsPerPage})
+        await this.loadBranchList();
       },
     },
   },
   async created() {
-    let response = await this.loadRequirementList();
-    this.pageNumber = response.pagination.pageCount
+    let response = await this.loadBranchList();
+    this.pageNumber = response.pagination.pageCount;
   }
 }
 </script>

@@ -9,7 +9,7 @@ export default {
         const index = state.products.findIndex(
             (x) => x.id === product.id
         );
-        Vue.set(state.templates, index, product);
+        Vue.set(state.products, index, product);
     },
 
     REMOVE_PRODUCT(state, id) {
@@ -28,5 +28,8 @@ export default {
     SET_LOADING(state, value) {
         state.loading = value;
     },
-}
 
+    SET_PRODUCT_PAGINATION(state, value) {
+        state.pagination = value;
+    }
+}

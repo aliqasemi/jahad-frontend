@@ -2,15 +2,13 @@ import {
     setData,
     getJson,
     getArray,
-    setQuery,
-} from "../resource/ProductResource";
+} from "../resource/BranchResource";
 import axios from "axios"
 
-export default class ProductRepository {
-    async index(data) {
-        const params = setQuery(data);
+export default class BranchRepository {
+    async index() {
         try {
-            let response = await axios.get('http://127.0.0.1:8000/api/jahad/products', {params});
+            let response = await axios.get('http://127.0.0.1:8000/api/jahad/branches');
             if (response && response.status === 200) {
                 return getArray(response.data);
             }
@@ -20,7 +18,7 @@ export default class ProductRepository {
     }
 
     async show(id) {
-        let response = await axios.get("http://127.0.0.1:8000/api/jahad/products/" + id);
+        let response = await axios.get("http://127.0.0.1:8000/api/jahad/branches/" + id);
         if (response && response.status === 200) {
             return getJson(response.data.data);
         }
@@ -29,7 +27,7 @@ export default class ProductRepository {
     async store(data) {
         try {
             const params = setData(data);
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/products", params);
+            let response = await axios.post("http://127.0.0.1:8000/api/jahad/branches", params);
 
             if (response && response.status === 201) {
                 return getJson(response.data.data);
@@ -44,7 +42,7 @@ export default class ProductRepository {
             const params = setData(data, true);
 
             let response = await axios.post(
-                "http://127.0.0.1:8000/api/jahad/products/" + data.id,
+                "http://127.0.0.1:8000/api/jahad/branches/" + data.id,
                 params
             );
 
@@ -59,7 +57,7 @@ export default class ProductRepository {
     async destroy(id) {
         try {
             let response = await axios.delete(
-                "http://127.0.0.1:8000/api/jahad/products/" + id
+                "http://127.0.0.1:8000/api/jahad/branches/" + id
             );
             if (response && response.status === 200) {
                 return response;

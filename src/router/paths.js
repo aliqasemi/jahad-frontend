@@ -20,6 +20,8 @@ import AddTemplate from "../views/MessageTemplate/Add";
 import Templates from "@/views/MessageTemplate/Templates";
 import Products from "@/views/Product/Products";
 import AddProduct from "@/views/Product/Add";
+import Branches from "@/views/Branch/Branches";
+import AddBranch from "@/views/Branch/Add";
 
 Vue.use(VueRouter)
 
@@ -180,7 +182,7 @@ const routes = [
     },
     {
         path: '/products/add',
-        name: 'AddProducts',
+        name: 'AddProduct',
         component: AddProduct,
         beforeEnter: isAuthenticated,
     },
@@ -188,6 +190,26 @@ const routes = [
         path: '/products/edit/:product_id',
         name: 'EditProduct',
         component: AddProduct,
+        beforeEnter: isAuthenticated,
+        props: true,
+    },
+    //branch
+    {
+        path: '/branches',
+        name: 'ListBranches',
+        component: Branches,
+        beforeEnter: isAuthenticated,
+    },
+    {
+        path: '/branches/add',
+        name: 'AddBranch',
+        component: AddBranch,
+        beforeEnter: isAuthenticated,
+    },
+    {
+        path: '/branches/edit/:branch_id',
+        name: 'EditBranch',
+        component: AddBranch,
         beforeEnter: isAuthenticated,
         props: true,
     },
