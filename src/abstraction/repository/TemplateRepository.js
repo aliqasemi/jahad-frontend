@@ -2,6 +2,7 @@ import {
     setData,
     getJson,
     getArray,
+    setFilterQuery
 } from "../resource/TemplateResource";
 import axios from "axios"
 
@@ -11,6 +12,19 @@ export default class TemplateRepository {
             let response = await axios.get('http://127.0.0.1:8000/api/jahad/templates');
             if (response && response.status === 200) {
                 return getArray(response.data.data);
+            }
+        } catch (e) {
+            return e;
+        }
+    }
+
+
+    async indexFilter(data) {
+        const params = setFilterQuery(data, data.typeMode);
+        try {
+            let response = await axios.get('http://127.0.0.1:8000/api/jahad/templates-filter', {params})
+            if (response && response.status === 200) {
+                return response.data.data;
             }
         } catch (e) {
             return e;

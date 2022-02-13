@@ -39,7 +39,7 @@
 
 <script>
 import Items from "../../components/Step/Items";
-import ProjectSearch from "@/components/Step/ProjectSearch";
+import ProjectSearch from "@/components/Project/ProjectSearch";
 
 export default {
   name: "Steps",

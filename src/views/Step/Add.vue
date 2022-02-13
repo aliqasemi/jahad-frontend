@@ -41,6 +41,11 @@
           </v-col>
         </v-row>
         <v-row>
+          <v-col lg="6" v-if="form.send_sms">
+            <template-search v-model="form.template_id"/>
+          </v-col>
+        </v-row>
+        <v-row>
           <v-col>
             <v-btn v-if="step_id" type="submit">
               ویرایش مرحله
@@ -57,11 +62,13 @@
 
 <script>
 import {mapActions} from "vuex";
+import TemplateSearch from "@/components/MessageTemplate/TemplateSearch";
 
 var defaultForm = {
   name: null,
   description: null,
-  send_sms: 0
+  send_sms: 0,
+  template_id: null,
 };
 
 export default {
@@ -70,7 +77,7 @@ export default {
     step_id: {default: null},
     project_id: {default: null}
   },
-  components: {},
+  components: {TemplateSearch},
   data() {
     return {
       form: {...defaultForm},

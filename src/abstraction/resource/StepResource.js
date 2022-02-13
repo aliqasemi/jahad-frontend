@@ -3,6 +3,9 @@ const getJson = (data) => {
         id: data.id,
         name: data.name,
         description: data.description,
+        template: data.template,
+        send_sms: data.send_sms,
+        template_id: data.template ? data.template.id : null,
         sort: data.sort,
     };
 };
@@ -17,7 +20,7 @@ const setData = (data, hasUpdate = false) => {
         name: data.name,
         description: data.description,
         send_sms: data.send_sms,
-        template_id: 0,
+        template_id: data.template_id,
         project_id: data.project_id,
         _method: hasUpdate ? "put" : "post",
     };
