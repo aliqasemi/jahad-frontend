@@ -1,6 +1,6 @@
 <template>
     <div style="width: 90%;margin: 0 auto; direction: rtl">
-        <div style="direction: rtl; background-color: aliceblue;border-radius: 10px">
+        <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
             <v-breadcrumbs :items="items">
                 <template v-slot:divider>
                     <v-icon>fa fa-chevron-left</v-icon>
@@ -9,7 +9,7 @@
                     <v-breadcrumbs-item
                         :disabled="item.disabled"
                     >
-                        <router-link :to="{name:item.routeName}" style="text-decoration: none;color:black;padding: 5px"
+                        <router-link :to="{name:item.routeName}" style="text-decoration: none;color:yellow;padding: 5px"
                                      class="bredRoute">
                            <span>
                                 <v-icon>{{item.icon}}</v-icon>  {{ item.text.toUpperCase() }}
