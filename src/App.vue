@@ -1,5 +1,5 @@
 <template>
-  <v-app style="background: linear-gradient(30deg, cadetblue, #b1b1b1);">
+  <v-app style="background: initial;">
     <navigation v-if="getLoginStatus"/>
     <v-main style="color: black">
       <router-view></router-view>

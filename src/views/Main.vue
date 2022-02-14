@@ -1,6 +1,6 @@
 <template>
   <div style="width: 90%;margin: 0 auto; direction: rtl">
-    <div v-if="getLoginStatus" style="direction: rtl; background-color: aliceblue;border-radius: 10px">
+    <div v-if="getLoginStatus" style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>
           <v-icon>fa fa-chevron-left</v-icon>
@@ -9,7 +9,7 @@
           <v-breadcrumbs-item
               :disabled="item.disabled"
           >
-            <router-link :to="{name:item.routeName}" style="text-decoration: none;color:black;padding: 5px"
+            <router-link :to="{name:item.routeName}" style="text-decoration: none;color:yellow;padding: 5px"
                          class="bredRoute">
                            <span>
                                 <v-icon>fa fa-home</v-icon>  {{ item.text.toUpperCase() }}
@@ -46,125 +46,165 @@
       </v-card-actions>
     </v-card>
     <v-row v-if="getLoginStatus" style="padding: 20px">
-      <v-col lg="12">
+      <v-col lg="6" style="margin-bottom: 20px">
         <router-link :to="{name:'ListServices'}" style="text-decoration: none;color: black">
-          <div class="flex-justified-space-between title-big">
+          <v-row  class="flex-justified-space-between title-big">
             <div>
               <div>
                 <div class="desc"> جهت مشاهده لیست خدمات و اضافه کردن خدمت درخواستی کلیک کنید</div>
-                <div class="title-fa"> خدمت ها</div>
+                <div class="title-fa"> خدمات</div>
+                <div class="title-en En Bold">
+                  <div style="position: absolute;text-align: left"> services</div>
+                </div>
               </div>
             </div>
-            <div class="title-en En Bold">
-              <div style="position: absolute;text-align: left"> services</div>
-            </div>
-          </div>
+            <v-row style="direction: ltr">
+              <v-icon size="75px" style="text-align: left">
+                fa fa-cog
+              </v-icon>
+            </v-row>
+          </v-row>
         </router-link>
       </v-col>
-      <v-col lg="12">
+      <v-col lg="6" style="margin-bottom: 20px">
         <router-link :to="{name:'ListRequirements'}" style="text-decoration: none;color: black">
-          <div class="flex-justified-space-between title-big">
+          <v-row class="flex-justified-space-between title-big">
             <div>
               <div class="texts">
                 <div class="desc"> جهت مشاهده لیست نیازمندی ها و اضافه کردن نیازمندی درخواستی کلیک کنید
                 </div>
                 <div class="title-fa"> نیازمندی ها</div>
+                <div class="title-en">
+                  <div style="position: absolute;text-align: left">Requirement</div>
+                </div>
               </div>
             </div>
-            <div class="title-en">
-              <div style="position: absolute;text-align: left">Requirement</div>
-            </div>
-          </div>
+            <v-row style="direction: ltr">
+              <v-icon size="75px" style="text-align: left">
+                fa fa-hand-paper-o
+              </v-icon>
+            </v-row>
+          </v-row>
         </router-link>
       </v-col>
-      <v-col lg="12">
+      <v-col lg="12" style="margin-bottom: 20px">
         <router-link :to="{name:'ListCategories'}" style="text-decoration: none;color: black">
-          <div class="flex-justified-space-between title-big">
+          <v-row  class="flex-justified-space-between title-big">
             <div>
               <div>
                 <div class="desc"> جهت مشاهده دسته بندی و بررسی آن ها کلیک کنید</div>
                 <div class="title-fa"> دسته بندی</div>
+                <div class="title-en">
+                  <div style="position: absolute;text-align: left"> Category</div>
+                </div>
               </div>
             </div>
-            <div class="title-en">
-              <div style="position: absolute;text-align: left"> Category</div>
-            </div>
-          </div>
+            <v-row style="direction: ltr">
+              <v-icon size="75px" style="text-align: left">
+                fa fa-sitemap
+              </v-icon>
+            </v-row>
+          </v-row>
         </router-link>
       </v-col>
-      <v-col lg="12">
+      <v-col lg="6" style="margin-bottom: 20px">
         <router-link :to="{name:'ListSteps', params:{project_id : 0}}" style="text-decoration: none;color: black">
-          <div class="flex-justified-space-between title-big">
+          <v-row class="flex-justified-space-between title-big">
             <div>
               <div>
                 <div class="desc"> جهت مشاهده مراحل تعریف شده و بررسی آن ها کلیک کنید</div>
                 <div class="title-fa"> مراحل</div>
+                <div class="title-en">
+                  <div style="position: absolute;text-align: left"> Step</div>
+                </div>
               </div>
             </div>
-            <div class="title-en">
-              <div style="position: absolute;text-align: left"> Step</div>
-            </div>
-          </div>
+            <v-row style="direction: ltr">
+              <v-icon size="75px" style="text-align: left">
+                fa fa-random
+              </v-icon>
+            </v-row>
+          </v-row>
         </router-link>
       </v-col>
-      <v-col lg="12">
+      <v-col lg="6" style="margin-bottom: 20px">
         <router-link :to="{name:'ListProjects'}" style="text-decoration: none;color: black">
-          <div class="flex-justified-space-between title-big">
+          <v-row class="flex-justified-space-between title-big">
             <div>
               <div>
                 <div class="desc"> جهت مشاهده پروژه های تعریف شده و بررسی آن ها کلیک کنید</div>
                 <div class="title-fa"> پروژه ها</div>
+                <div class="title-en">
+                  <div style="position: absolute;text-align: left"> Project</div>
+                </div>
               </div>
             </div>
-            <div class="title-en">
-              <div style="position: absolute;text-align: left"> Project</div>
-            </div>
-          </div>
+            <v-row style="direction: ltr">
+              <v-icon size="75px" style="text-align: left">
+                fa fa-cog
+              </v-icon>
+            </v-row>
+          </v-row>
         </router-link>
       </v-col>
-      <v-col lg="12">
-        <router-link :to="{name:'ListTemplates'}" style="text-decoration: none;color: black">
-          <div class="flex-justified-space-between title-big">
-            <div>
-              <div>
-                <div class="desc"> جهت مشاهده قالب های پیامکی تعریف شده و بررسی آن ها کلیک کنید</div>
-                <div class="title-fa"> قالب های پیامکی</div>
-              </div>
-            </div>
-            <div class="title-en">
-              <div style="position: absolute;text-align: left">Template</div>
-            </div>
-          </div>
-        </router-link>
-      </v-col>
-      <v-col lg="12">
+      <v-col lg="12" style="margin-bottom: 20px">
         <router-link :to="{name:'ListProducts'}" style="text-decoration: none;color: black">
-          <div class="flex-justified-space-between title-big">
+          <v-row class="flex-justified-space-between title-big">
             <div>
               <div>
                 <div class="desc"> جهت مشاهده محصولات و کوجودی آن در انبار و بررسی آن ها کلیک کنید</div>
                 <div class="title-fa"> محصولات و موجودی</div>
+                <div class="title-en">
+                  <div style="position: absolute;text-align: left">Product</div>
+                </div>
               </div>
             </div>
-            <div class="title-en">
-              <div style="position: absolute;text-align: left">Product</div>
-            </div>
-          </div>
+            <v-row style="direction: ltr">
+              <v-icon size="75px" style="text-align: left">
+                fa fa-cogs
+              </v-icon>
+            </v-row>
+          </v-row>
         </router-link>
       </v-col>
-      <v-col lg="12">
+      <v-col lg="6" style="margin-bottom: 20px">
+        <router-link :to="{name:'ListTemplates'}" style="text-decoration: none;color: black">
+          <v-row class="flex-justified-space-between title-big">
+            <div>
+              <div>
+                <div class="desc"> جهت مشاهده قالب های پیامکی تعریف شده و بررسی آن ها کلیک کنید</div>
+                <div class="title-fa"> قالب های پیامکی</div>
+                <div class="title-en">
+                  <div style="position: absolute;text-align: left">Template</div>
+                </div>
+              </div>
+            </div>
+            <v-row style="direction: ltr">
+              <v-icon size="75px" style="text-align: left">
+                fa fa-file-text-o
+              </v-icon>
+            </v-row>
+          </v-row>
+        </router-link>
+      </v-col>
+      <v-col lg="6" style="margin-bottom: 20px">
         <router-link :to="{name:'ListBranches'}" style="text-decoration: none;color: black">
-          <div class="flex-justified-space-between title-big">
+          <v-row class="flex-justified-space-between title-big">
             <div>
               <div>
                 <div class="desc"> جهت مشاهده شعبه ها و بررسی آن ها کلیک کنید</div>
-                <div class="title-fa">شعبه ها</div>
+                <div class="title-fa">شعب</div>
+                <div class="title-en">
+                  <div style="position: absolute;text-align: left">Branch</div>
+                </div>
               </div>
             </div>
-            <div class="title-en">
-              <div style="position: absolute;text-align: left">Product</div>
-            </div>
-          </div>
+            <v-row style="direction: ltr">
+              <v-icon size="75px" style="text-align: left">
+                fa fa-compass
+              </v-icon>
+            </v-row>
+          </v-row>
         </router-link>
       </v-col>
     </v-row>
@@ -204,7 +244,7 @@ export default {
 
 .title-big {
   border: 5px solid transparent;
-  background: #AED6D1;
+  background:rgba(216,186,17,0.80);
   color: #55706D;
   border-radius: 40px;
   padding: 15px 30px;
@@ -220,16 +260,17 @@ export default {
 
 .title-big:hover {
   text-indent: 0;
-  background: #55706D;
-  color: #FFE8A3;
+  background: rgba(118,118,35,0.83);
+  color: white;
   width: 100%;
-  border: 10px solid #8DCCC4;
+  border: 5px solid rgba(118,118,35,0.83);
   box-shadow: 3px 3px 2px rgba(black, 0.15);
 }
 
 .title-big:hover .desc {
-  color: white;
-  transition: 0.5s;
+  display: inline-block;
+  color: #eeeeee;
+  transition: all 0.5s;
   transform: translateX(0);
   opacity: 1;
 }
@@ -243,7 +284,7 @@ export default {
 }
 
 .title-big .desc {
-  display: inline-block;
+  display: none;
   transform: translateX(300px);
   font-weight: normal;
   opacity: 0;
@@ -252,14 +293,12 @@ export default {
 }
 
 .title-big .title-en {
-  width: 300px;
-  height: 160px;
   letter-spacing: 3px;
-  font-size: 150px;
-  line-height: 160px;
+  font-size: 20px;
+  padding-bottom: 10px;
   white-space: nowrap;
   text-transform: uppercase;
-  color: white;
+  color: rgba(13,75,118,0.70);
   opacity: 0.1;
 }
 
