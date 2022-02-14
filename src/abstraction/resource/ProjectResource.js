@@ -43,7 +43,6 @@ const getJson = (data) => {
             available_province: data.available_province,
         }
     });
-
     return result;
 };
 

@@ -19,49 +19,66 @@
         </template>
       </v-breadcrumbs>
     </div>
-    <v-form @submit.prevent="registerRequest" style="margin-top: 20px">
-      <div style="margin: 0 auto; direction: rtl">
-        <v-row style="direction: rtl;">
-          اضافه کردن نیازمندی
-        </v-row>
-        <br>
-        <hr style="display: block; width: 75%"/>
-        <v-row>
-          <v-col lg="3">
-            <v-text-field style="text-align: right" label="عنوان" v-model="form.title"
-                          reverse></v-text-field>
-            <v-textarea style="text-align: right" label="توضیحات" v-model="form.description"
-                        reverse></v-textarea>
-          </v-col>
-          <v-col lg="4">
-            <category-select v-model="form.category_id"/>
-          </v-col>
-          <v-col lg="5">
-            <!--                      :url.sync="form.thumbnail"-->
-            <cropper-image
-                :crop_data.sync="form.crop_data"
-                v-model="form.image"
-                :url="form.thumbnail"
-            />
-          </v-col>
-          <v-col lg="12">
-            <city-select v-model="form.city_id"/>
-            <v-text-field style="text-align: right; width: 60%" label="آدرس" v-model="form.address"
-                          reverse></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-btn v-if="requirement_id" type="submit">
-              ویرایش نیازمندی
-            </v-btn>
-            <v-btn v-else type="submit">
-              اضافه کردن نیازمندی
-            </v-btn>
-          </v-col>
-        </v-row>
-      </div>
-    </v-form>
+    <div style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
+      <v-form @submit.prevent="registerRequest" style="margin-top: 20px">
+        <div style="margin: 0 auto; direction: rtl">
+          <v-row v-if="requirement_id"
+                 style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+            ویرایش نیازمندی
+          </v-row>
+          <v-row v-else style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+            افزودن نیازمندی
+          </v-row>
+          <br>
+          <div class="title-en">
+            <div v-if="requirement_id"
+                 style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+              Edit requirements
+            </div>
+            <div v-else
+                 style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+              Add requirements
+            </div>
+          </div>
+          <hr style="display: block; width: 100%"/>
+          <br>
+          <v-row>
+            <v-col lg="3">
+              <v-text-field style="text-align: right" label="عنوان" v-model="form.title"
+                            reverse></v-text-field>
+              <v-textarea style="text-align: right" label="توضیحات" v-model="form.description"
+                          reverse></v-textarea>
+            </v-col>
+            <v-col lg="4">
+              <category-select v-model="form.category_id"/>
+            </v-col>
+            <v-col lg="5">
+              <!--                      :url.sync="form.thumbnail"-->
+              <cropper-image
+                  :crop_data.sync="form.crop_data"
+                  v-model="form.image"
+                  :url="form.thumbnail"
+              />
+            </v-col>
+            <v-col lg="12">
+              <city-select v-model="form.city_id"/>
+              <v-text-field style="text-align: right; width: 60%" label="آدرس" v-model="form.address"
+                            reverse></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-btn v-if="requirement_id" style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white" type="submit">
+                ویرایش نیازمندی
+              </v-btn>
+              <v-btn v-else style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white" type="submit">
+                اضافه کردن نیازمندی
+              </v-btn>
+            </v-col>
+          </v-row>
+        </div>
+      </v-form>
+    </div>
   </div>
 </template>
 
@@ -147,5 +164,15 @@ export default {
   color: white;
   border-radius: 10px;
   transition: 1s;
+}
+
+.title-en {
+  letter-spacing: 5px;
+  font-size: 10px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: #55706D;
+  display: block;
+  padding-bottom: 15px;
 }
 </style>

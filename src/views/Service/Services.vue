@@ -53,7 +53,7 @@ export default {
                     icon: "fa fa-home"
                 },
                 {
-                    text: 'خدمت ها',
+                    text: 'خدمات',
                     disabled: true,
                     routeName: "ListServices",
                     icon: "fa fa-wrench"

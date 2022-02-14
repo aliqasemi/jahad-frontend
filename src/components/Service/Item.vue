@@ -16,7 +16,7 @@
        </v-col>
      </v-row>
     </v-col>
-    <v-col lg="4" style="text-align: left">
+    <v-col lg="4" style="text-align: left; margin: auto 0">
       <router-link :to="{name:'AttachByService',  params: { service_id: item.id },}"
                    style="text-decoration: none; margin: 5px">
         <v-tooltip top>

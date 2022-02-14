@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center">
+    <div class="text-center" style="direction: rtl">
         <v-snackbar
             v-model="snackbarStatus"
             :timeout="timeout"
@@ -13,7 +13,9 @@
                     v-bind="attrs"
                     @click="snackbarStatus = false"
                 >
-                    Close
+                    <v-icon>
+                      fa fa-close
+                    </v-icon>
                 </v-btn>
             </template>
         </v-snackbar>

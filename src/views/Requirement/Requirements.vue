@@ -1,69 +1,84 @@
 <template>
+  <div style="width: 90%;margin: 0 auto; direction: rtl;font-size: 20px;">
     <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
-        <div style="direction: rtl; background-color: aliceblue;border-radius: 10px">
-            <v-breadcrumbs :items="items">
-                <template v-slot:divider>
-                    <v-icon>fa fa-chevron-left</v-icon>
-                </template>
-                <template v-slot:item="{ item }">
-                    <v-breadcrumbs-item
-                        :disabled="item.disabled"
-                    >
-                        <router-link :to="{name:item.routeName}" style="text-decoration: none;color:yellow;padding: 5px"
-                                     class="bredRoute">
+      <v-breadcrumbs :items="items">
+        <template v-slot:divider>
+          <v-icon>fa fa-chevron-left</v-icon>
+        </template>
+        <template v-slot:item="{ item }">
+          <v-breadcrumbs-item
+              :disabled="item.disabled"
+          >
+            <router-link :to="{name:item.routeName}" style="text-decoration: none;color:yellow;padding: 5px"
+                         class="bredRoute">
                            <span>
                                 <v-icon>{{ item.icon }}</v-icon>  {{ item.text.toUpperCase() }}
                            </span>
-                        </router-link>
-                    </v-breadcrumbs-item>
-                </template>
-            </v-breadcrumbs>
-        </div>
-        <v-row style="direction: rtl;margin-top: 20px">
-            لیست نیازمندی ها
-        </v-row>
-        <br>
-        <hr style="display: block; width: 75%"/>
-        <items/>
-
-        <router-link :to="{name:'AddRequirement'}" style="text-decoration: none">
-            <v-btn>اضافه کردن نیازمندی جدید</v-btn>
-        </router-link>
+            </router-link>
+          </v-breadcrumbs-item>
+        </template>
+      </v-breadcrumbs>
     </div>
+    <div style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
+      <v-row style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+        مدیریت نیازمندی
+      </v-row>
+      <br>
+      <div class="title-en">
+        <div style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">Requirements</div>
+      </div>
+      <hr style="display: block; width: 100%"/>
+      <br>
+      <items/>
+    </div>
+
+    <router-link :to="{name:'AddRequirement'}" style="text-decoration: none; padding: 20px;">
+      <v-btn style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white">اضافه کردن نیازمندی جدید</v-btn>
+    </router-link>
+  </div>
 </template>
 
 <script>
 import Items from "../../components/Requirement/Items";
 
 export default {
-    name: "Requirement",
-    data() {
-        return {
-            items: [
-                {
-                    text: 'صفحه اصلی',
-                    disabled: false,
-                    routeName: "Main",
-                    icon: "fa fa-home"
-                },
-                {
-                    text: 'نیازمندی ها',
-                    disabled: true,
-                    routeName: "ListCategories",
-                    icon: "fa fa-asterisk"
-                },
-            ],
-        }
-    },
-    components: {Items}
+  name: "Requirement",
+  data() {
+    return {
+      items: [
+        {
+          text: 'صفحه اصلی',
+          disabled: false,
+          routeName: "Main",
+          icon: "fa fa-home"
+        },
+        {
+          text: 'نیازمندی ها',
+          disabled: true,
+          routeName: "ListCategories",
+          icon: "fa fa-asterisk"
+        },
+      ],
+    }
+  },
+  components: {Items}
 }
 </script>
 
 <style scoped>
 .bredRoute:hover {
-    background-color: cadetblue;
-    color: white;
-    border-radius: 10px;
-    transition: 1s;
+  background-color: cadetblue;
+  color: white;
+  border-radius: 10px;
+  transition: 1s;
+}
+.title-en {
+  letter-spacing: 5px;
+  font-size: 10px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color:#55706D;
+  display: block;
+  padding-bottom: 15px;
 }
 </style>
