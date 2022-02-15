@@ -19,54 +19,71 @@
         </template>
       </v-breadcrumbs>
     </div>
-    <v-form @submit.prevent="registerRequest" style="margin-top: 20px">
-      <div style="margin: 0 auto; direction: rtl">
-        <v-row style="direction: rtl;">
-          اضافه کردن شعبه
-        </v-row>
-        <br>
-        <hr style="display: block; width: 75%"/>
-        <v-row>
-          <v-col lg="3">
-            <v-text-field style="text-align: right" label="عنوان" v-model="form.name"
-                          reverse></v-text-field>
-            <v-textarea style="text-align: right" label="توضیحات" v-model="form.description"
-                        reverse></v-textarea>
-          </v-col>
-          <v-col lg="4">
-            <v-text-field style="text-align: right" label="تلفن" v-model="form.cell_number"
-                          reverse></v-text-field>
-            <v-text-field style="text-align: right" label="تلفن همراه" v-model="form.phone_number"
-                          reverse></v-text-field>
-            <v-text-field style="text-align: right" label="کد پستی" v-model="form.postal_code"
-                          reverse></v-text-field>
-          </v-col>
-          <v-col lg="5">
-            <!--                      :url.sync="form.thumbnail"-->
-            <cropper-image
-                :crop_data.sync="form.crop_data"
-                v-model="form.image"
-                :url="form.thumbnail"
-            />
-          </v-col>
-          <v-col lg="12">
-            <city-select v-model="form.city_id"/>
-            <v-text-field style="text-align: right; width: 60%" label="آدرس" v-model="form.address"
-                          reverse></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-btn v-if="branch_id" type="submit">
-              ویرایش شعبه
-            </v-btn>
-            <v-btn v-else type="submit">
-              اضافه کردن شعبه
-            </v-btn>
-          </v-col>
-        </v-row>
-      </div>
-    </v-form>
+    <div style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
+      <v-form @submit.prevent="registerRequest" style="margin-top: 20px">
+        <div style="margin: 0 auto; direction: rtl">
+          <v-row v-if="branch_id"
+                 style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+            ویرایش شعبه
+          </v-row>
+          <v-row v-else style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+            افزودن شعیه
+          </v-row>
+          <br>
+          <div class="title-en">
+            <div v-if="branch_id"
+                 style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+              Edit Branch
+            </div>
+            <div v-else
+                 style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+              Add Branch
+            </div>
+          </div>
+          <hr style="display: block; width: 100%"/>
+          <br>
+          <v-row>
+            <v-col lg="3">
+              <v-text-field style="text-align: right" label="عنوان" v-model="form.name"
+                            reverse></v-text-field>
+              <v-textarea style="text-align: right" label="توضیحات" v-model="form.description"
+                          reverse></v-textarea>
+            </v-col>
+            <v-col lg="4">
+              <v-text-field style="text-align: right" label="تلفن" v-model="form.cell_number"
+                            reverse></v-text-field>
+              <v-text-field style="text-align: right" label="تلفن همراه" v-model="form.phone_number"
+                            reverse></v-text-field>
+              <v-text-field style="text-align: right" label="کد پستی" v-model="form.postal_code"
+                            reverse></v-text-field>
+            </v-col>
+            <v-col lg="5">
+              <!--                      :url.sync="form.thumbnail"-->
+              <cropper-image
+                  :crop_data.sync="form.crop_data"
+                  v-model="form.image"
+                  :url="form.thumbnail"
+              />
+            </v-col>
+            <v-col lg="12">
+              <city-select v-model="form.city_id"/>
+              <v-text-field style="text-align: right; width: 60%" label="آدرس" v-model="form.address"
+                            reverse></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-btn v-if="branch_id" style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white" type="submit">
+                ویرایش شعبه
+              </v-btn>
+              <v-btn v-else style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white" type="submit">
+                اضافه کردن شعبه
+              </v-btn>
+            </v-col>
+          </v-row>
+        </div>
+      </v-form>
+    </div>
   </div>
 </template>
 
@@ -157,5 +174,15 @@ export default {
   color: white;
   border-radius: 10px;
   transition: 1s;
+}
+
+.title-en {
+  letter-spacing: 5px;
+  font-size: 10px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: #55706D;
+  display: block;
+  padding-bottom: 15px;
 }
 </style>

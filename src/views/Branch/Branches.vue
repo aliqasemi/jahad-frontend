@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 90%;margin: 0 auto; direction: rtl">
+  <div style="width: 90%;margin: 0 auto; direction: rtl;font-size: 20px;">
     <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>
@@ -19,15 +19,24 @@
         </template>
       </v-breadcrumbs>
     </div>
-    <v-row style="direction: rtl;margin-top: 20px">
-      لیست شعبه ها
-    </v-row>
-    <br>
-    <hr style="display: block; width: 75%"/>
-    <items/>
+    <div style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
+      <v-row style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+        لیست شعب
+      </v-row>
+      <br>
+      <div class="title-en">
+        <div
+            style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+           Branches
+        </div>
+      </div>
+      <hr style="display: block; width: 100%"/>
+      <br>
+      <items/>
+    </div>
 
     <router-link :to="{name:'AddBranch'}" style="text-decoration: none">
-      <v-btn>اضافه کردن شعبه جدید</v-btn>
+      <v-btn  style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white">اضافه کردن شعبه جدید</v-btn>
     </router-link>
   </div>
 </template>
@@ -65,5 +74,15 @@ export default {
   color: white;
   border-radius: 10px;
   transition: 1s;
+}
+
+.title-en {
+  letter-spacing: 5px;
+  font-size: 10px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: #55706D;
+  display: block;
+  padding-bottom: 15px;
 }
 </style>
