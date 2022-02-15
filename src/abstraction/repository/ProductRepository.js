@@ -35,6 +35,7 @@ export default class ProductRepository {
                 return getJson(response.data.data);
             }
         } catch (e) {
+            console.log(e)
             return Promise.reject(e.response.data.errors);
         }
     }

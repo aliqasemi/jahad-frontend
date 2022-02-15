@@ -31,7 +31,7 @@
           </v-row>
           <br>
           <div class="title-en">
-            <div v-if="service_id"
+            <div v-if="product_id"
                  style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
               Edit Product
             </div>
@@ -51,10 +51,6 @@
               <v-text-field style="text-align: right" label="توضیحات" v-model="form.description"
                             reverse></v-text-field>
             </v-col>
-            <v-col lg="6" style="margin: 0 auto">
-              <v-text-field type="number" style="text-align: right" label="مقدار موجودی" v-model="form.stock"
-                            reverse></v-text-field>
-            </v-col>
             <v-col lg="6">
               <!--                      :url.sync="form.thumbnail"-->
               <cropper-image
@@ -62,6 +58,35 @@
                   v-model="form.image"
                   :url="form.thumbnail"
               />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col lg="6" style="margin: 0 auto">
+              <div style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
+                <v-row style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+                  مدیریت شعب
+                </v-row>
+                <br>
+                <div class="title-en">
+                  <div
+                      style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                    Branches manage
+                  </div>
+                </div>
+                <hr style="display: block; width: 100%"/>
+                <br>
+              </div>
+              <div v-for="(branch, i) in form.branches" :key="i">
+                <branch-row-duplicator
+                    v-model="form.branches[i]"
+                    @removeBranch="removeBranch(i)"
+                />
+              </div>
+              <v-btn
+                  @click="addBranches"
+                  style="background-color: cadetblue; border-radius: 10px; text-align: center;padding: 5px;margin: 5px auto; width: 100%;">
+                <v-icon style="margin: 0 auto" dark>fa fa-plus</v-icon>
+              </v-btn>
             </v-col>
           </v-row>
           <v-row>
@@ -86,6 +111,7 @@
 
 <script>
 import CropperImage from "../../components/GeneralComponent/CropperImage";
+import branchRowDuplicator from "@/components/Branch/BranchRowDuplicator";
 import {mapActions} from "vuex";
 
 var defaultForm = {
@@ -96,6 +122,7 @@ var defaultForm = {
   crop_data: "",
   image: "",
   thumbnail: "",
+  branches: [{}],
 };
 
 export default {
@@ -105,6 +132,7 @@ export default {
   },
   components: {
     CropperImage,
+    branchRowDuplicator
   },
   data() {
     return {
@@ -145,7 +173,13 @@ export default {
           await this.$router.replace("/products");
         }
       }
-    }
+    },
+    addBranches() {
+      this.form.branches.push({});
+    },
+    removeBranch(index) {
+      this.form.branches.splice(index, 1);
+    },
   },
   async created() {
     if (this.product_id) {
