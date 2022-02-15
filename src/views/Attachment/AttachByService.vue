@@ -19,126 +19,144 @@
         </template>
       </v-breadcrumbs>
     </div>
-    <v-row style="direction: rtl;margin-top: 20px">
-      خدمت
-    </v-row>
-    <br>
-    <hr style="display: block; width: 75%"/>
-    <v-container>
-      <v-row>
-        <v-col
-            cols="12"
-            md="4"
-        >
-          <v-card-text>
-            عنوان:
-          </v-card-text>
-          <v-card-text>
-            {{ service.title }}
-          </v-card-text>
-        </v-col>
-
-        <v-col
-            cols="12"
-            md="4"
-        >
-          <v-card-text>
-            توضیحات:
-          </v-card-text>
-          <v-card-text>
-            {{ service.description }}
-          </v-card-text>
-        </v-col>
-
-        <v-col
-            cols="12"
-            md="4"
-        >
-          <v-card-text>
-            آدرس:
-          </v-card-text>
-          <v-card-text>
-            {{ service.address }}
-          </v-card-text>
-        </v-col>
-
-        <v-col
-            cols="12"
-            md="4"
-        >
-          <v-card-text>
-            دسته بندی:
-          </v-card-text>
-          <v-card-text>
-            {{ service.category ? service.category.name : '' }}
-          </v-card-text>
-        </v-col>
-
-        <v-col
-        >
-          <v-card-text>
-            مستندات:
-          </v-card-text>
-          <v-img v-if="service.thumbnail" :src="service.thumbnail" width="700px" height="300px" alt="مستندات"/>
-          <v-card-text v-else>
-            ندارد
-          </v-card-text>
-        </v-col>
-
-        <v-col
-            cols="12"
-            md="4"
-        >
-          <v-card-text>
-            استان:
-          </v-card-text>
-          <v-card-text>
-            {{ service.province }}
-          </v-card-text>
-        </v-col>
-
-        <v-col
-            cols="12"
-            md="4"
-        >
-          <v-card-text>
-            شهر:
-          </v-card-text>
-          <v-card-text>
-            {{ service.county }}
-          </v-card-text>
-        </v-col>
-
-        <v-col
-            cols="12"
-            md="4"
-        >
-          <v-card-text>
-            مرکز:
-          </v-card-text>
-          <v-card-text>
-            {{ service.city }}
-          </v-card-text>
-        </v-col>
-        <v-col cols="12" md="4" v-if="service.available_province">
-          <v-card-text>
-            شهر های در دسترس:
-          </v-card-text>
-          <div v-for="(available,key) in service.available_province" v-bind:key="key">
-            <v-card-text>
-              {{ key + 1 }}: {{ available.name }}
-            </v-card-text>
-          </div>
-        </v-col>
+    <div style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
+      <v-row style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+        خدمت
       </v-row>
-    </v-container>
+      <br>
+      <div class="title-en">
+        <div
+            style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+          requirement
+        </div>
+      </div>
+      <hr style="display: block; width: 100%"/>
+      <br>
+      <v-container>
+        <v-row style="background-color: #8DCCC4; padding: 15px; border-radius: 10px; margin: 10px">
+          <v-col
+              cols="12"
+              md="4"
+          >
+            <v-card-text>
+              عنوان:
+            </v-card-text>
+            <v-card-text>
+              {{ service.title }}
+            </v-card-text>
+          </v-col>
 
-    <v-row v-if="attachment" style="direction: rtl;">
-      نیازمندی پیشنهاد شده
-    </v-row>
-    <br>
-    <hr v-if="attachment" style="display: block; width: 75%"/>
-    <Items v-if="attachment" :service_id="service_id"/>
+          <v-col
+              cols="12"
+              md="4"
+          >
+            <v-card-text>
+              توضیحات:
+            </v-card-text>
+            <v-card-text>
+              {{ service.description }}
+            </v-card-text>
+          </v-col>
+
+          <v-col
+              cols="12"
+              md="4"
+          >
+            <v-card-text>
+              آدرس:
+            </v-card-text>
+            <v-card-text>
+              {{ service.address }}
+            </v-card-text>
+          </v-col>
+
+          <v-col
+              cols="12"
+              md="4"
+          >
+            <v-card-text>
+              دسته بندی:
+            </v-card-text>
+            <v-card-text>
+              {{ service.category ? service.category.name : '' }}
+            </v-card-text>
+          </v-col>
+
+          <v-col
+          >
+            <v-card-text>
+              مستندات:
+            </v-card-text>
+            <v-img v-if="service.thumbnail" :src="service.thumbnail" width="700px" height="300px" alt="مستندات"/>
+            <v-card-text v-else>
+              ندارد
+            </v-card-text>
+          </v-col>
+
+          <v-col
+              cols="12"
+              md="4"
+          >
+            <v-card-text>
+              استان:
+            </v-card-text>
+            <v-card-text>
+              {{ service.province }}
+            </v-card-text>
+          </v-col>
+
+          <v-col
+              cols="12"
+              md="4"
+          >
+            <v-card-text>
+              شهر:
+            </v-card-text>
+            <v-card-text>
+              {{ service.county }}
+            </v-card-text>
+          </v-col>
+
+          <v-col
+              cols="12"
+              md="4"
+          >
+            <v-card-text>
+              مرکز:
+            </v-card-text>
+            <v-card-text>
+              {{ service.city }}
+            </v-card-text>
+          </v-col>
+          <v-col cols="12" md="4" v-if="service.available_province">
+            <v-card-text>
+              شهر های در دسترس:
+            </v-card-text>
+            <div v-for="(available,key) in service.available_province" v-bind:key="key">
+              <v-card-text>
+                {{ key + 1 }}: {{ available.name }}
+              </v-card-text>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <div v-if="attachment" style="background-color: white; padding: 15px; border-radius: 10px">
+        <v-row style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+           نیازمندی پیشنهاد شده
+        </v-row>
+        <br>
+        <div class="title-en">
+          <div
+              style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+            requirements recommend
+          </div>
+        </div>
+        <hr style="display: block; width: 100%"/>
+        <br>
+        <Items :service_id="service_id"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -193,5 +211,15 @@ export default {
   color: white;
   border-radius: 10px;
   transition: 1s;
+}
+
+.title-en {
+  letter-spacing: 5px;
+  font-size: 10px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: #55706D;
+  display: block;
+  padding-bottom: 15px;
 }
 </style>
