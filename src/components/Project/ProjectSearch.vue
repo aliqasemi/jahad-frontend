@@ -13,10 +13,11 @@
         item-value="id"
         label="پروژه خود را جست و جو کنید"
         solo
+        append-icon=""
         reverse
     >
       <template v-slot:no-data>
-        <v-list-item>
+        <v-list-item style="text-align: end">
           <v-list-item-title>
             چنین پروژه ای وجود ندارد
           </v-list-item-title>
@@ -38,18 +39,25 @@
             color="indigo"
             class="text-h5 font-weight-light white--text"
         >
-          {{ item.name.charAt(0) }}
+          <v-icon style="color: white">fa fa-cogs</v-icon>
         </v-list-item-avatar>
-        <v-list-item-content style="direction: rtl">
-          <v-list-item-title v-text="item.name"></v-list-item-title>
-          <v-chip>{{ item.requirement.title }} : نیازمندی</v-chip>
-          <v-chip v-for="(service,key) in item.services" v-bind:key="key">
-            سرویس‌ : {{ service.title }}
-          </v-chip>
+        <v-list-item-content style="direction: rtl;border:solid 1px; margin: 2px;border-radius: 5px">
+          <v-list-item-title v-text="item.name" style="padding: 10px"></v-list-item-title>
+          <v-row style="width: -webkit-fill-available">
+              <div style="padding-top: 20px; padding-right: 20px">
+                <v-chip style="background-color: #AED6D1"> نیازمندی</v-chip>
+                <v-chip> {{ item.requirement.title }}</v-chip>
+              </div>
+          </v-row>
+          <v-row style="margin: 5px">
+            <v-chip style="background-color: cadetblue">سرویس‌ </v-chip>
+            <v-chip v-for="(service,key) in item.services" v-bind:key="key">
+              <v-col lg="2">
+                {{ service.title }}
+              </v-col>
+            </v-chip>
+          </v-row>
         </v-list-item-content>
-        <v-list-item-action>
-          <v-icon>fa fa-edit</v-icon>
-        </v-list-item-action>
       </template>
     </v-autocomplete>
   </div>

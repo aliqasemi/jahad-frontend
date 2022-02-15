@@ -7,14 +7,15 @@
       {{ item.title }}
     </v-col>
     <v-col lg="3">
-     <v-row style="background-color: #AED6D1; border-radius: 10px;text-align: center; height: fit-content; width: fit-content; margin: auto 0">
-       <v-col lg="2">
-         <v-icon>fa fa-user</v-icon>
-       </v-col>
-       <v-col lg="10">
-         {{ item.user.firstname + ' ' + item.user.lastname }}
-       </v-col>
-     </v-row>
+      <v-row
+          style="background-color: #AED6D1; border-radius: 10px;text-align: center; height: fit-content; width: fit-content; margin: auto 0">
+        <v-col lg="2">
+          <v-icon>fa fa-user</v-icon>
+        </v-col>
+        <v-col lg="10">
+          {{ item.user.firstname + ' ' + item.user.lastname }}
+        </v-col>
+      </v-row>
     </v-col>
     <v-col lg="4" style="text-align: left; margin: auto 0">
       <router-link :to="{name:'AttachByService',  params: { service_id: item.id },}"
@@ -37,11 +38,9 @@
       <router-link :to="{name:'EditService',  params: { service_id: item.id },}"
                    style="text-decoration: none;margin: 5px">
         <v-tooltip top>
-
           <template v-slot:activator="{ on,attrs }">
-
             <v-btn
-                 style="background-color: lavenderblush"
+                style="background-color: lavenderblush"
                 slot="activator"
                 v-bind="attrs"
                 v-on="on"
@@ -108,11 +107,11 @@ export default {
   border: 2px inset darkseagreen;
   border-radius: 5px;
   margin: 5px;
-  background-color: rgba(46,201,189,0.2);
+  background-color: rgba(46, 201, 189, 0.2);
 }
 
 .item:hover {
-  background-color: rgba(202,200,5,0.4);
+  background-color: rgba(202, 200, 5, 0.4);
   transition: 900ms;
   border: 2px inset black;
 }

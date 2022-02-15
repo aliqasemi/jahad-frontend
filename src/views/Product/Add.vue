@@ -19,47 +19,68 @@
         </template>
       </v-breadcrumbs>
     </div>
-    <v-form @submit.prevent="registerRequest" style="margin-top: 20px">
-      <div style="margin: 0 auto; direction: rtl">
-        <v-row style="direction: rtl;">
-          اضافه کردن محصول
-        </v-row>
-        <br>
-        <hr style="display: block; width: 75%"/>
-        <v-row>
-          <v-col lg="6" style="margin: 0 auto">
-            <v-text-field style="text-align: right" label="نام محصول" v-model="form.name"
-                          reverse></v-text-field>
-          </v-col>
-          <v-col lg="6" style="margin: 0 auto">
-            <v-text-field style="text-align: right" label="توضیحات" v-model="form.description"
-                          reverse></v-text-field>
-          </v-col>
-          <v-col lg="6" style="margin: 0 auto">
-            <v-text-field type="number" style="text-align: right" label="مقدار موجودی" v-model="form.stock"
-                          reverse></v-text-field>
-          </v-col>
-          <v-col lg="6">
-            <!--                      :url.sync="form.thumbnail"-->
-            <cropper-image
-                :crop_data.sync="form.crop_data"
-                v-model="form.image"
-                :url="form.thumbnail"
-            />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-btn v-if="product_id" type="submit">
-              ویرایش محصول
-            </v-btn>
-            <v-btn v-else type="submit">
-              اضافه کردن محصول
-            </v-btn>
-          </v-col>
-        </v-row>
-      </div>
-    </v-form>
+    <div style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
+      <v-form @submit.prevent="registerRequest" style="margin-top: 20px">
+        <div style="margin: 0 auto; direction: rtl">
+          <v-row v-if="product_id"
+                 style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+            ویرایش محصول
+          </v-row>
+          <v-row v-else style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+            افزودن محصول
+          </v-row>
+          <br>
+          <div class="title-en">
+            <div v-if="service_id"
+                 style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+              Edit Product
+            </div>
+            <div v-else
+                 style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+              Add Product
+            </div>
+          </div>
+          <hr style="display: block; width: 100%"/>
+          <br>
+          <v-row>
+            <v-col lg="6" style="margin: 0 auto">
+              <v-text-field style="text-align: right" label="نام محصول" v-model="form.name"
+                            reverse></v-text-field>
+            </v-col>
+            <v-col lg="6" style="margin: 0 auto">
+              <v-text-field style="text-align: right" label="توضیحات" v-model="form.description"
+                            reverse></v-text-field>
+            </v-col>
+            <v-col lg="6" style="margin: 0 auto">
+              <v-text-field type="number" style="text-align: right" label="مقدار موجودی" v-model="form.stock"
+                            reverse></v-text-field>
+            </v-col>
+            <v-col lg="6">
+              <!--                      :url.sync="form.thumbnail"-->
+              <cropper-image
+                  :crop_data.sync="form.crop_data"
+                  v-model="form.image"
+                  :url="form.thumbnail"
+              />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-btn v-if="product_id"
+                     style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white"
+                     type="submit">
+                ویرایش محصول
+              </v-btn>
+              <v-btn v-else
+                     style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white"
+                     type="submit">
+                اضافه کردن محصول
+              </v-btn>
+            </v-col>
+          </v-row>
+        </div>
+      </v-form>
+    </div>
   </div>
 </template>
 
@@ -140,5 +161,16 @@ export default {
   color: white;
   border-radius: 10px;
   transition: 1s;
+}
+
+
+.title-en {
+  letter-spacing: 5px;
+  font-size: 10px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: #55706D;
+  display: block;
+  padding-bottom: 15px;
 }
 </style>

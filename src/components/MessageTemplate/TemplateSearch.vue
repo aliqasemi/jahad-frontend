@@ -9,6 +9,7 @@
         chips
         hide-details
         no-filter
+        append-icon=""
         item-text="name"
         item-value="id"
         label="قالب خود را جست و جو کنید"
@@ -16,7 +17,7 @@
         reverse
     >
       <template v-slot:no-data>
-        <v-list-item>
+        <v-list-item style="text-align: end">
           <v-list-item-title>
             چنین قالبی وجود ندارد
           </v-list-item-title>
@@ -34,12 +35,6 @@
         </v-chip>
       </template>
       <template v-slot:item="{ item }">
-        <v-list-item-avatar
-            color="indigo"
-            class="text-h5 font-weight-light white--text"
-        >
-          {{ item.name.charAt(0) }}
-        </v-list-item-avatar>
         <v-list-item-content style="direction: rtl">
           <v-list-item-title v-text="item.name"></v-list-item-title>
         </v-list-item-content>

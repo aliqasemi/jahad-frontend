@@ -21,7 +21,7 @@
     </div>
     <div style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
       <v-row style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
-        لیست مرحله ها
+        لیست مراحل
       </v-row>
       <br>
       <div class="title-en">
@@ -35,8 +35,8 @@
       <div v-if="project_id != 0">
         <items :project_id="project_id"/>
         <router-link :to="{name:'AddStep', params:{project_id: project_id}}"
-                     style="text-decoration: none">
-          <v-btn style="margin-top: 15px">اضافه کردن مرحله جدید</v-btn>
+                     style="text-decoration: none; padding: 20px;">
+          <v-btn style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white">افزودن مرحله جدید</v-btn>
         </router-link>
       </div>
       <div v-else>

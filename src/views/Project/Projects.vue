@@ -19,12 +19,21 @@
         </template>
       </v-breadcrumbs>
     </div>
-    <v-row style="direction: rtl;margin-top: 20px">
-      لیست پروژه ها
-    </v-row>
-    <br>
-    <hr style="display: block; width: 75%"/>
-    <items/>
+    <div style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
+      <v-row style="direction: rtl;margin-top: 20px">
+        لیست پروژه ها
+      </v-row>
+      <br>
+      <div class="title-en">
+        <div
+            style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+          Projects
+        </div>
+      </div>
+      <hr style="display: block; width: 100%"/>
+      <br>
+      <items/>
+    </div>
   </div>
 </template>
 
@@ -61,5 +70,15 @@ export default {
   color: white;
   border-radius: 10px;
   transition: 1s;
+}
+
+.title-en {
+  letter-spacing: 5px;
+  font-size: 10px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: #55706D;
+  display: block;
+  padding-bottom: 15px;
 }
 </style>
