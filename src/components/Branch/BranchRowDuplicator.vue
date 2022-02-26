@@ -6,7 +6,7 @@
                   reverse></v-text-field>
     <br>
     <br>
-    <v-textarea v-model="branches.description" type="number" height="10px" style="text-align: right" label=" توضیحات"
+    <v-textarea v-model="branches.description" height="10px" style="text-align: right" label=" توضیحات"
                 reverse></v-textarea>
     <v-tooltip top>
       <template v-slot:activator="{ on , attrs}">
@@ -28,7 +28,7 @@
 import BranchSearch from "@/components/Branch/BranchSearch";
 
 export default {
-  name: "Branches",
+  name: "BranchRowDuplicator",
   props:{
     value: {
       default: () => ({
@@ -41,20 +41,6 @@ export default {
   data() {
     return {
       branches: this.value,
-      items: [
-        {
-          text: 'صفحه اصلی',
-          disabled: false,
-          routeName: "Main",
-          icon: "fa fa-home"
-        },
-        {
-          text: 'شعبه ها',
-          disabled: true,
-          routeName: "ListBranches",
-          icon: "fa fa-wrench"
-        },
-      ]
     }
   },
   watch: {

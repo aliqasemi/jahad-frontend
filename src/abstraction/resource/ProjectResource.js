@@ -9,7 +9,20 @@ const getJson = (data) => {
         step: data.step,
         requirement: data.requirement,
         services: data.services,
+        requireProducts: data.require_products ? data.require_products : [{}],
     };
+
+    if (data.require_products) {
+        result.requireProducts = data.require_products.map((t) => {
+            return {
+                id: t.id,
+                name: t.name,
+                description: t.description,
+                number: t.number,
+            };
+        });
+    }
+
 
     result.requirement = {
         id: data.requirement.id,
@@ -81,6 +94,19 @@ const setData = (data, hasUpdate = false) => {
         step_id: data.step_id,
         _method: hasUpdate ? "put" : "post",
     };
+
+    params.require_products = {};
+
+    if (data.requireProducts) {
+        data.requireProducts.forEach((t, i) => {
+            params.require_products[i] = {
+                id: t.id,
+                name: t.name,
+                number: t.number,
+                description: t.description,
+            };
+        })
+    }
 
     if (!hasUpdate) {
         params.services = data.services

@@ -81,6 +81,33 @@
               </v-col>
             </v-row>
           </v-container>
+          <v-container
+              style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">
+            <div class="title-en-sec">
+              <v-row style="direction: rtl;padding: 10px">
+                مدیریت محصولات مورد نیاز
+              </v-row>
+              <br>
+              <div
+                  style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                manage require product
+              </div>
+            </div>
+            <hr style="display: block; width: 100%;"/>
+            <br>
+
+            <div v-for="(requireProduct, i) in form.requireProducts" :key="i">
+              <require-product-row-duplicator
+                  v-model="form.requireProducts[i]"
+                  @removeRequireProduct="removeRequireProducts(i)"
+              />
+            </div>
+            <v-btn
+                @click="addRequireProducts"
+                style="background-color: cadetblue; border-radius: 10px; text-align: center;padding: 5px;margin: 5px auto; width: 100%;">
+              <v-icon style="margin: 0 auto" dark>fa fa-plus</v-icon>
+            </v-btn>
+          </v-container>
           <v-container v-if="step.name"
                        style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">
             <div class="title-en-sec">
@@ -390,10 +417,12 @@
 <script>
 import {mapActions} from "vuex";
 import StepModal from "@/components/GeneralComponent/StepModal";
+import RequireProductRowDuplicator from "@/components/RequireProduct/RequireProductRowDuplicator";
 
 var defaultForm = {
   description: 'پروژه ..',
-  name: 'پروژه ..'
+  name: 'پروژه ..',
+  requireProducts: [{}],
 };
 
 export default {
@@ -403,7 +432,7 @@ export default {
     service_id: {default: null},
     requirement_id: {default: null},
   },
-  components: {StepModal},
+  components: {RequireProductRowDuplicator, StepModal},
   data() {
     return {
       form: {...defaultForm},
@@ -463,7 +492,13 @@ export default {
       Object.assign(this.form, {project_id: this.project_id});
       let response = await this.changeStep({data: this.form});
       this.step = response.step;
-    }
+    },
+    addRequireProducts() {
+      this.form.requireProducts.push({});
+    },
+    removeRequireProducts(index) {
+      this.form.requireProducts.splice(index, 1);
+    },
   },
   async created() {
     if (this.project_id) {
