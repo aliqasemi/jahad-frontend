@@ -15,6 +15,7 @@ import requirement from './modules/requirement/index'
 import product from './modules/product/index'
 import branch from './modules/branch/index'
 import snackbar from './modules/snackBar/index'
+import attachProduct from './modules/attachProduct/index'
 
 Vue.use(Vuex)
 
@@ -33,6 +34,7 @@ export const store = new Vuex.Store({
         project,
         template,
         product,
-        branch
+        branch,
+        attachProduct
     }
 })

@@ -79,7 +79,7 @@
               <div v-for="(branch, i) in form.branches" :key="i">
                 <branch-row-duplicator
                     v-model="form.branches[i]"
-                    @removeBranch="removeBranch(i)"
+                    @removeBranch="deleteBranch(i)"
                 />
               </div>
               <v-btn
@@ -177,7 +177,7 @@ export default {
     addBranches() {
       this.form.branches.push({});
     },
-    removeBranch(index) {
+    deleteBranch(index) {
       this.form.branches.splice(index, 1);
     },
   },

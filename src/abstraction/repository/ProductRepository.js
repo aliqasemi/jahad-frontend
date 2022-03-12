@@ -3,6 +3,7 @@ import {
     getJson,
     getArray,
     setQuery,
+    setFilterQuery
 } from "../resource/ProductResource";
 import axios from "axios"
 
@@ -18,6 +19,19 @@ export default class ProductRepository {
             return e;
         }
     }
+
+    async indexFilter(data) {
+        const params = setFilterQuery(data, data.typeMode);
+        try {
+            let response = await axios.get('http://127.0.0.1:8000/api/jahad/products-filter', {params})
+            if (response && response.status === 200) {
+                return response.data.data;
+            }
+        } catch (e) {
+            return e;
+        }
+    }
+
 
     async show(id) {
         let response = await axios.get("http://127.0.0.1:8000/api/jahad/products/" + id);

@@ -48,7 +48,7 @@
     <v-row v-if="getLoginStatus" style="padding: 20px">
       <v-col lg="6" style="margin-bottom: 20px">
         <router-link :to="{name:'ListServices'}" style="text-decoration: none;color: black">
-          <v-row  class="flex-justified-space-between title-big">
+          <v-row class="flex-justified-space-between title-big">
             <div>
               <div>
                 <div class="desc"> جهت مشاهده لیست خدمات و اضافه کردن خدمت درخواستی کلیک کنید</div>
@@ -89,7 +89,7 @@
       </v-col>
       <v-col lg="12" style="margin-bottom: 20px">
         <router-link :to="{name:'ListCategories'}" style="text-decoration: none;color: black">
-          <v-row  class="flex-justified-space-between title-big">
+          <v-row class="flex-justified-space-between title-big">
             <div>
               <div>
                 <div class="desc"> جهت مشاهده دسته بندی و بررسی آن ها کلیک کنید</div>
@@ -207,6 +207,26 @@
           </v-row>
         </router-link>
       </v-col>
+      <v-col lg="12" style="margin-bottom: 20px">
+        <router-link :to="{name:'AttachProduct',params: {project_id: 0}}" style="text-decoration: none;color: black">
+          <v-row class="flex-justified-space-between title-big">
+            <div>
+              <div>
+                <div class="desc"> جهت اعطای محصولات از انبار مه نیازمندی های پروژه و بررسی آن ها کلیک کنید</div>
+                <div class="title-fa"> اعطای محصول از انبار</div>
+                <div class="title-en">
+                  <div style="position: absolute;text-align: left">Product to Require Product</div>
+                </div>
+              </div>
+            </div>
+            <v-row style="direction: ltr">
+              <v-icon size="75px" style="text-align: left">
+                fa fa-paperclip
+              </v-icon>
+            </v-row>
+          </v-row>
+        </router-link>
+      </v-col>
     </v-row>
   </div>
 </template>
@@ -244,7 +264,7 @@ export default {
 
 .title-big {
   border: 5px solid transparent;
-  background:rgba(216,186,17,0.80);
+  background: rgba(216, 186, 17, 0.80);
   color: #55706D;
   border-radius: 40px;
   padding: 15px 30px;
@@ -260,10 +280,10 @@ export default {
 
 .title-big:hover {
   text-indent: 0;
-  background: rgba(118,118,35,0.83);
+  background: rgba(118, 118, 35, 0.83);
   color: white;
   width: 100%;
-  border: 5px solid rgba(118,118,35,0.83);
+  border: 5px solid rgba(118, 118, 35, 0.83);
   box-shadow: 3px 3px 2px rgba(black, 0.15);
 }
 
@@ -298,7 +318,7 @@ export default {
   padding-bottom: 10px;
   white-space: nowrap;
   text-transform: uppercase;
-  color: rgba(13,75,118,0.70);
+  color: rgba(13, 75, 118, 0.70);
   opacity: 0.1;
 }
 

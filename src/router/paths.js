@@ -22,6 +22,7 @@ import Products from "@/views/Product/Products";
 import AddProduct from "@/views/Product/Add";
 import Branches from "@/views/Branch/Branches";
 import AddBranch from "@/views/Branch/Add";
+import AttachProduct from "@/views/AttachProduct/AttachProduct";
 
 Vue.use(VueRouter)
 
@@ -213,6 +214,15 @@ const routes = [
         beforeEnter: isAuthenticated,
         props: true,
     },
+    //attach product
+    {
+        path: '/attach-product/:project_id',
+        name: 'AttachProduct',
+        component: AttachProduct,
+        beforeEnter: isAuthenticated,
+        props: true,
+    },
+
 ];
 
 export const router = new VueRouter({

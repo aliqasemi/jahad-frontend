@@ -23,7 +23,6 @@ const getJson = (data) => {
         });
     }
 
-
     result.requirement = {
         id: data.requirement.id,
         title: data.requirement.title,
