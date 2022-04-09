@@ -24,6 +24,7 @@ import Branches from "@/views/Branch/Branches";
 import AddBranch from "@/views/Branch/Add";
 import AttachProduct from "@/views/AttachProduct/AttachProduct";
 import ForgotPassword from "@/views/ForgotPassword";
+import ResetPassword from "@/views/ResetPassword";
 
 Vue.use(VueRouter)
 
@@ -44,6 +45,12 @@ const routes = [
         component: ForgotPassword,
         name: "ForgotPassword",
         beforeEnter: isGuest,
+    },
+    {
+        path: '/reset-password',
+        component: ResetPassword,
+        name: "ResetPassword",
+        beforeEnter: isAuthenticated,
     },
     {
         path: '/register',

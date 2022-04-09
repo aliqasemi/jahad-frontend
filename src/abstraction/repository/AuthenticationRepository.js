@@ -83,4 +83,15 @@ export default class AuthenticationRepository {
             return Promise.reject(e.data.errors);
         }
     }
+
+    async resetPassword(formData){
+        try {
+            let response = await axios.post("http://127.0.0.1:8000/api/jahad/change-password", formData);
+            if (response && response.status === 201) {
+                return response.data;
+            }
+        } catch (e) {
+            return Promise.reject(e.data.errors);
+        }
+    }
 }

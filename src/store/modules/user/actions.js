@@ -114,4 +114,20 @@ export default {
         }
     },
 
+    async resetPassword({commit}, {formData}) {
+        try {
+            commit("SET_LOADING", true);
+            const register = await repository.resetPassword(formData);
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'رمز شما با موفقیت تغییر کرد'})
+            return register;
+        } catch (e) {
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: e})
+            return e;
+        } finally {
+            commit("SET_LOADING", false);
+        }
+    },
+
 };

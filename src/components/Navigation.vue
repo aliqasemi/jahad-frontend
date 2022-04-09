@@ -138,6 +138,18 @@
                         <v-list-item-title>اعطای محصول برای پروژه از انبار</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
+              <v-list-item
+                  link
+                  :to="{name:'ResetPassword'}"
+              >
+                <v-list-item-icon>
+                  <v-icon>fa-list-alt</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content style="margin-right: 5px">
+                  <v-list-item-title>تغییر رمز</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
             </v-list>
         </v-navigation-drawer>
     </v-layout>
