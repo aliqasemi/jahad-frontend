@@ -32,11 +32,33 @@ export default class AuthenticationRepository {
     async register(formData) {
         try {
             let response = await axios.post("http://127.0.0.1:8000/api/jahad/register", formData);
+            if (response && response.status === 200) {
+                return response.data;
+            }
+        } catch (e) {
+            return Promise.reject(e.response.data.errors);
+        }
+    }
+
+    async confirmRegister(userId){
+        try {
+            let response = await axios.post("http://127.0.0.1:8000/api/jahad/confirm-register/"+ userId);
             if (response && response.status === 201) {
                 return response.data;
             }
         } catch (e) {
-            return e;
+            return Promise.reject(e.response.data.errors);
+        }
+    }
+
+    async verifyRegister(formData, userId){
+        try {
+            let response = await axios.post("http://127.0.0.1:8000/api/jahad/verify-register/"+ userId, formData);
+            if (response && response.status === 201) {
+                return response.data;
+            }
+        } catch (e) {
+            return Promise.reject(e.data.errors);
         }
     }
 }

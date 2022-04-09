@@ -19,7 +19,7 @@
       <template v-slot:no-data>
         <v-list-item style="text-align: end">
           <v-list-item-title>
-            چنین شعبه وجود ندارد
+            چنین محصولی وجود ندارد
           </v-list-item-title>
         </v-list-item>
       </template>

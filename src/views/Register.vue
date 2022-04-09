@@ -1,78 +1,82 @@
 <template>
   <div>
     <v-form @submit.prevent="registerRequest">
-      <v-container class="register">
-        <v-row style="margin: 0 auto">
+      <v-container class="register" v-if="!confirm">
+        <v-row style="margin: 0 auto; text-align: right; direction: rtl">
           <v-col style="margin: 0 auto"
-                 cols="12"
+                 cols="6"
                  md="4"
           >
             <v-text-field
                 v-model="form.firstname"
                 label="نام"
                 required
+                reverse
             ></v-text-field>
           </v-col>
-        </v-row>
-        <v-row style="margin: 0 auto">
           <v-col style="margin: 0 auto"
-                 cols="12"
+                 cols="6"
                  md="4"
           >
             <v-text-field
                 v-model="form.lastname"
                 label="نام خانوادگی"
                 required
+                reverse
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row style="margin: 0 auto">
+        <v-row style="margin: 0 auto; text-align: right; direction: rtl">
           <v-col style="margin: 0 auto"
-                 cols="12"
+                 cols="6"
                  md="4"
           >
             <v-text-field
                 v-model="form.phoneNumber"
                 label="شماره تلفن"
                 required
+                reverse
             ></v-text-field>
           </v-col>
-        </v-row>
-        <v-row style="margin: 0 auto">
           <v-col style="margin: 0 auto"
-                 cols="12"
+                 cols="6"
                  md="4"
           >
             <v-text-field
                 v-model="form.email"
                 label="ایمیل"
                 required
+                reverse
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row style="margin: 0 auto">
+        <v-row style="margin: 0 auto; text-align: right; direction: rtl">
           <v-col style="margin: 0 auto"
-                 cols="12"
+                 cols="6"
                  md="4"
           >
             <v-text-field
                 v-model="form.password"
-                type="password"
                 label="رمز عبور"
                 required
+                reverse
+                :type="visiblePass ? 'text' : 'password'"
+                :append-icon="visiblePass ? 'fa fa-eye-slash' : 'fa fa-eye'"
+                @click:append="visiblePass = !visiblePass"
             ></v-text-field>
           </v-col>
-        </v-row>
-        <v-row style="margin: 0 auto">
           <v-col style="margin: 0 auto"
-                 cols="12"
+                 cols="6"
                  md="4"
           >
             <v-text-field
                 v-model="form.password_confirmation"
-                type="password"
                 label="تکرار رمز عبور"
                 required
+                reverse
+                :type="visibleRepPass ? 'text' : 'password'"
+                :append-icon="visibleRepPass ? 'fa fa-eye-slash' : 'fa fa-eye'"
+                @click:append="visibleRepPass = !visibleRepPass"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -100,6 +104,24 @@
           </v-col>
         </v-row>
       </v-container>
+      <v-container class="register" v-else>
+        <v-col style="margin: 0 auto"
+               cols="12"
+               md="4"
+        >
+          <v-form @submit.prevent="confirmRegisterRequest">
+          <v-text-field
+              v-model="confirmForm.confirm"
+              label="کدتایید"
+              required
+              reverse
+          ></v-text-field>
+          <v-btn type="submit" elevation="2" block>
+            تایید کد
+          </v-btn>
+          </v-form>
+        </v-col>
+      </v-container>
     </v-form>
   </div>
 </template>
@@ -115,22 +137,45 @@ let defaultForm = {
   password_confirmation: null,
 }
 
+let defaultConfirmForm = {
+  confirm: null,
+}
+
 export default {
   name: 'Register',
   components: {},
   data: () => ({
     error: null,
     form: defaultForm,
+    confirmForm: defaultConfirmForm,
+    visiblePass: false,
+    visibleRepPass: false,
+    confirm: false,
+    userId: null,
   }),
   methods: {
-    ...mapActions("user", ['register']),
+    ...mapActions("user", ['register', 'confirmRegister', 'verifyRegister']),
     async registerRequest() {
       let response = await this.register({formData: this.form});
 
       if (!(response instanceof Error)) {
-        await this.$router.replace("/");
+
+        this.userId = response.user.id;
+        await this.confirmRegister({userId: this.userId});
+        this.confirm = true;
+      } else {
+        await this.$router.replace("/register");
       }
     },
+    async confirmRegisterRequest(){
+      let response = await this.verifyRegister({formData: this.confirmForm, userId: this.userId})
+      if (!(response instanceof Error)) {
+        await this.$router.replace("/");
+      }
+      else {
+        await this.$router.replace("/register");
+      }
+    }
   }
 }
 </script>

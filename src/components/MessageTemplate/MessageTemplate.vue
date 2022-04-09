@@ -31,12 +31,20 @@ export default {
     return {
       variables: [
         {
-          title: "نام",
-          value: " {user_firstname} ",
+          title: "نام نیازمند",
+          value: " {requirement_user_firstname} ",
         },
         {
-          title: "نام خانوادگی",
-          value: " {user_lastname} ",
+          title: "نام خانوادگی نیازمند",
+          value: " {requirement_user_lastname} ",
+        },
+        {
+          title: "نام خدمت دهنده",
+          value: " {service_user_firstname} ",
+        },
+        {
+          title: "نام خانوادگی خدمت دهنده",
+          value: " {service_user_lastname} ",
         },
         {
           title: "نام مرحله",
