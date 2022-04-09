@@ -61,4 +61,26 @@ export default class AuthenticationRepository {
             return Promise.reject(e.data.errors);
         }
     }
+
+    async confirmForgotPassword(formData){
+        try {
+            let response = await axios.post("http://127.0.0.1:8000/api/jahad/forgot-password", formData);
+            if (response && response.status === 201) {
+                return response.data;
+            }
+        } catch (e) {
+            return Promise.reject(e.data.errors);
+        }
+    }
+
+    async verifyForgotPassword(formData){
+        try {
+            let response = await axios.post("http://127.0.0.1:8000/api/jahad/verify-forgot-password", formData);
+            if (response && response.status === 201) {
+                return response.data;
+            }
+        } catch (e) {
+            return Promise.reject(e.data.errors);
+        }
+    }
 }

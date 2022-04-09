@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 90%;margin: 0 auto; direction: rtl">
+  <div style="width: 90%;margin: 0 auto; direction: rtl; ">
     <div v-if="getLoginStatus" style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>

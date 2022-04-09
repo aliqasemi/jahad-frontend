@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-form @submit.prevent="loginRequest">
+  <div style="background-color: #55706D; height: 1000px">
+    <v-form @submit.prevent="loginRequest" style="padding-top: 20px">
       <v-container class="login">
         <v-row style="margin: 0 auto">
           <v-col style="margin: 0 auto"
@@ -37,6 +37,12 @@
             <v-btn type="submit" elevation="2" block>
               ورود
             </v-btn>
+            <router-link :to="{name:'ForgotPassword'}" style="text-decoration: none">
+              <v-btn elevation="2" style="margin-top: 20px">
+                فراموشی رمز عبور
+              </v-btn>
+            </router-link>
+
           </v-col>
         </v-row>
         <v-row style="text-align: center">

@@ -23,6 +23,7 @@ import AddProduct from "@/views/Product/Add";
 import Branches from "@/views/Branch/Branches";
 import AddBranch from "@/views/Branch/Add";
 import AttachProduct from "@/views/AttachProduct/AttachProduct";
+import ForgotPassword from "@/views/ForgotPassword";
 
 Vue.use(VueRouter)
 
@@ -36,6 +37,12 @@ const routes = [
         path: '/login',
         component: Login,
         name: "Login",
+        beforeEnter: isGuest,
+    },
+    {
+        path: '/forgot-password',
+        component: ForgotPassword,
+        name: "ForgotPassword",
         beforeEnter: isGuest,
     },
     {

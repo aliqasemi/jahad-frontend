@@ -50,15 +50,14 @@ export default {
         }
     },
 
-    async confirmRegister({commit}, {userId}){
+    async confirmRegister({commit}, {userId}) {
         try {
             commit("SET_LOADING", true);
             const register = await repository.confirmRegister(userId);
             store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
             store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'پیامک با موفقیت ارسال شد.'})
             return register;
-        }
-        catch (e) {
+        } catch (e) {
             store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
             store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: e})
             return e;
@@ -67,21 +66,52 @@ export default {
         }
     },
 
-    async verifyRegister({commit}, {formData, userId}){
+    async verifyRegister({commit}, {formData, userId}) {
         try {
             commit("SET_LOADING", true);
             const register = await repository.verifyRegister(formData, userId);
             store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
             store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'احراز هویت با موفقیت انجام شد'})
             return register;
-        }
-        catch (e) {
+        } catch (e) {
             store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
             store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'کد ارسالی صحیح نیست'})
             return e;
         } finally {
             commit("SET_LOADING", false);
         }
-    }
+    },
+
+    async confirmForgotPassword({commit}, {formData}) {
+        try {
+            commit("SET_LOADING", true);
+            const register = await repository.confirmForgotPassword(formData);
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'پیامک با موفقیت ارسال شد.'})
+            return register;
+        } catch (e) {
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: e})
+            return e;
+        } finally {
+            commit("SET_LOADING", false);
+        }
+    },
+
+    async verifyForgotPassword({commit}, {formData}) {
+        try {
+            commit("SET_LOADING", true);
+            const register = await repository.verifyForgotPassword(formData);
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'عملیات با موفقیت انجام شد'})
+            return register;
+        } catch (e) {
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'کد ارسالی صحیح نیست'})
+            return e;
+        } finally {
+            commit("SET_LOADING", false);
+        }
+    },
 
 };

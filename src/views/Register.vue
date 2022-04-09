@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-form @submit.prevent="registerRequest">
+  <div style="background-color: #55706D; height: 1000px">
+    <v-form @submit.prevent="registerRequest"  style="padding-top: 20px">
       <v-container class="register" v-if="!confirm">
         <v-row style="margin: 0 auto; text-align: right; direction: rtl">
           <v-col style="margin: 0 auto"
