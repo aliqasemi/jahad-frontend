@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 90%;margin: 0 auto; direction: rtl">
+  <div style="width: 90%;margin: 0 auto; direction: rtl" v-if="getAuthorizeUser === 'superAdmin'">
     <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>
@@ -36,13 +36,17 @@
     </div>
 
     <router-link :to="{name:'AddTemplate'}" style="text-decoration: none">
-      <v-btn style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white">اضافه کردن قالب جدید </v-btn>
+      <v-btn
+          style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white">
+        اضافه کردن قالب جدید
+      </v-btn>
     </router-link>
   </div>
 </template>
 
 <script>
 import Items from "../../components/MessageTemplate/Items";
+import {mapGetters} from "vuex";
 
 export default {
   name: "Templates",
@@ -64,7 +68,10 @@ export default {
       ]
     }
   },
-  components: {Items}
+  components: {Items},
+  computed: {
+    ...mapGetters("user", ['getAuthorizeUser'])
+  },
 }
 </script>
 

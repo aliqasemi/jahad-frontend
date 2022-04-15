@@ -1,5 +1,6 @@
 <template>
-  <div style="width: 90%;margin: 0 auto; direction: rtl">
+  <div style="width: 90%;margin: 0 auto; direction: rtl"
+       v-if="getAuthorizeUser === 'superAdmin' || getAuthorizeUser === 'admin'">
     <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>
@@ -151,7 +152,7 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import Items from "../../components/AttachServiceRequirement/AttachByRequirement/Items";
 
 export default {
@@ -185,6 +186,9 @@ export default {
         },
       ]
     }
+  },
+  computed: {
+    ...mapGetters("user", ['getAuthorizeUser'])
   },
   methods: {
     ...mapActions('requirement', ['showRequirement'])

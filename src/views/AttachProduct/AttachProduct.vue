@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 90%;margin: 0 auto; direction: rtl;font-size: 20px;">
+  <div style="width: 90%;margin: 0 auto; direction: rtl;font-size: 20px;" v-if="getAuthorizeUser === 'superAdmin' || getAuthorizeUser === 'admin'">
     <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>
@@ -45,6 +45,7 @@
 <script>
 import Items from "../../components/AttachProduct/Items";
 import ProjectSearch from "@/components/Project/ProjectSearch";
+import {mapGetters} from "vuex";
 
 export default {
   name: "AttachProduct",
@@ -72,7 +73,10 @@ export default {
   components: {
     ProjectSearch,
     Items,
-  }
+  },
+  computed: {
+    ...mapGetters("user", ['getAuthorizeUser'])
+  },
 }
 </script>
 

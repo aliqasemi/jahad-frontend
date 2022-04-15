@@ -1,5 +1,6 @@
 <template>
-  <div style="width: 90%;margin: 0 auto; direction: rtl">
+  <div style="width: 90%;margin: 0 auto; direction: rtl"
+       v-if="getAuthorizeUser === 'admin' || getAuthorizeUser === 'superAdmin'">
     <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>
@@ -39,6 +40,7 @@
 
 <script>
 import Items from "../../components/Project/Items";
+import {mapGetters} from "vuex";
 
 export default {
   name: "Projects",
@@ -60,7 +62,10 @@ export default {
       ]
     }
   },
-  components: {Items}
+  components: {Items},
+  computed: {
+    ...mapGetters("user", ['getAuthorizeUser'])
+  },
 }
 </script>
 
