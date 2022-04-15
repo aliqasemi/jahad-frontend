@@ -19,7 +19,9 @@
     </v-col>
     <v-col lg="4" style="text-align: left; margin: auto 0">
       <router-link :to="{name:'AttachByRequirement',  params: { requirement_id: item.id },}"
-                   style="text-decoration: none; margin: 5px">
+                   style="text-decoration: none; margin: 5px"
+                   v-if="getAuthorizeUser === 'admin' || getAuthorizeUser === 'superAdmin'"
+      >
         <v-tooltip top>
           <template v-slot:activator="{ on,attrs }">
             <v-btn
@@ -75,13 +77,16 @@
 
 <script>
 import DeleteModal from "../GeneralComponent/deleteModal";
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "Item",
   props: {
     item: {default: null},
     index: {default: 0},
+  },
+  computed: {
+    ...mapGetters("user", ['getAuthorizeUser'])
   },
   components: {
     DeleteModal
@@ -109,7 +114,7 @@ export default {
   border: 2px inset darkseagreen;
   border-radius: 5px;
   margin: 5px;
-  background-color: rgba(46,201,189,0.2);
+  background-color: rgba(46, 201, 189, 0.2);
 }
 
 .item:hover {

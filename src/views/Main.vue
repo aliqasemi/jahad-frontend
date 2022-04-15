@@ -87,8 +87,9 @@
           </v-row>
         </router-link>
       </v-col>
-      <v-col lg="12" style="margin-bottom: 20px">
-        <router-link :to="{name:'ListCategories'}" style="text-decoration: none;color: black">
+      <v-col lg="12" style="margin-bottom: 20px" v-if="getAuthorizeUser !== 'user'">
+        <router-link :to="{name:'ListCategories'}"
+                     style="text-decoration: none;color: black">
           <v-row class="flex-justified-space-between title-big">
             <div>
               <div>
@@ -107,7 +108,7 @@
           </v-row>
         </router-link>
       </v-col>
-      <v-col lg="6" style="margin-bottom: 20px">
+      <v-col lg="6" style="margin-bottom: 20px" v-if="getAuthorizeUser !== 'user'">
         <router-link :to="{name:'ListSteps', params:{project_id : 0}}" style="text-decoration: none;color: black">
           <v-row class="flex-justified-space-between title-big">
             <div>
@@ -127,7 +128,7 @@
           </v-row>
         </router-link>
       </v-col>
-      <v-col lg="6" style="margin-bottom: 20px">
+      <v-col lg="6" style="margin-bottom: 20px" v-if="getAuthorizeUser !== 'user'">
         <router-link :to="{name:'ListProjects'}" style="text-decoration: none;color: black">
           <v-row class="flex-justified-space-between title-big">
             <div>
@@ -147,7 +148,7 @@
           </v-row>
         </router-link>
       </v-col>
-      <v-col lg="12" style="margin-bottom: 20px">
+      <v-col lg="12" style="margin-bottom: 20px" v-if="getAuthorizeUser !== 'user'">
         <router-link :to="{name:'ListProducts'}" style="text-decoration: none;color: black">
           <v-row class="flex-justified-space-between title-big">
             <div>
@@ -167,7 +168,7 @@
           </v-row>
         </router-link>
       </v-col>
-      <v-col lg="6" style="margin-bottom: 20px">
+      <v-col lg="6" style="margin-bottom: 20px" v-if="getAuthorizeUser !== 'user' && getAuthorizeUser !== 'admin'">
         <router-link :to="{name:'ListTemplates'}" style="text-decoration: none;color: black">
           <v-row class="flex-justified-space-between title-big">
             <div>
@@ -187,7 +188,7 @@
           </v-row>
         </router-link>
       </v-col>
-      <v-col lg="6" style="margin-bottom: 20px">
+      <v-col lg="6" style="margin-bottom: 20px" v-if="getAuthorizeUser !== 'user'">
         <router-link :to="{name:'ListBranches'}" style="text-decoration: none;color: black">
           <v-row class="flex-justified-space-between title-big">
             <div>
@@ -207,7 +208,7 @@
           </v-row>
         </router-link>
       </v-col>
-      <v-col lg="12" style="margin-bottom: 20px">
+      <v-col lg="12" style="margin-bottom: 20px" v-if="getAuthorizeUser !== 'user'">
         <router-link :to="{name:'AttachProduct',params: {project_id: 0}}" style="text-decoration: none;color: black">
           <v-row class="flex-justified-space-between title-big">
             <div>
@@ -249,7 +250,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters("user", ['getLoginStatus'])
+    ...mapGetters("user", ['getLoginStatus', 'getAuthorizeUser'])
   },
 }
 </script>

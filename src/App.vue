@@ -22,17 +22,18 @@ export default {
     //
   }),
   computed: {
-    ...mapGetters("user", ['getLoginStatus'])
+    ...mapGetters("user", ['getLoginStatus', 'getAuthorizeUser'])
   },
   methods: {
-    ...mapMutations("user", ['SET_LOGIN_STATUS'])
+    ...mapMutations("user", ['SET_LOGIN_STATUS', 'SET_AUTHORIZE_USER'])
   },
   async created() {
     const token = localStorage.getItem("token");
     setAuthToken(token);
     try {
-      await axios.get('http://127.0.0.1:8000/api/jahad/categories');
+      let user = await axios.get('http://127.0.0.1:8000/api/jahad/auth-user');
       this.SET_LOGIN_STATUS(!!token);
+      this.SET_AUTHORIZE_USER(user.data.data.role);
     } catch (e) {
       setAuthToken();
       await this.$router.replace("/login");

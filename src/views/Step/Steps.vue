@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 90%;margin: 0 auto; direction: rtl;font-size: 20px;">
+  <div style="width: 90%;margin: 0 auto; direction: rtl;font-size: 20px;" v-if="getAuthorizeUser !== 'user'">
     <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>
@@ -36,7 +36,10 @@
         <items :project_id="project_id"/>
         <router-link :to="{name:'AddStep', params:{project_id: project_id}}"
                      style="text-decoration: none; padding: 20px;">
-          <v-btn style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white">افزودن مرحله جدید</v-btn>
+          <v-btn
+              style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white">
+            افزودن مرحله جدید
+          </v-btn>
         </router-link>
       </div>
       <div v-else>
@@ -49,11 +52,15 @@
 <script>
 import Items from "../../components/Step/Items";
 import ProjectSearch from "@/components/Project/ProjectSearch";
+import {mapGetters} from "vuex";
 
 export default {
   name: "Steps",
   props: {
     project_id: {default: null},
+  },
+  computed: {
+    ...mapGetters("user", ['getAuthorizeUser'])
   },
   data() {
     return {

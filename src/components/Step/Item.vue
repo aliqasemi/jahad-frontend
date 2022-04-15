@@ -9,7 +9,7 @@
       </v-col>
     </v-row>
     <v-col lg="12" style="text-align: center">
-      <router-link :to="{name:'EditStep',  params: { step_id: item.id },}" style="text-decoration: none;margin: 5px">
+      <router-link :event="getAuthorizeUser === 'superAdmin' ? 'click' : ''" :to="{name:'EditStep',  params: { step_id: item.id },}" style="text-decoration: none;margin: 5px">
         <v-tooltip top>
 
           <template v-slot:activator="{ on,attrs }">
@@ -18,6 +18,7 @@
                 slot="activator"
                 v-bind="attrs"
                 v-on="on"
+                :disabled="getAuthorizeUser !== 'superAdmin'"
             >
               <v-icon style="color: darkcyan" dark>fa-cog</v-icon>
             </v-btn>
@@ -33,6 +34,7 @@
               slot="activator"
               v-bind="attrs"
               v-on="on"
+              :disabled="getAuthorizeUser !== 'superAdmin'"
               @click.native="deleteDialog = true"
           >
             <v-icon style="color: red" dark>fa-trash</v-icon>
@@ -43,10 +45,10 @@
       <delete-modal v-model="deleteDialog" @action="deleteStep(item.id)"/>
     </v-col>
     <v-row style="margin: 2px auto; background-color: #AED6D1;border-radius: 5px">
-      <v-icon @click="moveUp(item.id)" style="margin: 5px auto; padding: 10px" class="angle">
+      <v-icon :disabled="getAuthorizeUser !== 'superAdmin'" @click="moveUp(item.id)" style="margin: 5px auto; padding: 10px" class="angle">
         fa-angle-right
       </v-icon>
-      <v-icon @click="moveDown(item.id)" style="margin: 5px auto;padding: 10px" class="angle">
+      <v-icon :disabled="getAuthorizeUser !== 'superAdmin'" @click="moveDown(item.id)" style="margin: 5px auto;padding: 10px" class="angle">
         fa-angle-left
       </v-icon>
     </v-row>
@@ -55,13 +57,16 @@
 
 <script>
 import DeleteModal from "../GeneralComponent/deleteModal";
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "Item",
   props: {
     item: {default: null},
     index: {default: 0},
+  },
+  computed: {
+    ...mapGetters("user", ['getAuthorizeUser'])
   },
   components: {
     DeleteModal
@@ -89,11 +94,11 @@ export default {
   border: 2px inset darkseagreen;
   border-radius: 5px;
   margin: 5px;
-  background-color: rgba(46,201,189,0.2);
+  background-color: rgba(46, 201, 189, 0.2);
 }
 
 .item:hover {
-  background-color: rgba(202,200,5,0.4);
+  background-color: rgba(202, 200, 5, 0.4);
   transition: 900ms;
   border: 2px inset black;
 }
