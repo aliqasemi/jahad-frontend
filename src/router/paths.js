@@ -25,6 +25,7 @@ import AddBranch from "@/views/Branch/Add";
 import AttachProduct from "@/views/AttachProduct/AttachProduct";
 import ForgotPassword from "@/views/ForgotPassword";
 import ResetPassword from "@/views/ResetPassword";
+import Users from "@/views/User/Users";
 
 Vue.use(VueRouter)
 
@@ -61,6 +62,12 @@ const routes = [
         path: '/profile',
         name: 'Profile',
         component: Profile,
+        beforeEnter: isAuthenticated,
+    },
+    {
+        path: '/users',
+        name: 'ListUsers',
+        component: Users,
         beforeEnter: isAuthenticated,
     },
     //categories

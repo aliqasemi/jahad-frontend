@@ -130,4 +130,32 @@ export default {
         }
     },
 
+    async loadUsersList({commit, state}) {
+        try {
+            commit("SET_LOADING", true);
+            const users = await repository.index({
+                pagination: state.pagination,
+                filter: state.filter
+            });
+            commit("SET_USER", users.data);
+            commit("SET_USER_PAGINATION", users.pagination);
+            return users;
+        } catch (e) {
+            return e;
+        } finally {
+            commit("SET_LOADING", false);
+        }
+    },
+
+    async active({commit}, {data, userId}) {
+        try {
+            let user = await repository.active(data, userId);
+            commit('UPDATE_USER', user);
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'عملیات با موفقیت انجام شد'})
+        } catch (e) {
+            return e;
+        }
+    }
+
 };
