@@ -132,7 +132,6 @@ export default {
       Object.assign(this.form, {project_id: this.project_id})
       if (this.step_id) {
         let response = await this.updateStep({data: this.form});
-        console.log(response)
         if (!(response instanceof Error)) {
           await this.$router.replace("/steps");
         }

@@ -172,5 +172,30 @@ export default {
         } catch (e) {
             return e;
         }
-    }
+    },
+
+    async update({commit}, {data, userId}) {
+        try {
+            let user = await repository.update(data, userId);
+            if (!(user instanceof Error)) {
+                store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
+                store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'عملیات با موفقیت انجام شد'})
+            }
+            return user;
+        } catch (e) {
+            return e;
+        }finally {
+            commit("SET_LOADING", false);
+        }
+    },
+    async show({commit}, userId) {
+        try {
+            commit("SET_LOADING", true);
+            return await repository.show(userId);
+        } catch (e) {
+            return e;
+        }finally {
+            commit("SET_LOADING", false);
+        }
+    },
 };

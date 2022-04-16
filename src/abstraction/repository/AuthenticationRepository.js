@@ -2,7 +2,7 @@ import {setAuthToken, setAuthUser} from "@/service/AuthService";
 import {
     getArray, getJson,
     setFilterQuery,
-    setQuery
+    setQuery, setData
 } from "../resource/AuthenticationResource";
 
 import axios from "axios";
@@ -128,6 +128,29 @@ export default class AuthenticationRepository {
     async active(data, userId) {
         try {
             let response = await axios.post('http://127.0.0.1:8000/api/jahad/active/' + userId, {active: data});
+            if (response && response.status === 200) {
+                return getJson(response.data.data);
+            }
+        } catch (e) {
+            return e;
+        }
+    }
+
+    async update(data, userId) {
+        try {
+            const params = setData(data, true);
+            let response = await axios.post('http://127.0.0.1:8000/api/jahad/user/' + userId, params);
+            if (response && response.status === 200) {
+                return getJson(response.data.data);
+            }
+        } catch (e) {
+            return e;
+        }
+    }
+
+    async show(userId) {
+        try {
+            let response = await axios.get('http://127.0.0.1:8000/api/jahad/user/' + userId);
             if (response && response.status === 200) {
                 return getJson(response.data.data);
             }

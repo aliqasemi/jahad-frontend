@@ -39,4 +39,16 @@ const getArray = ({data, meta}) => {
     return {data, pagination};
 };
 
-export {getJson, setFilterQuery, setQuery, getArray};
+
+const setData = (data, hasUpdate = false) => {
+    return {
+        firstname: data.firstname,
+        lastname: data.lastname,
+        phoneNumber: data.phoneNumber,
+        address: data.address,
+        email: data.email,
+        _method: hasUpdate ? "put" : "post",
+    };
+};
+
+export {getJson, setFilterQuery, setQuery, getArray, setData};
