@@ -26,6 +26,7 @@ import AttachProduct from "@/views/AttachProduct/AttachProduct";
 import ForgotPassword from "@/views/ForgotPassword";
 import ResetPassword from "@/views/ResetPassword";
 import Users from "@/views/User/Users";
+import EditUser from "@/views/User/Edit";
 
 Vue.use(VueRouter)
 
@@ -69,6 +70,13 @@ const routes = [
         name: 'ListUsers',
         component: Users,
         beforeEnter: isAuthenticated,
+    },
+    {
+        path: '/users/:user_id',
+        name: 'EditUser',
+        component: EditUser,
+        beforeEnter: isAuthenticated,
+        props: true,
     },
     //categories
     {

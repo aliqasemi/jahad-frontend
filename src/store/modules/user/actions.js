@@ -151,11 +151,26 @@ export default {
         try {
             let user = await repository.active(data, userId);
             commit('UPDATE_USER', user);
-            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
-            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'عملیات با موفقیت انجام شد'})
+            if (!(user instanceof Error)) {
+                store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
+                store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'عملیات با موفقیت انجام شد'})
+            }
+        } catch (e) {
+            return e;
+        }
+    },
+
+    async assignRole({commit}, {role, userId}) {
+        try {
+            let user = await repository.assignRole(role, userId);
+            commit('UPDATE_USER', user);
+            if (!(user instanceof Error)) {
+                store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
+                store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'عملیات با موفقیت انجام شد'})
+            }
+            return user;
         } catch (e) {
             return e;
         }
     }
-
 };

@@ -101,11 +101,11 @@ export default class AuthenticationRepository {
         }
     }
 
-    async assignRole(formData, userId) {
+    async assignRole(role, userId) {
         try {
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/assign-role/" + userId, formData);
+            let response = await axios.post("http://127.0.0.1:8000/api/jahad/assign-role/" + userId, {ability: role});
             if (response && response.status === 200) {
-                return response.data;
+                return response.data.data;
             }
         } catch (e) {
             return Promise.reject(e.data.errors);

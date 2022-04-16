@@ -213,7 +213,7 @@
           <v-row class="flex-justified-space-between title-big">
             <div>
               <div>
-                <div class="desc"> جهت اعطای محصولات از انبار مه نیازمندی های پروژه و بررسی آن ها کلیک کنید</div>
+                <div class="desc"> جهت اعطای محصولات از انبار به نیازمندی های پروژه و بررسی آن ها کلیک کنید</div>
                 <div class="title-fa"> اعطای محصول از انبار</div>
                 <div class="title-en">
                   <div style="position: absolute;text-align: left">Product to Require Product</div>
@@ -223,6 +223,26 @@
             <v-row style="direction: ltr">
               <v-icon size="75px" style="text-align: left">
                 fa fa-paperclip
+              </v-icon>
+            </v-row>
+          </v-row>
+        </router-link>
+      </v-col>
+      <v-col lg="12" style="margin-bottom: 20px" v-if="getAuthorizeUser === 'superAdmin'">
+        <router-link :to="{name:'ListUsers'}" style="text-decoration: none;color: black">
+          <v-row class="flex-justified-space-between title-big">
+            <div>
+              <div>
+                <div class="desc"> جهت مدیریت کاربران کلیک کنید</div>
+                <div class="title-fa"> کاربران</div>
+                <div class="title-en">
+                  <div style="position: absolute;text-align: left">Users</div>
+                </div>
+              </div>
+            </div>
+            <v-row style="direction: ltr">
+              <v-icon size="75px" style="text-align: left">
+                fa fa-users
               </v-icon>
             </v-row>
           </v-row>

@@ -15,9 +15,9 @@
     <v-col lg="2">
       <v-text-field label="نقش" reverse v-model="filter.role"></v-text-field>
     </v-col>
-    <v-col lg="2">
+    <v-col lg="2" style="margin: auto;text-align: center">
       <v-btn
-          style="background-color: lavenderblush"
+          style="background-color: lavenderblush; margin: 0 auto"
           @click="search"
       >
         <v-icon style="color: darkcyan" dark>fa-search</v-icon>

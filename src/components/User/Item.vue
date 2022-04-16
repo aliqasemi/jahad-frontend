@@ -10,13 +10,13 @@
       <v-col lg="2" xl="2">
         {{ item.phoneNumber }}
       </v-col>
-      <v-col lg="2" xl="2" v-if="item.role === 'user'">
+      <v-col class="role" lg="2" xl="2" v-if="item.role === 'user'" @click="roleDialog = true">
         کاربر عادی
       </v-col>
-      <v-col lg="2" xl="2" v-else-if="item.role === 'admin'">
+      <v-col class="role" lg="2" xl="2" v-else-if="item.role === 'admin'" @click="roleDialog = true">
         کاربر مدیر
       </v-col>
-      <v-col lg="2" xl="2" v-else-if="item.role === 'superAdmin'">
+      <v-col class="role" lg="2" xl="2" v-else-if="item.role === 'superAdmin'" @click="roleDialog = true">
         کاربر مدیر کل
       </v-col>
       <v-col lg="4" xl="4" style="text-align: center">
@@ -48,9 +48,16 @@
               <v-icon v-else style="color: black" dark>fa-toggle-off</v-icon>
             </v-btn>
           </template>
-          <span>حذف</span>
+          <span v-if="item.active">غیر فعال کردن</span>
+          <span v-else>فعال کردن</span>
         </v-tooltip>
-        <delete-modal v-model="activeDialog" @action="activeUser(item.id)"/>
+        <delete-modal v-if="item.active" label="آیا از غیر فعال کردن این کاربر اطمینان دارید؟" v-model="activeDialog"
+                      @action="activeUser(item.id)"/>
+        <delete-modal v-else label="آیا از فعال کردن این کاربر اطمینان دارید؟" v-model="activeDialog"
+                      @action="activeUser(item.id)"/>
+        <choose-modal v-model="roleDialog" @action="assignRoleUser"
+        />
+
       </v-col>
     </v-row>
   </v-col>
@@ -58,6 +65,7 @@
 
 <script>
 import DeleteModal from "../GeneralComponent/deleteModal";
+import ChooseModal from "../GeneralComponent/chooseModal";
 import {mapActions} from "vuex";
 
 export default {
@@ -67,15 +75,17 @@ export default {
     index: {default: 0},
   },
   components: {
-    DeleteModal
+    DeleteModal,
+    ChooseModal
   },
   data() {
     return {
-      activeDialog: false
+      activeDialog: false,
+      roleDialog: false,
     }
   },
   methods: {
-    ...mapActions("user", ['active']),
+    ...mapActions("user", ['active', 'assignRole']),
     async activeUser(id) {
       let response;
       response = await this.active({
@@ -86,7 +96,15 @@ export default {
         this.activeDialog = false;
       }
     },
-  }
+    async assignRoleUser(value) {
+      let response;
+      response = await this.assignRole({role: value, userId: this.item.id});
+      console.log(response);
+      if (!(response instanceof Error)) {
+        this.roleDialog = false;
+      }
+    }
+  },
 }
 </script>
 
@@ -105,5 +123,19 @@ export default {
 
 .angle:hover {
   background-color: #55706D;
+}
+
+.role {
+  background-color: #AED6D1;
+  border-radius: 5px;
+  text-align: center;
+  height: 80%;
+  margin: auto;
+  transition: 1s;
+}
+
+.role:hover {
+  background-color: #b1b1b1;
+  cursor: grabbing;
 }
 </style>

@@ -157,6 +157,18 @@
             <v-list-item-title>تغییر رمز</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item
+            link
+            :to="{name:'ListUsers'}"
+        >
+          <v-list-item-icon>
+            <v-icon>fa-users</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content style="margin-right: 5px">
+            <v-list-item-title>مدیریت کاربران</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
   </v-layout>
