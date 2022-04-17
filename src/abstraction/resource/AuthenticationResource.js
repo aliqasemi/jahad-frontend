@@ -47,6 +47,8 @@ const setData = (data, hasUpdate = false) => {
         phoneNumber: data.phoneNumber,
         address: data.address,
         email: data.email,
+        role: data.role,
+        active: data.active,
         _method: hasUpdate ? "put" : "post",
     };
 };
