@@ -6,12 +6,13 @@ import {
     setFilterQuery
 } from "../resource/ProductResource";
 import axios from "axios"
+import basic_url from "@/router/url";
 
 export default class ProductRepository {
     async index(data) {
         const params = setQuery(data);
         try {
-            let response = await axios.get('http://127.0.0.1:8000/api/jahad/products', {params});
+            let response = await axios.get(basic_url + 'products', {params});
             if (response && response.status === 200) {
                 return getArray(response.data);
             }
@@ -23,7 +24,7 @@ export default class ProductRepository {
     async indexFilter(data) {
         const params = setFilterQuery(data, data.typeMode);
         try {
-            let response = await axios.get('http://127.0.0.1:8000/api/jahad/products-filter', {params})
+            let response = await axios.get(basic_url + 'products-filter', {params})
             if (response && response.status === 200) {
                 return response.data.data;
             }
@@ -34,7 +35,7 @@ export default class ProductRepository {
 
 
     async show(id) {
-        let response = await axios.get("http://127.0.0.1:8000/api/jahad/products/" + id);
+        let response = await axios.get(basic_url + "products/" + id);
         if (response && response.status === 200) {
             return getJson(response.data.data);
         }
@@ -43,7 +44,7 @@ export default class ProductRepository {
     async store(data) {
         try {
             const params = setData(data);
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/products", params);
+            let response = await axios.post(basic_url + "products", params);
 
             if (response && response.status === 201) {
                 return getJson(response.data.data);
@@ -59,7 +60,7 @@ export default class ProductRepository {
             const params = setData(data, true);
 
             let response = await axios.post(
-                "http://127.0.0.1:8000/api/jahad/products/" + data.id,
+                basic_url + "products/" + data.id,
                 params
             );
 
@@ -74,7 +75,7 @@ export default class ProductRepository {
     async destroy(id) {
         try {
             let response = await axios.delete(
-                "http://127.0.0.1:8000/api/jahad/products/" + id
+                basic_url + "products/" + id
             );
             if (response && response.status === 200) {
                 return response;

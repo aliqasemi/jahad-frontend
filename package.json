@@ -10,6 +10,7 @@
   "dependencies": {
     "@riophae/vue-treeselect": "^0.4.0",
     "@tinymce/tinymce-vue": "^3.2.8",
+    "axios": "^0.26.1",
     "core-js": "^3.6.5",
     "deepmerge": "^4.2.2",
     "fibers": "^5.0.0",

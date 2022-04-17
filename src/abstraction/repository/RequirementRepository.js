@@ -4,12 +4,13 @@ import {
     getArray, setQuery,
 } from "../resource/RequirementResource";
 import axios from "axios"
+import basic_url from "@/router/url";
 
 export default class RequirementRepository {
     async index(data) {
         const params = setQuery(data);
         try {
-            let response = await axios.get('http://127.0.0.1:8000/api/jahad/requirements', {params});
+            let response = await axios.get(basic_url + 'requirements', {params});
             if (response && response.status === 200) {
                 return getArray(response.data);
             }
@@ -19,7 +20,7 @@ export default class RequirementRepository {
     }
 
     async show(id) {
-        let response = await axios.get("http://127.0.0.1:8000/api/jahad/requirements/" + id);
+        let response = await axios.get(basic_url + "requirements/" + id);
         if (response && response.status === 200) {
             return getJson(response.data.data);
         }
@@ -28,7 +29,7 @@ export default class RequirementRepository {
     async store(data) {
         try {
             const params = setData(data);
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/requirements", params);
+            let response = await axios.post(basic_url + "requirements", params);
             if (response && response.status === 201) {
                 return getJson(response.data.data);
             }
@@ -42,7 +43,7 @@ export default class RequirementRepository {
             const params = setData(data, true);
 
             let response = await axios.post(
-                "http://127.0.0.1:8000/api/jahad/requirements/" + data.id,
+                basic_url + "requirements/" + data.id,
                 params
             );
 
@@ -57,7 +58,7 @@ export default class RequirementRepository {
     async destroy(id) {
         try {
             let response = await axios.delete(
-                "http://127.0.0.1:8000/api/jahad/requirements/" + id
+                basic_url + "requirements/" + id
             );
             if (response && response.status === 200) {
                 return response;

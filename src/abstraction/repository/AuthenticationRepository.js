@@ -6,12 +6,13 @@ import {
 } from "../resource/AuthenticationResource";
 
 import axios from "axios";
+import basic_url from "@/router/url";
 
 export default class AuthenticationRepository {
     async logIn(body) {
         try {
             console.log(body)
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/login", body);
+            let response = await axios.post(basic_url + "login", body);
             setAuthToken(response.data.token);
             setAuthUser(response.data.user);
             if (response && response.status === 200) {
@@ -24,7 +25,7 @@ export default class AuthenticationRepository {
 
     async logOut() {
         try {
-            let response = await axios.get("http://127.0.0.1:8000/api/jahad/logout");
+            let response = await axios.get(basic_url + "logout");
             setAuthToken();
             setAuthUser();
             if (response && response.status === 200) {
@@ -37,7 +38,7 @@ export default class AuthenticationRepository {
 
     async register(formData) {
         try {
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/register", formData);
+            let response = await axios.post(basic_url + "register", formData);
             if (response && response.status === 200) {
                 return response.data;
             }
@@ -48,7 +49,7 @@ export default class AuthenticationRepository {
 
     async confirmRegister(userId) {
         try {
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/confirm-register/" + userId);
+            let response = await axios.post(basic_url + "confirm-register/" + userId);
             if (response && response.status === 201) {
                 return response.data;
             }
@@ -59,7 +60,7 @@ export default class AuthenticationRepository {
 
     async verifyRegister(formData, userId) {
         try {
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/verify-register/" + userId, formData);
+            let response = await axios.post(basic_url + "verify-register/" + userId, formData);
             if (response && response.status === 201) {
                 return response.data;
             }
@@ -70,7 +71,7 @@ export default class AuthenticationRepository {
 
     async confirmForgotPassword(formData) {
         try {
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/forgot-password", formData);
+            let response = await axios.post(basic_url + "forgot-password", formData);
             if (response && response.status === 201) {
                 return response.data;
             }
@@ -81,7 +82,7 @@ export default class AuthenticationRepository {
 
     async verifyForgotPassword(formData) {
         try {
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/verify-forgot-password", formData);
+            let response = await axios.post(basic_url + "verify-forgot-password", formData);
             if (response && response.status === 201) {
                 return response.data;
             }
@@ -92,7 +93,7 @@ export default class AuthenticationRepository {
 
     async resetPassword(formData) {
         try {
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/change-password", formData);
+            let response = await axios.post(basic_url + "change-password", formData);
             if (response && response.status === 201) {
                 return response.data;
             }
@@ -103,7 +104,7 @@ export default class AuthenticationRepository {
 
     async assignRole(role, userId) {
         try {
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/assign-role/" + userId, {ability: role});
+            let response = await axios.post(basic_url + "assign-role/" + userId, {ability: role});
             if (response && response.status === 200) {
                 return response.data.data;
             }
@@ -116,7 +117,7 @@ export default class AuthenticationRepository {
         let params = setFilterQuery(data.filter, data.filter.typeMode);
         Object.assign(params, setQuery(data));
         try {
-            let response = await axios.get('http://127.0.0.1:8000/api/jahad/users', {params})
+            let response = await axios.get(basic_url + 'users', {params})
             if (response && response.status === 200) {
                 return getArray(response.data);
             }
@@ -127,7 +128,7 @@ export default class AuthenticationRepository {
 
     async active(data, userId) {
         try {
-            let response = await axios.post('http://127.0.0.1:8000/api/jahad/active/' + userId, {active: data});
+            let response = await axios.post(basic_url + 'active/' + userId, {active: data});
             if (response && response.status === 200) {
                 return getJson(response.data.data);
             }
@@ -139,7 +140,7 @@ export default class AuthenticationRepository {
     async update(data, userId) {
         try {
             const params = setData(data, true);
-            let response = await axios.post('http://127.0.0.1:8000/api/jahad/user/' + userId, params);
+            let response = await axios.post(basic_url + 'user/' + userId, params);
             if (response && response.status === 200) {
                 return getJson(response.data.data);
             }
@@ -150,7 +151,7 @@ export default class AuthenticationRepository {
 
     async show(userId) {
         try {
-            let response = await axios.get('http://127.0.0.1:8000/api/jahad/user/' + userId);
+            let response = await axios.get(basic_url + 'user/' + userId);
             if (response && response.status === 200) {
                 return getJson(response.data.data);
             }

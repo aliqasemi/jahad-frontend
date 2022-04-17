@@ -5,11 +5,12 @@ import {
     setFilterQuery,
 } from "../resource/BranchResource";
 import axios from "axios"
+import basic_url from "@/router/url";
 
 export default class BranchRepository {
     async index() {
         try {
-            let response = await axios.get('http://127.0.0.1:8000/api/jahad/branches');
+            let response = await axios.get(basic_url + 'branches');
             if (response && response.status === 200) {
                 return getArray(response.data);
             }
@@ -21,7 +22,7 @@ export default class BranchRepository {
     async indexFilter(data) {
         const params = setFilterQuery(data, data.typeMode);
         try {
-            let response = await axios.get('http://127.0.0.1:8000/api/jahad/branches-filter', {params})
+            let response = await axios.get(basic_url + 'branches-filter', {params})
             if (response && response.status === 200) {
                 return response.data.data;
             }
@@ -31,7 +32,7 @@ export default class BranchRepository {
     }
 
     async show(id) {
-        let response = await axios.get("http://127.0.0.1:8000/api/jahad/branches/" + id);
+        let response = await axios.get(basic_url + "branches/" + id);
         if (response && response.status === 200) {
             return getJson(response.data.data);
         }
@@ -40,7 +41,7 @@ export default class BranchRepository {
     async store(data) {
         try {
             const params = setData(data);
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/branches", params);
+            let response = await axios.post(basic_url + "branches", params);
 
             if (response && response.status === 201) {
                 return getJson(response.data.data);
@@ -55,7 +56,7 @@ export default class BranchRepository {
             const params = setData(data, true);
 
             let response = await axios.post(
-                "http://127.0.0.1:8000/api/jahad/branches/" + data.id,
+                basic_url + "branches/" + data.id,
                 params
             );
 
@@ -70,7 +71,7 @@ export default class BranchRepository {
     async destroy(id) {
         try {
             let response = await axios.delete(
-                "http://127.0.0.1:8000/api/jahad/branches/" + id
+                basic_url + "branches/" + id
             );
             if (response && response.status === 200) {
                 return response;

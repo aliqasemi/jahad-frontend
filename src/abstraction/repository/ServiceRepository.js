@@ -4,12 +4,13 @@ import {
     getArray, setQuery,
 } from "../resource/ServiceResource";
 import axios from "axios"
+import basic_url from "@/router/url";
 
 export default class ServiceRepository {
     async index(data) {
         const params = setQuery(data);
         try {
-            let response = await axios.get('http://127.0.0.1:8000/api/jahad/services', {params});
+            let response = await axios.get(basic_url + 'services', {params});
             if (response && response.status === 200) {
                 return getArray(response.data);
             }
@@ -19,7 +20,7 @@ export default class ServiceRepository {
     }
 
     async show(id) {
-        let response = await axios.get("http://127.0.0.1:8000/api/jahad/services/" + id);
+        let response = await axios.get(basic_url + "services/" + id);
         if (response && response.status === 200) {
             return getJson(response.data.data);
         }
@@ -28,7 +29,7 @@ export default class ServiceRepository {
     async store(data) {
         try {
             const params = setData(data);
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/services", params);
+            let response = await axios.post(basic_url + "services", params);
 
             if (response && response.status === 201) {
                 return getJson(response.data.data);
@@ -43,7 +44,7 @@ export default class ServiceRepository {
             const params = setData(data, true);
 
             let response = await axios.post(
-                "http://127.0.0.1:8000/api/jahad/services/" + data.id,
+                basic_url + "services/" + data.id,
                 params
             );
 
@@ -58,7 +59,7 @@ export default class ServiceRepository {
     async destroy(id) {
         try {
             let response = await axios.delete(
-                "http://127.0.0.1:8000/api/jahad/services/" + id
+                basic_url + "services/" + id
             );
             if (response && response.status === 200) {
                 return response;
@@ -66,7 +67,5 @@ export default class ServiceRepository {
         } catch (e) {
             return e;
         }
-
-
     }
 }

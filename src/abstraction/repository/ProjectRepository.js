@@ -4,12 +4,13 @@ import {
     getArray, setQuery, setFilterQuery
 } from "../resource/ProjectResource";
 import axios from "axios"
+import basic_url from "@/router/url";
 
 export default class ProjectRepository {
     async index(data) {
         const params = setQuery(data);
         try {
-            let response = await axios.get('http://127.0.0.1:8000/api/jahad/projects', {params});
+            let response = await axios.get(basic_url + 'projects', {params});
             if (response && response.status === 200) {
                 return getArray(response.data);
             }
@@ -21,7 +22,7 @@ export default class ProjectRepository {
     async indexFilter(data) {
         const params = setFilterQuery(data, data.typeMode);
         try {
-            let response = await axios.get('http://127.0.0.1:8000/api/jahad/projects-filter', {params})
+            let response = await axios.get(basic_url + 'projects-filter', {params})
             if (response && response.status === 200) {
                 return response.data.data;
             }
@@ -31,7 +32,7 @@ export default class ProjectRepository {
     }
 
     async show(id) {
-        let response = await axios.get("http://127.0.0.1:8000/api/jahad/projects/" + id);
+        let response = await axios.get(basic_url + "projects/" + id);
         if (response && response.status === 200) {
             return getJson(response.data.data);
         }
@@ -40,7 +41,7 @@ export default class ProjectRepository {
     async store(data) {
         try {
             const params = setData(data);
-            let response = await axios.post("http://127.0.0.1:8000/api/jahad/projects", params);
+            let response = await axios.post(basic_url + "projects", params);
 
             if (response && response.status === 201) {
                 return getJson(response.data.data);
@@ -55,7 +56,7 @@ export default class ProjectRepository {
             const params = setData(data, true);
 
             let response = await axios.post(
-                "http://127.0.0.1:8000/api/jahad/projects/" + data.id,
+                basic_url + "projects/" + data.id,
                 params
             );
 
@@ -70,7 +71,7 @@ export default class ProjectRepository {
     async destroy(id) {
         try {
             let response = await axios.delete(
-                "http://127.0.0.1:8000/api/jahad/projects/" + id
+                basic_url + "projects/" + id
             );
             if (response && response.status === 200) {
                 return response;
