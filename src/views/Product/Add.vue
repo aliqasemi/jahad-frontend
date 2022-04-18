@@ -77,12 +77,14 @@
                   <hr style="display: block; width: 100%"/>
                   <br>
                 </div>
-                <div v-for="(branch, i) in form.branches" :key="i">
-                  <branch-row-duplicator
-                      v-model="form.branches[i]"
-                      @removeBranch="deleteBranch(i)"
-                  />
-                </div>
+                <v-slide-y-transition group>
+                  <div v-for="(branch, i) in form.branches" :key="i">
+                    <branch-row-duplicator
+                        v-model="form.branches[i]"
+                        @removeBranch="deleteBranch(i)"
+                    />
+                  </div>
+                </v-slide-y-transition>
                 <v-btn
                     @click="addBranches"
                     style="background-color: cadetblue; border-radius: 10px; text-align: center;padding: 5px;margin: 5px auto; width: 100%;">

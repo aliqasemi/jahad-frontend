@@ -8,48 +8,52 @@
         height="10"
         style="margin: 10px"
     ></v-progress-linear>
-    <v-row style="margin: 20px" v-for="(requireProduct,key) in requireProducts" :key="key" v-else>
-      <v-row style="background-color: #AED6D1; border-radius: 5px;">
+    <v-row style="margin: 30px;min-height: 430px;" v-for="(requireProduct,key) in requireProducts" :key="key" v-else>
+      <v-row style="background-color: #eeeeea; border-radius: 10px;">
         <v-row class="item">
-          <v-col lg="2" style="background-color: #b1b1b1; border-radius: 5px;">
-            <v-col lg="12" style="font-weight: bolder">
-              {{ key + 1 }} نیازمندی پروژه
+          <v-col lg="2" xl="2" style="border-radius: 5px;text-align: center;margin-top: 90px">
+            <v-col lg="12" style="font-weight: bolder;text-align: center;">
+              <p class="-bold" style="background-color: #b1b1b1; border-radius: 100px">{{ key + 1 }}</p>
             </v-col>
-            <v-col lg="4">
-              {{ requireProduct.name }}
-            </v-col>
-            <v-col lg="4">
-              {{ requireProduct.description }}
-            </v-col>
+            <v-list-item two-line>
+              <v-list-item-content style="background-color: rgba(13, 75, 118, 0.5);border-radius: 10px">
+                <v-list-item-title style="font-size: 35px">{{ requireProduct.name }}</v-list-item-title>
+                <v-list-item-subtitle style="font-size: 20px">{{ requireProduct.description }}</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
             <v-col lg="12">
-              تعداد : {{ requireProduct.number }}
+              <p style="background-color: darkred; color: #eeeeee; border-radius: 10px">
+                تعداد : {{ requireProduct.number }}
+              </p>
             </v-col>
           </v-col>
-          <v-col lg="1" style="background-color: #AED6D1;">
-            <v-icon style="transform: rotate(180deg);margin-top:140px;margin-right: 15px" size="75">
+          <v-col lg="1" xl="1" style="text-align: center">
+            <v-icon style="transform: rotate(180deg);margin-top:160px;text-align: center" size="75">
               fa fa-random
             </v-icon>
           </v-col>
-          <v-col lg="3" v-for="(product,index) in requireProduct.productRequireProduct"
-                 style="background-color: #96989a; border-radius: 5px;margin: 10px" :key="index">
-            <v-text-field label="تعداد محصول از این شعبه" reverse type="number" v-model="product.number"/>
-            <v-textarea label="توضیحات محصول از این شعبه" reverse type="number" v-model="product.description"/>
-            <product-search v-model="product.product.id" style="border-radius: 5px; margin: 5px"/>
-            <branch-search v-model="product.branch.id" style="border-radius: 5px; margin: 5px"/>
-            <v-btn @click="deleteDialog = true"
-                   style="width: 75%; margin: 0 auto;background-color: red; color: #eeeeee;display: block">
-              <v-icon>fa fa-trash</v-icon>
-            </v-btn>
-            <delete-modal v-model="deleteDialog" @action="deleteProduct(key, index, product.id)"/>
-          </v-col>
+          <v-slide-x-reverse-transition group style="display: contents">
+            <v-col lg="3" xl="2" md="4" v-for="(product,index) in requireProduct.productRequireProduct"
+                   style="background-color: #d6d6d6; border-radius: 5px;margin: 10px" :key="index">
+              <v-text-field label="تعداد محصول از این شعبه" reverse type="number" v-model="product.number"/>
+              <v-textarea label="توضیحات محصول از این شعبه" reverse type="number" v-model="product.description"/>
+              <product-search v-model="product.product.id" style="border-radius: 5px; margin: 5px"/>
+              <branch-search v-model="product.branch.id" style="border-radius: 5px; margin: 5px"/>
+              <v-btn @click="deleteDialog = true"
+                     style="width: 75%; margin: 0 auto;background-color: darkred; color: #eeeeee;display: block">
+                <v-icon>fa fa-trash</v-icon>
+              </v-btn>
+              <delete-modal v-model="deleteDialog" @action="deleteProduct(key, index, product.id)"/>
+            </v-col>
+          </v-slide-x-reverse-transition>
           <v-btn @click="addProduct(key)" lg="1"
-                 style="background-color: bisque;border-radius: 10px; margin: 10px; height: 420px">
+                 style="background-color: #d6d6d6;border-radius: 10px; margin: 10px; height: 420px">
             <v-icon style="transform: rotate(180deg);" size="75">
               fa fa-plus
             </v-icon>
           </v-btn>
           <v-btn @click="attachProducts(requireProduct)" lg="1"
-                 style="background-color: darkcyan;border-radius: 10px; margin: 10px; height: 420px">
+                 style="background-color: rgba(13, 75, 118, 0.6);border-radius: 10px; margin: 10px; height: 420px">
             <v-icon size="75">
               fa fa-check-square
             </v-icon>
@@ -98,8 +102,7 @@ export default {
         if (!(response instanceof Error)) {
           this.requireProducts[key].productRequireProduct.splice(index, 1);
         }
-      }
-      else {
+      } else {
         this.requireProducts[key].productRequireProduct.splice(index, 1);
       }
       this.deleteDialog = false;
@@ -116,14 +119,12 @@ export default {
 
 <style scoped>
 .item {
-  border: 2px inset darkseagreen;
-  border-radius: 5px;
   margin: 5px;
-  background-color: rgba(46, 201, 189, 0.2);
+  transition: 1s all;
 }
 
 .item:hover {
-  transition: 900ms;
-  border: 2px inset black;
+  background-color: #d6d6d6;
+  border-radius: 10px;
 }
 </style>

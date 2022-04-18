@@ -97,12 +97,14 @@
               <hr style="display: block; width: 100%;"/>
               <br>
 
-              <div v-for="(requireProduct, i) in form.requireProducts" :key="i">
-                <require-product-row-duplicator
-                    v-model="form.requireProducts[i]"
-                    @removeRequireProduct="removeRequireProducts(i)"
-                />
-              </div>
+              <v-slide-y-transition group>
+                <div v-for="(requireProduct, i) in form.requireProducts" :key="i">
+                  <require-product-row-duplicator
+                      v-model="form.requireProducts[i]"
+                      @removeRequireProduct="removeRequireProducts(i)"
+                  />
+                </div>
+              </v-slide-y-transition>
               <v-btn
                   @click="addRequireProducts"
                   style="background-color: cadetblue; border-radius: 10px; text-align: center;padding: 5px;margin: 5px auto; width: 100%;">
@@ -536,6 +538,7 @@ export default {
   transform: translateX(10px);
   opacity: 0;
 }
+
 .bredRoute:hover {
   background-color: cadetblue;
   color: white;
