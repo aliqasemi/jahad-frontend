@@ -20,21 +20,23 @@
         </template>
       </v-breadcrumbs>
     </div>
-    <div style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
-      <v-row style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
-        مدیریت دسته بندی
-      </v-row>
-      <br>
-      <div class="title-en">
-        <div
-            style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
-          categories
+    <transition name="loader-transition">
+      <div v-if="show" style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
+        <v-row style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+          مدیریت دسته بندی
+        </v-row>
+        <br>
+        <div class="title-en">
+          <div
+              style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+            categories
+          </div>
         </div>
+        <hr style="display: block; width: 100%"/>
+        <br>
+        <items/>
       </div>
-      <hr style="display: block; width: 100%"/>
-      <br>
-      <items/>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -47,6 +49,7 @@ export default {
   components: {Items},
   data() {
     return {
+      show: false,
       items: [
         {
           text: 'صفحه اصلی',
@@ -67,10 +70,26 @@ export default {
   computed: {
     ...mapGetters("user", ['getAuthorizeUser'])
   },
+  async created() {
+    this.show = await true;
+  }
 }
 </script>
 
 <style scoped>
+.loader-transition-enter-active {
+  transition: all .8s ease;
+}
+
+.loader-transition-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.loader-transition-enter, .loader-transition-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
 .bredRoute:hover {
   background-color: cadetblue;
   color: white;

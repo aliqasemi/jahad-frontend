@@ -19,7 +19,7 @@ export default class StepRepository {
     }
 
     async show(id) {
-        let response = await axios.get('steps/' + id);
+        let response = await axios.get(basic_url + 'steps/' + id);
         if (response && response.status === 200) {
             return getJson(response.data.data);
         }

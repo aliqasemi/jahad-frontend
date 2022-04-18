@@ -19,79 +19,85 @@
         </template>
       </v-breadcrumbs>
     </div>
-    <div style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
-      <v-form @submit.prevent="registerRequest" style="margin-top: 20px">
-        <div style="margin: 0 auto; direction: rtl">
-          <v-row v-if="service_id"
-                 style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
-            ویرایش خدمت
-          </v-row>
-          <v-row v-else style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
-            افزودن خدمت
-          </v-row>
-          <br>
-          <div class="title-en">
-            <div v-if="service_id"
-                style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
-              Edit Services
+    <transition name="loader-transition">
+      <div v-if="show" style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
+        <v-form @submit.prevent="registerRequest" style="margin-top: 20px">
+          <div style="margin: 0 auto; direction: rtl">
+            <v-row v-if="service_id"
+                   style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+              ویرایش خدمت
+            </v-row>
+            <v-row v-else style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+              افزودن خدمت
+            </v-row>
+            <br>
+            <div class="title-en">
+              <div v-if="service_id"
+                   style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                Edit Services
+              </div>
+              <div v-else
+                   style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                Add Services
+              </div>
             </div>
-            <div v-else
-                 style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
-              Add Services
-            </div>
+            <hr style="display: block; width: 100%"/>
+            <br>
+            <v-row>
+              <v-col lg="3">
+                <v-text-field style="text-align: right" label="عنوان" v-model="form.title"
+                              reverse></v-text-field>
+                <v-textarea style="text-align: right" label="توضیحات" v-model="form.description"
+                            reverse></v-textarea>
+              </v-col>
+              <v-col lg="4">
+                <category-select v-model="form.category_id"/>
+              </v-col>
+              <v-col lg="5">
+                <!--                      :url.sync="form.thumbnail"-->
+                <cropper-image
+                    :crop_data.sync="form.crop_data"
+                    v-model="form.image"
+                    :url="form.thumbnail"
+                />
+              </v-col>
+              <v-col lg="12">
+                <city-select v-model="form.city_id"/>
+                <v-text-field style="text-align: right; width: 60%" label="آدرس" v-model="form.address"
+                              reverse></v-text-field>
+              </v-col>
+              <v-col lg="6" md="12" style="direction: ltr">
+                <v-select
+                    v-model="form.available_province_ids"
+                    :items="provinces"
+                    item-text="name"
+                    item-value="id"
+                    label="انتخاب نمایید"
+                    multiple
+                    chips
+                    hint="در صورتی که تنها در استان خاصی قادر به فعالیت هستید آن استان خاص را انتخاب نمایید"
+                    persistent-hint
+                ></v-select>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-btn v-if="service_id"
+                       style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white"
+                       type="submit">
+                  ویرایش خدمت
+                </v-btn>
+                <v-btn v-else
+                       style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white"
+                       type="submit">
+                  اضافه کردن خدمت
+                </v-btn>
+              </v-col>
+            </v-row>
           </div>
-          <hr style="display: block; width: 100%"/>
-          <br>
-          <v-row>
-            <v-col lg="3">
-              <v-text-field style="text-align: right" label="عنوان" v-model="form.title"
-                            reverse></v-text-field>
-              <v-textarea style="text-align: right" label="توضیحات" v-model="form.description"
-                          reverse></v-textarea>
-            </v-col>
-            <v-col lg="4">
-              <category-select v-model="form.category_id"/>
-            </v-col>
-            <v-col lg="5">
-              <!--                      :url.sync="form.thumbnail"-->
-              <cropper-image
-                  :crop_data.sync="form.crop_data"
-                  v-model="form.image"
-                  :url="form.thumbnail"
-              />
-            </v-col>
-            <v-col lg="12">
-              <city-select v-model="form.city_id"/>
-              <v-text-field style="text-align: right; width: 60%" label="آدرس" v-model="form.address"
-                            reverse></v-text-field>
-            </v-col>
-            <v-col lg="6" md="12" style="direction: ltr">
-              <v-select
-                  v-model="form.available_province_ids"
-                  :items="provinces"
-                  item-text="name"
-                  item-value="id"
-                  label="انتخاب نمایید"
-                  multiple
-                  chips
-                  hint="در صورتی که تنها در استان خاصی قادر به فعالیت هستید آن استان خاص را انتخاب نمایید"
-                  persistent-hint
-              ></v-select>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col>
-              <v-btn v-if="service_id" style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white" type="submit">
-                ویرایش خدمت
-              </v-btn>
-              <v-btn v-else style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white" type="submit">
-                اضافه کردن خدمت
-              </v-btn>
-            </v-col>
-          </v-row>
-        </div>
-      </v-form>
-    </div>
+        </v-form>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -127,6 +133,7 @@ export default {
   },
   data() {
     return {
+      show: false,
       form: {...defaultForm},
       provinces: [],
       items: [
@@ -172,11 +179,25 @@ export default {
       this.form = await this.showService(this.service_id)
     }
     this.provinces = await repository.indexProvinces();
+    this.show = await true;
   }
 }
 </script>
 
 <style scoped>
+.loader-transition-enter-active {
+  transition: all .8s ease;
+}
+
+.loader-transition-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.loader-transition-enter, .loader-transition-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
 .bredRoute:hover {
   background-color: cadetblue;
   color: white;

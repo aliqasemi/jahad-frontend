@@ -19,102 +19,104 @@
         </template>
       </v-breadcrumbs>
     </div>
-    <div style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
-      <v-form @submit.prevent="editRequest"
-              style="background-color: #b1b1b1; width: 70%;border-radius: 15px;margin: 0 auto">
-        <v-row>
-          <v-col style="margin: 0 auto"
-                 xl="2" lg="3"
-                 md="4"
-          >
-            <v-text-field
-                v-model="form.firstname"
-                label="نام"
-                required
-                reverse
-            ></v-text-field>
-          </v-col>
-          <v-col style="margin: 0 auto"
-                 xl="2" lg="3"
-          >
-            <v-text-field
-                v-model="form.lastname"
-                label="نام خانوادگی"
-                required
-                reverse
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col style="margin: 0 auto"
-                 xl="2" lg="3"
-                 md="4"
-          >
-            <v-text-field
-                v-model="form.phoneNumber"
-                label="شماره تلفن"
-                required
-                reverse
-            ></v-text-field>
-          </v-col>
-          <v-col style="margin: 0 auto"
-                 xl="2" lg="3"
-                 md="4"
-          >
-            <v-text-field
-                v-model="form.email"
-                label="ایمیل"
-                required
-                reverse
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col style="margin: 0 auto"
-                 xl="2" lg="3"
-                 md="4"
-          >
-            <v-textarea
-                v-model="form.address"
-                label="آدرس"
-                required
-                reverse
-            ></v-textarea>
-          </v-col>
-          <v-col
-              xl="2" lg="3"
-              md="4"
-              style="margin: 0 auto"
-          >
-            <v-select
-                v-model="form.role"
-                :items="roles"
-                menu-props="auto"
-                label="Select"
-                prepend-icon="fa fa-cogs"
-                single-line
-                style="direction: rtl; text-align: right"
-            ></v-select>
-            <v-switch
-                v-model="form.active"
-                inset
-                reverse
-                style="direction: ltr"
-                label=":فعال بودن کاربر"
-            ></v-switch>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col style="text-align: center">
-            <v-btn
-                style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white; margin: 0 auto;"
-                type="submit">
-              ویرایش
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-form>
-    </div>
+    <transition name="loader-transition">
+      <div v-if="showTransition" style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
+        <v-form @submit.prevent="editRequest"
+                style="background-color: #b1b1b1; width: 70%;border-radius: 15px;margin: 0 auto">
+          <v-row>
+            <v-col style="margin: 0 auto"
+                   xl="2" lg="3"
+                   md="4"
+            >
+              <v-text-field
+                  v-model="form.firstname"
+                  label="نام"
+                  required
+                  reverse
+              ></v-text-field>
+            </v-col>
+            <v-col style="margin: 0 auto"
+                   xl="2" lg="3"
+            >
+              <v-text-field
+                  v-model="form.lastname"
+                  label="نام خانوادگی"
+                  required
+                  reverse
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col style="margin: 0 auto"
+                   xl="2" lg="3"
+                   md="4"
+            >
+              <v-text-field
+                  v-model="form.phoneNumber"
+                  label="شماره تلفن"
+                  required
+                  reverse
+              ></v-text-field>
+            </v-col>
+            <v-col style="margin: 0 auto"
+                   xl="2" lg="3"
+                   md="4"
+            >
+              <v-text-field
+                  v-model="form.email"
+                  label="ایمیل"
+                  required
+                  reverse
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col style="margin: 0 auto"
+                   xl="2" lg="3"
+                   md="4"
+            >
+              <v-textarea
+                  v-model="form.address"
+                  label="آدرس"
+                  required
+                  reverse
+              ></v-textarea>
+            </v-col>
+            <v-col
+                xl="2" lg="3"
+                md="4"
+                style="margin: 0 auto"
+            >
+              <v-select
+                  v-model="form.role"
+                  :items="roles"
+                  menu-props="auto"
+                  label="Select"
+                  prepend-icon="fa fa-cogs"
+                  single-line
+                  style="direction: rtl; text-align: right"
+              ></v-select>
+              <v-switch
+                  v-model="form.active"
+                  inset
+                  reverse
+                  style="direction: ltr"
+                  label=":فعال بودن کاربر"
+              ></v-switch>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col style="text-align: center">
+              <v-btn
+                  style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white; margin: 0 auto;"
+                  type="submit">
+                ویرایش
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-form>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -140,6 +142,7 @@ export default {
   components: {},
   data() {
     return {
+      showTransition: false,
       form: {...defaultForm},
       activeDialog: false,
       roleDialog: false,
@@ -213,11 +216,25 @@ export default {
     if (this.user_id) {
       this.form = await this.show(this.user_id);
     }
+    this.showTransition = await true;
   }
 }
 </script>
 
 <style scoped>
+.loader-transition-enter-active {
+  transition: all .8s ease;
+}
+
+.loader-transition-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.loader-transition-enter, .loader-transition-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
 .bredRoute:hover {
   background-color: cadetblue;
   color: white;

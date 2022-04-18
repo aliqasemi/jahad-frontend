@@ -70,7 +70,7 @@
         <v-list-item
             v-if="getAuthorizeUser !== 'user'"
             link
-            :to="{name:'ListSteps'}"
+            :to="{name:'ListSteps', params: {project_id: 0}}"
         >
           <v-list-item-icon>
             <v-icon>fa-list-alt</v-icon>
@@ -135,7 +135,7 @@
         <v-list-item
             v-if="getAuthorizeUser !== 'user'"
             link
-            :to="{name:'AttachProduct'}"
+            :to="{name:'AttachProduct', params: {project_id: 0}}"
         >
           <v-list-item-icon>
             <v-icon>fa-list-alt</v-icon>

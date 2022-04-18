@@ -19,48 +19,54 @@
         </template>
       </v-breadcrumbs>
     </div>
-    <div style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
-      <v-form @submit.prevent="registerRequest" style="margin-top: 20px">
-        <div style="margin: 0 auto; direction: rtl">
-          <v-row v-if="template_id"
-                 style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
-            ویرایش قالب
-          </v-row>
-          <v-row v-else style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
-            افزودن قالب
-          </v-row>
-          <br>
-          <div class="title-en">
-            <div v-if="template_id"
-                 style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
-              Edit Services
+    <transition name="loader-transition">
+      <div v-if="show" style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
+        <v-form @submit.prevent="registerRequest" style="margin-top: 20px">
+          <div style="margin: 0 auto; direction: rtl">
+            <v-row v-if="template_id"
+                   style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+              ویرایش قالب
+            </v-row>
+            <v-row v-else style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+              افزودن قالب
+            </v-row>
+            <br>
+            <div class="title-en">
+              <div v-if="template_id"
+                   style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                Edit Services
+              </div>
+              <div v-else
+                   style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                Add Services
+              </div>
             </div>
-            <div v-else
-                 style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
-              Add Services
-            </div>
+            <hr style="display: block; width: 100%"/>
+            <v-row>
+              <v-col lg="6" style="margin: 0 auto">
+                <v-text-field style="text-align: right" label="نام قالب" v-model="form.name"
+                              reverse></v-text-field>
+                <message-template v-model="form.template"/>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-btn v-if="template_id"
+                       style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white"
+                       type="submit">
+                  ویرایش قالب
+                </v-btn>
+                <v-btn v-else
+                       style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white"
+                       type="submit">
+                  اضافه کردن قالب
+                </v-btn>
+              </v-col>
+            </v-row>
           </div>
-          <hr style="display: block; width: 100%"/>
-          <v-row>
-            <v-col lg="6" style="margin: 0 auto">
-              <v-text-field style="text-align: right" label="نام قالب" v-model="form.name"
-                            reverse></v-text-field>
-              <message-template v-model="form.template"/>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col>
-              <v-btn v-if="template_id" style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white" type="submit">
-                ویرایش قالب
-              </v-btn>
-              <v-btn v-else style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white" type="submit">
-                اضافه کردن قالب
-              </v-btn>
-            </v-col>
-          </v-row>
-        </div>
-      </v-form>
-    </div>
+        </v-form>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -83,6 +89,7 @@ export default {
   },
   data() {
     return {
+      show: false,
       form: {...defaultForm},
       items: [
         {
@@ -126,11 +133,24 @@ export default {
     if (this.template_id) {
       this.form = await this.showTemplate(this.template_id)
     }
+    this.show = await true;
   }
 }
 </script>
 
 <style scoped>
+.loader-transition-enter-active {
+  transition: all .8s ease;
+}
+
+.loader-transition-leave-active {
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.loader-transition-enter, .loader-transition-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
 .bredRoute:hover {
   background-color: cadetblue;
   color: white;
