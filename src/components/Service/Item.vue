@@ -8,9 +8,9 @@
     </v-col>
     <v-col lg="3">
       <v-row
-          style="background-color: #AED6D1; border-radius: 10px;text-align: center; height: fit-content; width: fit-content; margin: auto 0">
+          style="background-color: rgba(13, 75, 118, 0.8); color: white; border-radius: 10px;text-align: center; height: fit-content; width: fit-content; margin: auto 0">
         <v-col lg="2">
-          <v-icon>fa fa-user</v-icon>
+          <v-icon style="color: #d6d6d6">fa fa-user</v-icon>
         </v-col>
         <v-col lg="10">
           {{ item.user.firstname + ' ' + item.user.lastname }}
@@ -109,15 +109,13 @@ export default {
 
 <style scoped>
 .item {
-  border: 2px inset darkseagreen;
   border-radius: 5px;
   margin: 5px;
-  background-color: rgba(46, 201, 189, 0.2);
+  background-color: #eeeeea;
+  transition: all 900ms;
 }
 
 .item:hover {
-  background-color: rgba(202, 200, 5, 0.4);
-  transition: 900ms;
-  border: 2px inset black;
+  background-color: #d6d6d6;
 }
 </style>

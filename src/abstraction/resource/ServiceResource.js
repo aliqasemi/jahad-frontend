@@ -56,4 +56,20 @@ const setData = (data, hasUpdate = false) => {
     );
 };
 
-export {setData, getArray, getJson, setQuery};
+const setFilterQuery = (values, type = 'and') => {
+
+    let query = {
+        type: type,
+    };
+
+    for (const [key, value] of Object.entries(values)) {
+        if (key !== 'type') {
+            let keyString = 'filter' + '[' + key + ']'
+            query[keyString] = value
+        }
+    }
+
+    return query;
+}
+
+export {setData, getArray, getJson, setQuery, setFilterQuery};

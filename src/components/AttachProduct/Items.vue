@@ -12,8 +12,8 @@
       <v-row style="background-color: #eeeeea; border-radius: 10px;">
         <v-row class="item">
           <v-col lg="2" xl="2" style="border-radius: 5px;text-align: center;margin-top: 90px">
-            <v-col lg="12" style="font-weight: bolder;text-align: center;">
-              <p class="-bold" style="background-color: #b1b1b1; border-radius: 100px">{{ key + 1 }}</p>
+            <v-col lg="12" style="font-weight: bolder;text-align: center;width: 20%;margin: 0 auto">
+              <p class="-bold" style="background-color: #b1b1b1; border-radius: 100%">{{ key + 1 }}</p>
             </v-col>
             <v-list-item two-line>
               <v-list-item-content style="background-color: rgba(13, 75, 118, 0.5);border-radius: 10px">

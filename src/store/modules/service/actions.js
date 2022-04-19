@@ -10,6 +10,7 @@ export default {
             const service = await repository.index(
                 {
                     pagination: state.pagination,
+                    filter: state.filter
                 }
             );
             commit("SET_SERVICE", service.data);
