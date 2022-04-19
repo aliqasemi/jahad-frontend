@@ -10,6 +10,7 @@ export default {
             const requirement = await repository.index(
                 {
                     pagination: state.pagination,
+                    filter: state.filter
                 }
             );
             commit("SET_REQUIREMENT", requirement.data);

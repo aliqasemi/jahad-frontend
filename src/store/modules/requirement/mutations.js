@@ -30,6 +30,14 @@ export default {
 
     SET_REQUIREMENT_PAGINATION(state, value) {
         state.pagination = value;
-    }
+    },
+
+    SET_REQUIREMENT_FILTER(state, value) {
+        state.filter = value;
+    },
+
+    SET_PAGE_NUMBER(state, value) {
+        Vue.set(state, "pageNumber", value);
+    },
 }
 

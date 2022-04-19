@@ -1,14 +1,15 @@
 import {
     setData,
     getJson,
-    getArray, setQuery,
+    getArray, setQuery, setFilterQuery
 } from "../resource/RequirementResource";
 import axios from "axios"
 import basic_url from "@/router/url";
 
 export default class RequirementRepository {
     async index(data) {
-        const params = setQuery(data);
+        let params = setFilterQuery(data.filter, data.filter.typeMode);
+        Object.assign(params, setQuery(data));
         try {
             let response = await axios.get(basic_url + 'requirements', {params});
             if (response && response.status === 200) {

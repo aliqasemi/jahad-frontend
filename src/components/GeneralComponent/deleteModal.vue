@@ -7,13 +7,13 @@
     <v-card style="direction: rtl">
       <div style="background-color: whitesmoke; padding: 20px; border-radius: 10px">
         <v-row style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
-          حذف آیتم
+          مدیریت آیتم
         </v-row>
         <br>
         <div class="title-en">
           <div
               style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
-            Delete Items
+            Manage Item
           </div>
         </div>
         <hr style="display: block; width: 100%"/>

@@ -1,5 +1,6 @@
 export default {
     getListRequirement: (state) => state.requirement,
     getRequirementLoading: (state) => state.loading,
-    getRequirementPagination: (state) => state.pagination,
+    getServicePagination: (state) => state.pagination,
+    getPageNumber: (state) => state.pageNumber,
 }
