@@ -9,7 +9,7 @@
         style="margin: 10px"
     ></v-progress-linear>
     <v-row style="margin-top: 5px" v-else>
-      <item :item="step" v-for="(step , key) in getListStep" :index="key" v-bind:key="key"/>
+      <item v-for="(step , key) in getListStep" v-bind:key="key" :item="step" :number="getListStep.length" :index="key"/>
     </v-row>
   </div>
 </template>

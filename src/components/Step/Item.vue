@@ -1,55 +1,89 @@
 <template>
-  <v-col lg="3" xl="3" md="6" class="item" style="padding: 25px; margin: 25px">
-    <v-row>
-      <v-col lg="1" style="font-weight: bolder">
-        {{ index + 1 }}
-      </v-col>
-      <v-col lg="6">
-        {{ item.name }}
-      </v-col>
-    </v-row>
-    <v-col lg="12" style="text-align: center">
-      <router-link :to="{name:'EditStep',  params: { step_id: item.id },}" style="text-decoration: none;margin: 5px">
-        <v-tooltip top>
+  <v-col lg="3" xl="3" md="4" sm="6" xs="12" class="item" style=" margin-bottom: 10px">
+    <v-card
+        color="#1F7087"
+        dark
+        style="height: 280px"
+    >
+      <v-card-title class="text-h6">
+        <v-row>
+          <v-col lg="1" xl="1" md="1" sm="1" xs="1" style="font-weight: bolder">
+            {{ index + 1 }}
+          </v-col>
+          <v-col lg="12" xl="12" md="12" sm="12" xs="12">
+            {{ (item.name).slice(0, 23) }} {{ (item.name).length > 24 ? '...' : '' }}
+          </v-col>
+        </v-row>
+      </v-card-title>
 
+      <v-card-subtitle v-if="item.description">{{ (item.description).slice(0, 29) }}
+        {{ (item.description).length > 30 ? '...' : '' }}
+      </v-card-subtitle>
+      <v-card-subtitle v-else>
+        ...
+      </v-card-subtitle>
+      <v-card-text style="text-align: left;">
+        <v-tooltip top>
           <template v-slot:activator="{ on,attrs }">
+            <v-btn
+                :color="item.send_sms ? 'blue' :'red'"
+                fab
+                x-small
+                dark
+                v-bind="attrs"
+                v-on="on"
+            >
+              <v-icon>fa-envelope-open-o</v-icon>
+            </v-btn>
+
+          </template>
+          <span>وضعیت سرویس پیامکی</span>
+        </v-tooltip>
+      </v-card-text>
+      <delete-modal v-model="deleteDialog" @action="deleteStep(item.id)"/>
+      <v-card-actions>
+        <v-icon :disabled="index === 0" @click="moveUp(item.id)" style="margin: 5px auto; padding: 10px" class="angle">
+          fa-angle-right
+        </v-icon>
+        <router-link :to="{name:'EditStep',  params: { step_id: item.id },}" style="text-decoration: none;margin: 5px">
+          <v-tooltip top>
+
+            <template v-slot:activator="{ on,attrs }">
+              <v-btn
+                  style="background-color: lavenderblush"
+                  slot="activator"
+                  v-bind="attrs"
+                  v-on="on"
+                  fab
+              >
+                <v-icon style="color: darkcyan" dark>fa-cog</v-icon>
+              </v-btn>
+
+            </template>
+            <span>تنظیمات</span>
+          </v-tooltip>
+        </router-link>
+        <v-tooltip top>
+          <template v-slot:activator="{ on , attrs}">
             <v-btn
                 style="background-color: lavenderblush"
                 slot="activator"
                 v-bind="attrs"
                 v-on="on"
+                fab
+                @click.native="deleteDialog = true"
             >
-              <v-icon style="color: darkcyan" dark>fa-cog</v-icon>
+              <v-icon style="color: red" dark>fa-trash</v-icon>
             </v-btn>
-
           </template>
-          <span>تنظیمات</span>
+          <span>حذف</span>
         </v-tooltip>
-      </router-link>
-      <v-tooltip top>
-        <template v-slot:activator="{ on , attrs}">
-          <v-btn
-              style="background-color: lavenderblush"
-              slot="activator"
-              v-bind="attrs"
-              v-on="on"
-              @click.native="deleteDialog = true"
-          >
-            <v-icon style="color: red" dark>fa-trash</v-icon>
-          </v-btn>
-        </template>
-        <span>حذف</span>
-      </v-tooltip>
-      <delete-modal v-model="deleteDialog" @action="deleteStep(item.id)"/>
-    </v-col>
-    <v-row style="margin: 2px auto; background-color: #AED6D1;border-radius: 5px">
-      <v-icon @click="moveUp(item.id)" style="margin: 5px auto; padding: 10px" class="angle">
-        fa-angle-right
-      </v-icon>
-      <v-icon @click="moveDown(item.id)" style="margin: 5px auto;padding: 10px" class="angle">
-        fa-angle-left
-      </v-icon>
-    </v-row>
+        <v-icon :disabled="index === number -1" @click="moveDown(item.id)" style="margin: 5px auto;padding: 10px"
+                class="angle">
+          fa-angle-left
+        </v-icon>
+      </v-card-actions>
+    </v-card>
   </v-col>
 </template>
 
@@ -62,6 +96,7 @@ export default {
   props: {
     item: {default: null},
     index: {default: 0},
+    number: {default: 0},
   },
   components: {
     DeleteModal
@@ -86,19 +121,16 @@ export default {
 
 <style scoped>
 .item {
-  border: 2px inset darkseagreen;
-  border-radius: 5px;
-  margin: 5px;
-  background-color: rgba(46, 201, 189, 0.2);
+  height: 280px;
+  transition: all 1s;
 }
 
 .item:hover {
-  background-color: rgba(202, 200, 5, 0.4);
-  transition: 900ms;
-  border: 2px inset black;
 }
 
 .angle:hover {
-  background-color: #55706D;
+  background-color: #b1b1b1;
+  color: black;
+  border-radius: 15px;
 }
 </style>

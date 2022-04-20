@@ -32,6 +32,8 @@
                   slot="activator"
                   v-bind="attrs"
                   v-on="on"
+                  fab
+                  small
               >
                 <v-icon style="color: darkgreen" dark>fa-paperclip</v-icon>
               </v-btn>
@@ -49,6 +51,8 @@
                   slot="activator"
                   v-bind="attrs"
                   v-on="on"
+                  fab
+                  small
               >
                 <v-icon style="color: darkcyan" dark>fa-edit</v-icon>
               </v-btn>
@@ -64,6 +68,8 @@
                 slot="activator"
                 v-bind="attrs"
                 v-on="on"
+                fab
+                small
                 @click.native="deleteDialog = true"
             >
               <v-icon style="color: red" dark>fa-trash</v-icon>

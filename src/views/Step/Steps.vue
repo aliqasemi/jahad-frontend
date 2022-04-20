@@ -39,7 +39,7 @@
           <router-link :to="{name:'AddStep', params:{project_id: project_id}}"
                        style="text-decoration: none; padding: 20px;">
             <v-btn
-                style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white">
+                style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white;margin-top: 50px">
               افزودن مرحله جدید
             </v-btn>
           </router-link>

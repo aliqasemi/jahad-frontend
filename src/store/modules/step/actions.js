@@ -63,6 +63,8 @@ export default {
         try {
             await repository.moveUp(stepId);
             commit("MOVE_UP", stepId);
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true});
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'تغییر مرحله با موفقیت انجام شد'});
         } catch (e) {
             return e;
         }
@@ -71,6 +73,8 @@ export default {
         try {
             await repository.moveDown(stepId);
             commit("MOVE_DOWN", stepId);
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true});
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'تغییر مرحله با موفقیت انجام شد'});
         } catch (e) {
             return e;
         }
