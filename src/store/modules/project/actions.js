@@ -10,6 +10,7 @@ export default {
             const project = await repository.index(
                 {
                     pagination: state.pagination,
+                    filter: state.filter
                 }
             );
             commit("SET_PROJECT", project.data);

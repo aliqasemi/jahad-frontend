@@ -8,7 +8,8 @@ import basic_url from "@/router/url";
 
 export default class ProjectRepository {
     async index(data) {
-        const params = setQuery(data);
+        let params = setFilterQuery(data.filter, data.filter.typeMode);
+        Object.assign(params, setQuery(data));
         try {
             let response = await axios.get(basic_url + 'projects', {params});
             if (response && response.status === 200) {
