@@ -82,6 +82,147 @@
                 </v-col>
               </v-row>
             </v-container>
+            <!--            <v-container v-if="step.name"-->
+            <!--                         style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">-->
+            <!--              <div class="title-en-sec">-->
+            <!--                <v-row style="direction: rtl;padding: 10px">-->
+            <!--                  مرحله و مدیریت آن-->
+            <!--                </v-row>-->
+            <!--                <br>-->
+            <!--                <div-->
+            <!--                    style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">-->
+            <!--                  manage step-->
+            <!--                </div>-->
+            <!--              </div>-->
+            <!--              <hr style="display: block; width: 100%;"/>-->
+            <!--              <br>-->
+            <!--              <router-link :to="{name:'ListSteps', params:{project_id: project_id}}"-->
+            <!--                           style="text-decoration: none;color:black;padding: 5px">-->
+            <!--                <v-tooltip top>-->
+            <!--                  <template v-slot:activator="{ on , attrs}">-->
+            <!--                    <v-btn-->
+            <!--                        slot="activator"-->
+            <!--                        style="width: 100%;margin: 10px"-->
+            <!--                        v-bind="attrs"-->
+            <!--                        v-on="on"-->
+            <!--                    >-->
+            <!--                      <v-icon>"fa fa-cog</v-icon>-->
+            <!--                    </v-btn>-->
+            <!--                  </template>-->
+            <!--                  <span>مدیریت مراحل پروژه</span>-->
+            <!--                </v-tooltip>-->
+            <!--              </router-link>-->
+            <!--              <v-tooltip top>-->
+            <!--                <template v-slot:activator="{ on , attrs}">-->
+            <!--                  <v-btn-->
+            <!--                      slot="activator"-->
+            <!--                      style="width: 100%;margin: 10px"-->
+            <!--                      v-bind="attrs"-->
+            <!--                      v-on="on"-->
+            <!--                      @click.native="stepDialog = true"-->
+            <!--                  >-->
+            <!--                    <v-card-actions>-->
+            <!--                      {{ step.name }}-->
+            <!--                    </v-card-actions>-->
+            <!--                  </v-btn>-->
+            <!--                </template>-->
+            <!--                <span>مدیریت مرحله</span>-->
+            <!--              </v-tooltip>-->
+            <!--              <step-modal :steps="steps" v-model="stepDialog" @action="changeStepProject"/>-->
+
+            <!--            </v-container>-->
+            <v-container v-if="step.name"
+                         style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">
+              <div class="title-en-sec">
+                <v-row style="direction: rtl;padding: 10px">
+                  مرحله و مدیریت آن
+                </v-row>
+                <br>
+                <div
+                    style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                  manage step
+                </div>
+              </div>
+              <hr style="display: block; width: 100%;"/>
+              <br>
+              <v-stepper v-model="iterate">
+                <v-stepper-header style="height: auto">
+                  <template v-for="(v,n) in steps">
+                    <v-stepper-step
+                        :key="`${n}-step`"
+                        :complete="iterate > n"
+                        :step="n + 1"
+                        editable
+                        edit-icon="fa fa-check"
+                        color="rgba(13,75,118,0.83)"
+                        @click="nextStep(n, v.id)"
+                    >
+                      {{ v.name }}
+                    </v-stepper-step>
+
+                    <v-divider
+                        v-if="n !== steps.length - 1"
+                        :key="n"
+                    ></v-divider>
+                  </template>
+                </v-stepper-header>
+
+                <v-stepper-items>
+                  <v-stepper-content
+                      v-for="(step,n) in steps"
+                      :key="`${n}-content`"
+                      :step="n + 1"
+                  >
+                    <v-card
+                        class="mb-12"
+                        color="rgba(13,75,118,0.83)"
+                        dark
+                        style="margin: 0 auto;min-height: 150px"
+                    >
+                      <v-card-title class="text-h6">
+                        <v-row>
+                          <v-col lg="12" xl="12" md="12" sm="12" xs="12">
+                            {{ step.name }}
+                          </v-col>
+                        </v-row>
+                      </v-card-title>
+
+                      <v-card-subtitle>
+                        {{ step.description }}
+                      </v-card-subtitle>
+                      <v-card-text style="text-align: left;">
+                        <v-tooltip top>
+                          <template v-slot:activator="{ on,attrs }">
+                            <v-btn
+                                :color="step.send_sms ? 'blue' :'red'"
+                                fab
+                                x-small
+                                dark
+                                v-bind="attrs"
+                                v-on="on"
+                            >
+                              <v-icon>fa-envelope-open-o</v-icon>
+                            </v-btn>
+
+                          </template>
+                          <span>وضعیت سرویس پیامکی</span>
+                        </v-tooltip>
+                      </v-card-text>
+                    </v-card>
+                  </v-stepper-content>
+                </v-stepper-items>
+              </v-stepper>
+              <v-row>
+                <router-link style="margin: 0 auto; text-decoration: none" :to="{name:'ListSteps', params:{project_id: project_id}}">
+                  <v-btn
+                      color="rgba(13,75,118,1)"
+                      style="color: white;"
+                  >
+                    مراحل و مدیریت آن
+                  </v-btn>
+                </router-link>
+              </v-row>
+            </v-container>
             <v-container
                 style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">
               <div class="title-en-sec">
@@ -110,54 +251,6 @@
                   style="background-color: cadetblue; border-radius: 10px; text-align: center;padding: 5px;margin: 5px auto; width: 100%;">
                 <v-icon style="margin: 0 auto" dark>fa fa-plus</v-icon>
               </v-btn>
-            </v-container>
-            <v-container v-if="step.name"
-                         style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">
-              <div class="title-en-sec">
-                <v-row style="direction: rtl;padding: 10px">
-                  مرحله و مدیریت آن
-                </v-row>
-                <br>
-                <div
-                    style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
-                  manage step
-                </div>
-              </div>
-              <hr style="display: block; width: 100%;"/>
-              <br>
-              <router-link :to="{name:'ListSteps', params:{project_id: project_id}}"
-                           style="text-decoration: none;color:black;padding: 5px">
-                <v-tooltip top>
-                  <template v-slot:activator="{ on , attrs}">
-                    <v-btn
-                        slot="activator"
-                        style="width: 100%;margin: 10px"
-                        v-bind="attrs"
-                        v-on="on"
-                    >
-                      <v-icon>"fa fa-cog</v-icon>
-                    </v-btn>
-                  </template>
-                  <span>مدیریت مراحل پروژه</span>
-                </v-tooltip>
-              </router-link>
-              <v-tooltip top>
-                <template v-slot:activator="{ on , attrs}">
-                  <v-btn
-                      slot="activator"
-                      style="width: 100%;margin: 10px"
-                      v-bind="attrs"
-                      v-on="on"
-                      @click.native="stepDialog = true"
-                  >
-                    <v-card-actions>
-                      {{ step.name }}
-                    </v-card-actions>
-                  </v-btn>
-                </template>
-                <span>مدیریت مرحله</span>
-              </v-tooltip>
-              <step-modal :steps="steps" v-model="stepDialog" @action="changeStepProject"/>
             </v-container>
             <v-container
                 style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">
@@ -420,7 +513,7 @@
 
 <script>
 import {mapActions} from "vuex";
-import StepModal from "@/components/GeneralComponent/StepModal";
+// import StepModal from "@/components/GeneralComponent/StepModal";
 import RequireProductRowDuplicator from "@/components/RequireProduct/RequireProductRowDuplicator";
 
 var defaultForm = {
@@ -436,7 +529,7 @@ export default {
     service_id: {default: null},
     requirement_id: {default: null},
   },
-  components: {RequireProductRowDuplicator, StepModal},
+  components: {RequireProductRowDuplicator},
   data() {
     return {
       show: false,
@@ -447,6 +540,7 @@ export default {
       step: {default: null},
       provinces: [],
       stepDialog: false,
+      iterate: 1,
       items: [
         {
           text: 'صفحه اصلی',
@@ -474,6 +568,15 @@ export default {
     ...mapActions("service", ['showService']),
     ...mapActions("requirement", ['showRequirement']),
     ...mapActions("step", ['loadStepList']),
+    async nextStep(n, step_id) {
+      if (n !== this.steps.length) {
+        this.iterate += 1;
+      }
+      Object.assign(this.form, {step_id: step_id});
+      Object.assign(this.form, {project_id: this.project_id});
+      let response = await this.changeStep({data: this.form});
+      this.step = response.step;
+    },
     async registerRequest() {
       if (this.project_id) {
         let response = await this.updateProject({data: this.form});
@@ -492,12 +595,6 @@ export default {
         }
       }
     },
-    async changeStepProject(value) {
-      Object.assign(this.form, {step_id: value.step_id});
-      Object.assign(this.form, {project_id: this.project_id});
-      let response = await this.changeStep({data: this.form});
-      this.step = response.step;
-    },
     addRequireProducts() {
       this.form.requireProducts.push({});
     },
@@ -512,6 +609,7 @@ export default {
       this.services = this.form.services;
       this.requirement = this.form.requirement;
       this.step = this.form.step;
+      this.iterate = this.step.sort;
     } else {
       if (this.service_id) {
         this.services[0] = await this.showService(this.service_id)

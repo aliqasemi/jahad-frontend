@@ -88,7 +88,7 @@
       <template v-slot:no-data>
         <img height="400px" :src="require('@/images/nodatafound.gif')">
         <p>
-          خدمت ثبت شده ای وجود ندارد
+          نیازمندی ثبت شده ای وجود ندارد
         </p>
       </template>
     </v-data-table>
