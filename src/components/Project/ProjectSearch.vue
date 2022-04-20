@@ -35,27 +35,19 @@
         </v-chip>
       </template>
       <template v-slot:item="{ item }">
-        <v-list-item-avatar
-            color="indigo"
-            class="text-h5 font-weight-light white--text"
-        >
-          <v-icon style="color: white">fa fa-cogs</v-icon>
-        </v-list-item-avatar>
-        <v-list-item-content style="direction: rtl;border:solid 1px; margin: 2px;border-radius: 5px">
+        <v-list-item-content style="direction: rtl;border-bottom: solid 1px #b1b1b1; margin: 2px;">
           <v-list-item-title v-text="item.name" style="padding: 10px"></v-list-item-title>
-          <v-row style="width: -webkit-fill-available">
-            <div style="padding-top: 20px; padding-right: 20px">
-              <v-chip style="background-color: #AED6D1"> نیازمندی</v-chip>
-              <v-chip> {{ item.requirement.title }}</v-chip>
+          <v-row>
+            <div style="padding: 20px;">
+              <v-chip style="margin-left: 2px"> نیازمندی‌: {{ item.requirement.title }}</v-chip>
+              |
+              <v-chip style="margin-left: 2px">سرویس‌</v-chip>
+              <v-chip v-for="(service,key) in item.services" v-bind:key="key">
+                <v-col lg="2">
+                  {{ service.title }}
+                </v-col>
+              </v-chip>
             </div>
-          </v-row>
-          <v-row style="margin: 5px">
-            <v-chip style="background-color: cadetblue">سرویس‌</v-chip>
-            <v-chip v-for="(service,key) in item.services" v-bind:key="key">
-              <v-col lg="2">
-                {{ service.title }}
-              </v-col>
-            </v-chip>
           </v-row>
         </v-list-item-content>
       </template>
@@ -95,6 +87,7 @@ export default {
       }
     },
     async search(value) {
+      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
       if (value.length === 0) {
         this.items = [];
@@ -108,6 +101,8 @@ export default {
           this.filters[key] = value;
         }
       }
+
+      await delay(1500);
 
       await repository.indexFilter(this.filters)
           .then(res => {
