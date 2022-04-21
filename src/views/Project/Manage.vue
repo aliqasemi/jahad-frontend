@@ -1,3 +1,4 @@
+<script src="../../abstraction/repository/AuthenticationRepository.js"></script>
 <template>
   <div style="width: 90%;margin: 0 auto; direction: rtl">
     <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
@@ -43,45 +44,6 @@
             </div>
             <hr style="display: block; width: 100%"/>
             <br>
-            <v-container
-                style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">
-              <v-row v-if="project_id == null && requirement.project">
-                <v-col lg="12" style="margin: 0 auto">
-                  <v-col
-                      cols="12"
-                      md="4"
-                  >
-                    <v-card-text>
-                      نام پروژه
-                    </v-card-text>
-                    <v-card-text>
-                      {{ requirement.project.name }}
-                    </v-card-text>
-                  </v-col>
-                  <v-col
-                      cols="12"
-                      md="4"
-                  >
-                    <v-card-text>
-                      توضیحات
-                    </v-card-text>
-                    <v-card-text>
-                      {{ requirement.project.description }}
-                    </v-card-text>
-                  </v-col>
-                </v-col>
-              </v-row>
-              <v-row v-else>
-                <v-col lg="12" style="margin: 0 auto">
-                  <v-text-field style="text-align: right" label="نام پروژه" v-model="form.name"
-                                reverse></v-text-field>
-                </v-col>
-                <v-col lg="12" style="margin: 0 auto">
-                  <v-textarea style="text-align: right" label="توضیحات" v-model="form.description"
-                              reverse></v-textarea>
-                </v-col>
-              </v-row>
-            </v-container>
             <!--            <v-container v-if="step.name"-->
             <!--                         style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">-->
             <!--              <div class="title-en-sec">-->
@@ -131,8 +93,34 @@
             <!--              <step-modal :steps="steps" v-model="stepDialog" @action="changeStepProject"/>-->
 
             <!--            </v-container>-->
+            <v-card
+                color="#385F73"
+                dark
+                style="width: 50%; margin: 0 auto"
+                v-if="project_id == null && requirement.project"
+            >
+              <v-card-title>
+                {{ requirement.project.name }}
+              </v-card-title>
+
+              <v-card-subtitle>توضیحات : {{ requirement.project.description }}</v-card-subtitle>
+            </v-card>
+            <v-container
+                v-else
+                style="direction: rtl;margin-top: 10px;  letter-spacing: 2px; border-radius: 5px;padding: 30px">
+              <v-row>
+                <v-col xl="7" lg="7" md="7" sm="12" xs="12" style="margin: 0 auto">
+                  <v-text-field style="text-align: right" label="نام پروژه" v-model="form.name"
+                                reverse></v-text-field>
+                </v-col>
+                <v-col xl="7" lg="7" md="7" sm="12" xs="12" style="margin: 0 auto">
+                  <v-textarea style="text-align: right" aria-level="2" label="توضیحات" v-model="form.description"
+                              reverse></v-textarea>
+                </v-col>
+              </v-row>
+            </v-container>
             <v-container v-if="step.name"
-                         style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">
+                         style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px;  border-radius: 5px;padding: 30px">
               <div class="title-en-sec">
                 <v-row style="direction: rtl;padding: 10px">
                   مرحله و مدیریت آن
@@ -146,7 +134,7 @@
               <hr style="display: block; width: 100%;"/>
               <br>
               <v-stepper v-model="iterate">
-                <v-stepper-header style="height: auto">
+                <v-stepper-header style="height: auto; background-color: whitesmoke">
                   <template v-for="(v,n) in steps">
                     <v-stepper-step
                         :key="`${n}-step`"
@@ -167,7 +155,7 @@
                   </template>
                 </v-stepper-header>
 
-                <v-stepper-items>
+                <v-stepper-items style="background-color: whitesmoke">
                   <v-stepper-content
                       v-for="(step,n) in steps"
                       :key="`${n}-content`"
@@ -203,7 +191,6 @@
                             >
                               <v-icon>fa-envelope-open-o</v-icon>
                             </v-btn>
-
                           </template>
                           <span>وضعیت سرویس پیامکی</span>
                         </v-tooltip>
@@ -213,7 +200,8 @@
                 </v-stepper-items>
               </v-stepper>
               <v-row>
-                <router-link style="margin: 0 auto; text-decoration: none" :to="{name:'ListSteps', params:{project_id: project_id}}">
+                <router-link style="margin: 0 auto; text-decoration: none"
+                             :to="{name:'ListSteps', params:{project_id: project_id}}">
                   <v-btn
                       color="rgba(13,75,118,1)"
                       style="color: white;"
@@ -223,8 +211,274 @@
                 </router-link>
               </v-row>
             </v-container>
+            <v-container style="direction: ltr">
+              <v-timeline
+                  :reverse="true"
+                  dense
+              >
+                <v-timeline-item
+                    color="red"
+                >
+                  <v-container
+                      style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; border-radius: 5px;padding: 30px">
+                    <div class="title-en-sec">
+                      <v-row style="direction: rtl;padding: 10px">
+                        مشخصات نیازمندی
+                      </v-row>
+                      <br>
+                      <div
+                          style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                        requirement
+                      </div>
+                    </div>
+                    <hr style="display: block; width: 100%;"/>
+                    <br>
+                    <v-row
+                        style="margin: 5px; background-color: #d6d6d6;border-radius: 5px; color: black">
+                      <v-col
+                          xl="3"
+                          lg="3"
+                          md="6"
+                          sm="12"
+                          xs="12"
+                      >
+                        <v-card-text>
+                          عنوان: {{ requirement.title }}
+                        </v-card-text>
+                      </v-col>
+                      <v-col
+                          xl="9"
+                          lg="9"
+                          md="12"
+                          sm="12"
+                          xs="12"
+                      >
+                        <v-card-text>
+                          آدرس: {{ requirement.address }}
+                        </v-card-text>
+                      </v-col>
+                      <v-col
+                          xl="6"
+                          lg="6"
+                          md="12"
+                          sm="12"
+                          xs="12"
+                      >
+                        <v-card-text>
+                          توضیحات: {{ requirement.description }}
+                        </v-card-text>
+
+                      </v-col>
+                      <v-col
+                          xl="6"
+                          lg="6"
+                          md="6"
+                          sm="12"
+                          xs="12"
+                      >
+                        <v-card-text>
+                          دسته بندی: {{ requirement.category ? requirement.category.name : '' }}
+                        </v-card-text>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-row>
+                          <v-col
+                              xl="4"
+                              lg="4"
+                              md="4"
+                              sm="12"
+                              xs="12"
+                          >
+                            <v-card-text>
+                              استان: {{ requirement.province }}
+                            </v-card-text>
+                          </v-col>
+
+                          <v-col
+                              xl="4"
+                              lg="4"
+                              md="4"
+                              sm="12"
+                              xs="12"
+                          >
+                            <v-card-text>
+                              شهر: {{ requirement.county }}
+                            </v-card-text>
+                          </v-col>
+
+                          <v-col
+                              xl="4"
+                              lg="4"
+                              md="4"
+                              sm="12"
+                              xs="12"
+                          >
+                            <v-card-text>
+                              مرکز: {{ requirement.city }}
+                            </v-card-text>
+                          </v-col>
+                        </v-row>
+                      </v-col>
+                      <v-col
+                          xl="12"
+                          lg="12"
+                          md="12"
+                          sm="12"
+                          xs="12"
+                      >
+                        <v-expansion-panels style="direction: ltr; background-color: #d6d6d6">
+                          <v-expansion-panel style="background-color: #d6d6d6">
+                            <v-expansion-panel-header style="background-color: #d6d6d6;">مستندات</v-expansion-panel-header>
+                            <v-expansion-panel-content style="background-color: #d6d6d6">
+                              <v-img style="margin: 0 auto" v-if="requirement.thumbnail" title="مستندات" :src="requirement.thumbnail" width="700px"
+                                     height="300px"
+                                     alt="مستندات"/>
+                            </v-expansion-panel-content>
+                          </v-expansion-panel>
+                        </v-expansion-panels>
+
+                      </v-col>
+                    </v-row>
+
+                  </v-container>
+                </v-timeline-item>
+                <v-timeline-item color="rgba(13,75,118,1)" v-for="(service, key) in services" v-bind:key="key">
+                  <v-container
+                      style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; border-radius: 5px;padding: 30px">
+                    <div class="title-en-sec">
+                      <v-row style="direction: rtl;padding: 10px">
+                        مشخصات سرویس
+                      </v-row>
+                      <br>
+                      <div
+                          style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                        service
+                      </div>
+                    </div>
+                    <hr style="display: block; width: 100%;"/>
+                    <br>
+                    <v-row
+                        style="margin: 5px; background-color: #d6d6d6;border-radius: 5px; color: black">
+                      <v-col
+                          xl="3"
+                          lg="3"
+                          md="6"
+                          sm="12"
+                          xs="12"
+                      >
+                        <v-card-text>
+                          عنوان: {{ service.title }}
+                        </v-card-text>
+                      </v-col>
+                      <v-col
+                          xl="9"
+                          lg="9"
+                          md="12"
+                          sm="12"
+                          xs="12"
+                      >
+                        <v-card-text>
+                          آدرس: {{ service.address }}
+                        </v-card-text>
+                      </v-col>
+                      <v-col
+                          xl="6"
+                          lg="6"
+                          md="12"
+                          sm="12"
+                          xs="12"
+                      >
+                        <v-card-text>
+                          توضیحات: {{ service.description }}
+                        </v-card-text>
+
+                      </v-col>
+                      <v-col
+                          xl="6"
+                          lg="6"
+                          md="6"
+                          sm="12"
+                          xs="12"
+                      >
+                        <v-card-text>
+                          دسته بندی: {{ service.category ? service.category.name : '' }}
+                        </v-card-text>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-row>
+                          <v-col
+                              xl="4"
+                              lg="4"
+                              md="4"
+                              sm="12"
+                              xs="12"
+                          >
+                            <v-card-text>
+                              استان: {{ service.province }}
+                            </v-card-text>
+                          </v-col>
+
+                          <v-col
+                              xl="4"
+                              lg="4"
+                              md="4"
+                              sm="12"
+                              xs="12"
+                          >
+                            <v-card-text>
+                              شهر: {{ service.county }}
+                            </v-card-text>
+                          </v-col>
+
+                          <v-col
+                              xl="4"
+                              lg="4"
+                              md="4"
+                              sm="12"
+                              xs="12"
+                          >
+                            <v-card-text>
+                              مرکز: {{ service.city }}
+                            </v-card-text>
+                          </v-col>
+                        </v-row>
+                      </v-col>
+                      <v-col cols="12" md="4" v-if="service.available_province">
+                        <v-card-text>
+                          شهر های در دسترس:
+                        </v-card-text>
+                        <div v-for="(available,key) in service.available_province" v-bind:key="key">
+                          <v-card-text>
+                            {{ key + 1 }}: {{ available.name }}
+                          </v-card-text>
+                        </div>
+                      </v-col>
+                      <v-col
+                          xl="12"
+                          lg="12"
+                          md="12"
+                          sm="12"
+                          xs="12"
+                      >
+                        <v-expansion-panels style="direction: ltr; background-color: #d6d6d6">
+                          <v-expansion-panel style="background-color: #d6d6d6">
+                            <v-expansion-panel-header style="background-color: #d6d6d6;">مستندات</v-expansion-panel-header>
+                            <v-expansion-panel-content style="background-color: #d6d6d6">
+                              <v-img style="margin: 0 auto" v-if="service.thumbnail" title="مستندات" :src="service.thumbnail" width="700px"
+                                     height="300px"
+                                     alt="مستندات"/>
+                            </v-expansion-panel-content>
+                          </v-expansion-panel>
+                        </v-expansion-panels>
+
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-timeline-item>
+              </v-timeline>
+            </v-container>
             <v-container
-                style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">
+                style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; border-radius: 5px;padding: 30px">
               <div class="title-en-sec">
                 <v-row style="direction: rtl;padding: 10px">
                   مدیریت محصولات مورد نیاز
@@ -246,248 +500,12 @@
                   />
                 </div>
               </v-slide-y-transition>
-              <v-btn
-                  @click="addRequireProducts"
-                  style="background-color: cadetblue; border-radius: 10px; text-align: center;padding: 5px;margin: 5px auto; width: 100%;">
-                <v-icon style="margin: 0 auto" dark>fa fa-plus</v-icon>
-              </v-btn>
-            </v-container>
-            <v-container
-                style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">
-              <div class="title-en-sec">
-                <v-row style="direction: rtl;padding: 10px">
-                  مشخصات نیازمندی
-                </v-row>
-                <br>
-                <div
-                    style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
-                  requirement
-                </div>
-              </div>
-              <hr style="display: block; width: 100%;"/>
-              <br>
-              <v-row style="background-color: #AED6D1; margin: 5px;border-radius: 5px">
-                <v-col
-                    cols="12"
-                    md="4"
-                >
-                  <v-card-text>
-                    عنوان:
-                  </v-card-text>
-                  <v-card-text>
-                    {{ requirement.title }}
-                  </v-card-text>
-                </v-col>
-
-                <v-col
-                    cols="12"
-                    md="4"
-                >
-                  <v-card-text>
-                    توضیحات:
-                  </v-card-text>
-                  <v-card-text>
-                    {{ requirement.description }}
-                  </v-card-text>
-                </v-col>
-
-                <v-col
-                    cols="12"
-                    md="4"
-                >
-                  <v-card-text>
-                    آدرس:
-                  </v-card-text>
-                  <v-card-text>
-                    {{ requirement.address }}
-                  </v-card-text>
-                </v-col>
-
-                <v-col
-                    cols="12"
-                    md="4"
-                >
-                  <v-card-text>
-                    دسته بندی:
-                  </v-card-text>
-                  <v-card-text>
-                    {{ requirement.category ? requirement.category.name : '' }}
-                  </v-card-text>
-                </v-col>
-
-                <v-col
-                >
-                  <v-card-text>
-                    مستندات:
-                  </v-card-text>
-                  <v-img v-if="requirement.thumbnail" :src="requirement.thumbnail" width="700px" height="300px"
-                         alt="مستندات"/>
-                  <v-card-text v-else>
-                    ندارد
-                  </v-card-text>
-                </v-col>
-
-                <v-col
-                    cols="12"
-                    md="4"
-                >
-                  <v-card-text>
-                    استان:
-                  </v-card-text>
-                  <v-card-text>
-                    {{ requirement.province }}
-                  </v-card-text>
-                </v-col>
-
-                <v-col
-                    cols="12"
-                    md="4"
-                >
-                  <v-card-text>
-                    شهر:
-                  </v-card-text>
-                  <v-card-text>
-                    {{ requirement.county }}
-                  </v-card-text>
-                </v-col>
-
-                <v-col
-                    cols="12"
-                    md="4"
-                >
-                  <v-card-text>
-                    مرکز:
-                  </v-card-text>
-                  <v-card-text>
-                    {{ requirement.city }}
-                  </v-card-text>
-                </v-col>
-              </v-row>
-
-            </v-container>
-            <v-container
-                style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">
-              <div class="title-en-sec">
-                <v-row v-if="project_id" style="direction: rtl;padding: 10px">
-                  مشخصات سرویس ها
-                </v-row>
-                <v-row v-else style="direction: rtl;padding: 10px">
-                  مشخصات سرویس
-                </v-row>
-                <br>
-                <div
-                    style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
-                  service
-                </div>
-              </div>
-              <hr style="display: block; width: 100%;"/>
-              <br>
-              <v-row v-for="(service, key) in services" v-bind:key="key"
-                     style="margin: 5px; background-color: #AED6D1;border-radius: 5px; color: black">
-                <v-col
-                    cols="12"
-                    md="4"
-                >
-                  <v-card-text>
-                    عنوان:
-                  </v-card-text>
-                  <v-card-text>
-                    {{ service.title }}
-                  </v-card-text>
-                </v-col>
-
-                <v-col
-                    cols="12"
-                    md="4"
-                >
-                  <v-card-text>
-                    توضیحات:
-                  </v-card-text>
-                  <v-card-text>
-                    {{ service.description }}
-                  </v-card-text>
-                </v-col>
-
-                <v-col
-                    cols="12"
-                    md="4"
-                >
-                  <v-card-text>
-                    آدرس:
-                  </v-card-text>
-                  <v-card-text>
-                    {{ service.address }}
-                  </v-card-text>
-                </v-col>
-
-                <v-col
-                    cols="12"
-                    md="4"
-                >
-                  <v-card-text>
-                    دسته بندی:
-                  </v-card-text>
-                  <v-card-text>
-                    {{ service.category ? service.category.name : '' }}
-                  </v-card-text>
-                </v-col>
-
-                <v-col
-                >
-                  <v-card-text>
-                    مستندات:
-                  </v-card-text>
-                  <v-img v-if="service.thumbnail" :src="service.thumbnail" width="700px" height="300px" alt="مستندات"/>
-                  <v-card-text v-else>
-                    ندارد
-                  </v-card-text>
-                </v-col>
-
-                <v-col
-                    cols="12"
-                    md="4"
-                >
-                  <v-card-text>
-                    استان:
-                  </v-card-text>
-                  <v-card-text>
-                    {{ service.province }}
-                  </v-card-text>
-                </v-col>
-
-                <v-col
-                    cols="12"
-                    md="4"
-                >
-                  <v-card-text>
-                    شهر:
-                  </v-card-text>
-                  <v-card-text>
-                    {{ service.county }}
-                  </v-card-text>
-                </v-col>
-
-                <v-col
-                    cols="12"
-                    md="4"
-                >
-                  <v-card-text>
-                    مرکز:
-                  </v-card-text>
-                  <v-card-text>
-                    {{ service.city }}
-                  </v-card-text>
-                </v-col>
-                <v-col cols="12" md="4" v-if="service.available_province">
-                  <v-card-text>
-                    شهر های در دسترس:
-                  </v-card-text>
-                  <div v-for="(available,key) in service.available_province" v-bind:key="key">
-                    <v-card-text>
-                      {{ key + 1 }}: {{ available.name }}
-                    </v-card-text>
-                  </div>
-                </v-col>
+              <v-row>
+                <v-btn
+                    @click="addRequireProducts"
+                    style="background-color: rgba(13,75,118,1); border-radius: 10px; text-align: center;padding: 5px;margin: 15px auto; width: 70%;">
+                  <v-icon style="margin: 0 auto" dark>fa fa-plus</v-icon>
+                </v-btn>
               </v-row>
             </v-container>
             <v-row>
