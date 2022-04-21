@@ -1,62 +1,69 @@
 <template>
-  <v-col lg="3" xl="3" md="6" class="item" style="padding: 25px; margin: 25px">
-    <v-row>
-      <v-col lg="2" style="font-weight: bolder">
-        {{ index + 1 }}
-      </v-col>
-      <v-col lg="10">
-        {{ item.name }}
-      </v-col>
-    </v-row>
-    <v-col lg="12" v-if="item.thumbnail">
-      <hr>
-      <v-img width="500px" height="250px" :src="item.thumbnail"></v-img>
-      <hr>
-    </v-col>
-    <v-col lg="12" v-else>
-      <hr>
-      <v-img width="500px" height="250px" src="http://localhost:8000/images/insertPhoto.png"></v-img>
-      <hr>
-    </v-col>
-    <v-col lg="12">
-      موجودی : {{ item.stock }}
-    </v-col>
-    <v-col lg="12" style="text-align: left">
-      <router-link :to="{name:'EditProduct',  params: { product_id: item.id },}"
-                   style="text-decoration: none;margin: 5px">
-        <v-tooltip top>
+  <v-col lg="3" xl="3" md="6">
+    <v-card
+        color="#1F7087"
+        theme="dark"
+        style="color: whitesmoke"
+    >
+      <div class="d-flex flex-no-wrap justify-space-between item">
+        <div>
+          <v-card-title>
+            {{ item.name }}
+          </v-card-title>
 
-          <template v-slot:activator="{ on,attrs }">
+          <v-card-subtitle v-if="item.stock_sum">موجودی:{{ item.stock_sum }}</v-card-subtitle>
+          <v-card-subtitle v-else>موجودی:{{ 0 }}</v-card-subtitle>
 
-            <v-btn
-                style="background-color: lavenderblush"
-                slot="activator"
-                v-bind="attrs"
-                v-on="on"
-            >
-              <v-icon style="color: darkcyan" dark>fa-edit</v-icon>
-            </v-btn>
+          <v-card-actions>
+            <router-link :to="{name:'EditProduct',  params: { product_id: item.id },}" style="text-decoration: none;margin: 5px">
+              <v-tooltip top>
 
-          </template>
-          <span>ویرایش</span>
-        </v-tooltip>
-      </router-link>
-      <v-tooltip top>
-        <template v-slot:activator="{ on , attrs}">
-          <v-btn
-              style="background-color: lavenderblush"
-              slot="activator"
-              v-bind="attrs"
-              v-on="on"
-              @click.native="deleteDialog = true"
-          >
-            <v-icon style="color: red" dark>fa-trash</v-icon>
-          </v-btn>
-        </template>
-        <span>حذف</span>
-      </v-tooltip>
-      <delete-modal v-model="deleteDialog" @action="deleteProduct(item.id)"/>
-    </v-col>
+                <template v-slot:activator="{ on,attrs }">
+                  <v-btn
+                      style="background-color: lavenderblush"
+                      slot="activator"
+                      v-bind="attrs"
+                      v-on="on"
+                      fab
+                      small
+                  >
+                    <v-icon style="color: darkcyan" dark>fa-cog</v-icon>
+                  </v-btn>
+
+                </template>
+                <span>تنظیمات</span>
+              </v-tooltip>
+            </router-link>
+            <v-tooltip top>
+              <template v-slot:activator="{ on , attrs}">
+                <v-btn
+                    style="background-color: lavenderblush"
+                    slot="activator"
+                    v-bind="attrs"
+                    v-on="on"
+                    fab
+                    small
+                    @click.native="deleteDialog = true"
+                >
+                  <v-icon style="color: red" dark>fa-trash</v-icon>
+                </v-btn>
+              </template>
+              <span>حذف</span>
+            </v-tooltip>
+          </v-card-actions>
+        </div>
+
+        <v-avatar
+            class="ma-3"
+            size="125"
+            rounded="0"
+        >
+          <v-img v-if="item.thumbnail" :src="item.thumbnail" style="border-radius: 5px"></v-img>
+          <v-img v-else src="http://localhost:8000/images/insertPhoto.png" style="border-radius: 5px"></v-img>
+        </v-avatar>
+      </div>
+    </v-card>
+    <delete-modal v-model="deleteDialog" @action="deleteProduct(item.id)"/>
   </v-col>
 </template>
 
@@ -93,16 +100,12 @@ export default {
 
 <style scoped>
 .item {
-  border: 2px inset darkseagreen;
-  border-radius: 5px;
-  margin: 5px;
-  background-color: rgba(46, 201, 189, 0.2);
+  transition: 900ms;
 }
 
 .item:hover {
-  background-color: rgba(202, 200, 5, 0.4);
-  transition: 900ms;
-  border: 2px inset black;
+  background-color: #b1b1b1;
+  color: black;
 }
 
 .angle:hover {

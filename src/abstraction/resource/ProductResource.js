@@ -6,6 +6,7 @@ const getJson = (data) => {
         id: data.id,
         name: data.name,
         description: data.description,
+        stock_sum: data.stock_sum,
         thumbnail: data.main_image ? data.main_image.image : null,
         url: data.main_image ? data.main_image.image : null,
     };

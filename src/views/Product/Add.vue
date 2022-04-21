@@ -44,15 +44,13 @@
             <hr style="display: block; width: 100%"/>
             <br>
             <v-row>
-              <v-col lg="6" style="margin: 0 auto">
+              <v-col lg="4" style="margin: 0 auto">
                 <v-text-field style="text-align: right" label="نام محصول" v-model="form.name"
                               reverse></v-text-field>
+                <v-textarea style="text-align: right" label="توضیحات" v-model="form.description"
+                            reverse></v-textarea>
               </v-col>
               <v-col lg="6" style="margin: 0 auto">
-                <v-text-field style="text-align: right" label="توضیحات" v-model="form.description"
-                              reverse></v-text-field>
-              </v-col>
-              <v-col lg="6">
                 <!--                      :url.sync="form.thumbnail"-->
                 <cropper-image
                     :crop_data.sync="form.crop_data"
@@ -63,8 +61,8 @@
             </v-row>
             <v-row>
               <v-col lg="6" style="margin: 0 auto">
-                <div style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
-                  <v-row style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+                <div style="background-color: whitesmoke; border-radius: 10px">
+                  <v-row style="direction: rtl;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
                     مدیریت شعب
                   </v-row>
                   <br>
@@ -85,11 +83,13 @@
                     />
                   </div>
                 </v-slide-y-transition>
-                <v-btn
-                    @click="addBranches"
-                    style="background-color: cadetblue; border-radius: 10px; text-align: center;padding: 5px;margin: 5px auto; width: 100%;">
-                  <v-icon style="margin: 0 auto" dark>fa fa-plus</v-icon>
-                </v-btn>
+                <v-row>
+                  <v-btn
+                      @click="addBranches"
+                      style="background-color: cadetblue; border-radius: 10px; text-align: center;padding: 5px;margin: 15px auto; width: 70%;">
+                    <v-icon style="margin: 0 auto" dark>fa fa-plus</v-icon>
+                  </v-btn>
+                </v-row>
               </v-col>
             </v-row>
             <v-row>

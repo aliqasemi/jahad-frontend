@@ -10,6 +10,7 @@ export default {
             const product = await repository.index(
                 {
                     pagination: state.pagination,
+                    filter: state.filter
                 }
             );
             commit("SET_PRODUCT", product.data);

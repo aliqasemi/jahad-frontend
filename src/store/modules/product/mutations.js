@@ -31,5 +31,13 @@ export default {
 
     SET_PRODUCT_PAGINATION(state, value) {
         state.pagination = value;
-    }
+    },
+
+    SET_PRODUCT_FILTER(state, value) {
+        state.filter = value;
+    },
+
+    SET_PAGE_NUMBER(state, value) {
+        Vue.set(state, "pageNumber", value);
+    },
 }
