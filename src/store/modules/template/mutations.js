@@ -28,5 +28,9 @@ export default {
     SET_LOADING(state, value) {
         state.loading = value;
     },
+
+    SET_TEMPLATE_FILTER(state, value) {
+        state.filter = value;
+    },
 }
 

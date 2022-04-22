@@ -1,18 +1,20 @@
 <template>
   <div>
-    <v-col xl="12" lg="12" md="12">
-      <v-textarea
-          style="text-align: right"
-          reverse
-          ref="message_textarea"
-          v-model="message"
-          label="محتوای پیامکی خود را وارد نمایید"
-      >
-      </v-textarea>
-    </v-col>
-    <v-col xl="12" lg="12" md="12" class="pt-2">
-      <variables-table @click="addVar" :commonVariables="variables"/>
-    </v-col>
+    <v-row>
+      <v-col xl="5" lg="5" md="12" sm="12" xs="12">
+        <variables-table @click="addVar" :commonVariables="variables"/>
+      </v-col>
+      <v-col xl="5" lg="5" md="12" sm="12" xs="12" style="margin: 60px auto;">
+        <v-textarea
+            style="text-align: right"
+            reverse
+            ref="message_textarea"
+            v-model="message"
+            label="محتوای پیامکی خود را وارد نمایید"
+        >
+        </v-textarea>
+      </v-col>
+    </v-row>
   </div>
 </template>
 

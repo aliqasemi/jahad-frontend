@@ -8,9 +8,10 @@ import axios from "axios"
 import basic_url from "@/router/url";
 
 export default class TemplateRepository {
-    async index() {
+    async index(data) {
         try {
-            let response = await axios.get(basic_url + 'templates');
+            let params = setFilterQuery(data.filter, data.filter.typeMode);
+            let response = await axios.get(basic_url + 'templates', {params});
             if (response && response.status === 200) {
                 return getArray(response.data.data);
             }

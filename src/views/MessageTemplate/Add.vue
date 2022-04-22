@@ -43,8 +43,8 @@
             </div>
             <hr style="display: block; width: 100%"/>
             <v-row>
-              <v-col lg="6" style="margin: 0 auto">
-                <v-text-field style="text-align: right" label="نام قالب" v-model="form.name"
+              <v-col lg="10" style="margin: 20px auto">
+                <v-text-field style="text-align: right; width: 50%" label="نام قالب" v-model="form.name"
                               reverse></v-text-field>
                 <message-template v-model="form.template"/>
               </v-col>

@@ -4,10 +4,12 @@ import {store} from "../../index";
 let repository = new TemplateRepository();
 
 export default {
-    async loadTemplateList({commit}) {
+    async loadTemplateList({state, commit}) {
         try {
             commit("SET_LOADING", true);
-            const template = await repository.index();
+            const template = await repository.index({
+                filter: state.filter,
+            });
             commit("SET_TEMPLATE", template);
             return template;
         } catch (e) {
