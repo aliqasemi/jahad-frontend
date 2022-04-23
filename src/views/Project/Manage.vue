@@ -443,16 +443,23 @@
                           </v-col>
                         </v-row>
                       </v-col>
-                      <v-col cols="12" md="4" v-if="service.available_province">
-                        <v-card-text>
-                          شهر های در دسترس:
-                        </v-card-text>
-                        <div v-for="(available,key) in service.available_province" v-bind:key="key">
-                          <v-card-text>
-                            {{ key + 1 }}: {{ available.name }}
-                          </v-card-text>
-                        </div>
-                      </v-col>
+                     <v-col>
+                       <v-col xl="12"
+                              lg="12"
+                              md="12"
+                              sm="12"
+                              xs="12" v-if="service.available_province">
+                         <v-card-text>
+                           شهر های در دسترس:
+                         </v-card-text>
+                         <v-card-actions style="padding: 10px">
+                  <span style="padding: 5px;background-color: #96989a;border-radius: 10px;margin: 5px"
+                        v-for="(available,key) in service.available_province" v-bind:key="key">
+                    {{ available.name }}
+                </span>
+                         </v-card-actions>
+                       </v-col>
+                     </v-col>
                       <v-col
                           xl="12"
                           lg="12"
