@@ -5,4 +5,6 @@ export default {
         page: 1,
         itemsPerPage: 10
     },
+    filter: {default: null},
+    pageNumber: 1,
 }

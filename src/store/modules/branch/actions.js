@@ -10,6 +10,7 @@ export default {
             const branches = await repository.index(
                 {
                     pagination: state.pagination,
+                    filter: state.filter
                 }
             );
             commit("SET_BRANCH", branches.data);

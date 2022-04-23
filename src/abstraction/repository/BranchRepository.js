@@ -6,11 +6,14 @@ import {
 } from "../resource/BranchResource";
 import axios from "axios"
 import basic_url from "@/router/url";
+import {setQuery} from "@/abstraction/resource/ServiceResource";
 
 export default class BranchRepository {
-    async index() {
+    async index(data) {
         try {
-            let response = await axios.get(basic_url + 'branches');
+            let params = setFilterQuery(data.filter, data.filter.typeMode);
+            Object.assign(params, setQuery(data));
+            let response = await axios.get(basic_url + 'branches', {params});
             if (response && response.status === 200) {
                 return getArray(response.data);
             }

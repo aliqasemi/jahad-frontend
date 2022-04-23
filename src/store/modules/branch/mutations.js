@@ -31,7 +31,15 @@ export default {
 
     SET_BRANCH_PAGINATION(state, value) {
         state.pagination = value;
-    }
+    },
+
+    SET_BRANCH_FILTER(state, value) {
+        state.filter = value;
+    },
+
+    SET_PAGE_NUMBER(state, value) {
+        Vue.set(state, "pageNumber", value);
+    },
 }
 
 
