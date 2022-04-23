@@ -22,11 +22,24 @@
     <transition name="loader-transition">
       <div v-if="showTransition" style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
         <v-form @submit.prevent="editRequest"
-                style="background-color: #b1b1b1; width: 70%;border-radius: 15px;margin: 0 auto">
+        >
+          <v-row
+              style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+            اطلاعات کاربر
+          </v-row>
+          <br>
+          <div class="title-en">
+            <div
+                style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+              User Information
+            </div>
+          </div>
+          <hr style="display: block; width: 100%"/>
+          <br>
           <v-row>
             <v-col style="margin: 0 auto"
-                   xl="2" lg="3"
-                   md="4"
+                   xl="4" lg="4"
+                   md="6" sm="6" xs="12"
             >
               <v-text-field
                   v-model="form.firstname"
@@ -36,7 +49,8 @@
               ></v-text-field>
             </v-col>
             <v-col style="margin: 0 auto"
-                   xl="2" lg="3"
+                   xl="4" lg="4"
+                   md="6" sm="6" xs="12"
             >
               <v-text-field
                   v-model="form.lastname"
@@ -48,8 +62,8 @@
           </v-row>
           <v-row>
             <v-col style="margin: 0 auto"
-                   xl="2" lg="3"
-                   md="4"
+                   xl="4" lg="4"
+                   md="6" sm="6" xs="12"
             >
               <v-text-field
                   v-model="form.phoneNumber"
@@ -59,8 +73,8 @@
               ></v-text-field>
             </v-col>
             <v-col style="margin: 0 auto"
-                   xl="2" lg="3"
-                   md="4"
+                   xl="4" lg="4"
+                   md="6" sm="6" xs="12"
             >
               <v-text-field
                   v-model="form.email"
@@ -72,8 +86,8 @@
           </v-row>
           <v-row>
             <v-col style="margin: 0 auto"
-                   xl="2" lg="3"
-                   md="4"
+                   xl="4" lg="4"
+                   md="6" sm="6" xs="12"
             >
               <v-textarea
                   v-model="form.address"
@@ -83,8 +97,8 @@
               ></v-textarea>
             </v-col>
             <v-col
-                xl="2" lg="3"
-                md="4"
+                xl="4" lg="4"
+                md="6" sm="6" xs="12"
                 style="margin: 0 auto"
             >
               <v-select
