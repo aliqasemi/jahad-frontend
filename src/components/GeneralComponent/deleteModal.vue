@@ -2,6 +2,7 @@
   <v-dialog
       v-model="state"
       persistent
+      :retain-focus="false"
       max-width="600"
   >
     <v-card style="direction: rtl">

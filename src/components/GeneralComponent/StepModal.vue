@@ -2,6 +2,7 @@
   <v-dialog
       v-model="state"
       persistent
+      :retain-focus="false"
       max-width="350"
       max-heght="500"
   >
