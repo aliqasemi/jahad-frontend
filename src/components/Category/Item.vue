@@ -1,16 +1,16 @@
 <template>
     <div>
-        <v-row class="category ma-0 cols-justified-right cols-pt-pb-1" style="text-align: right; direction: rtl">
-            <v-col xl="2" md="3" lg="3" sm="4" xs="12">
+        <v-row class="category cols-justified-right cols-pt-pb-1" style="text-align: right; direction: rtl;">
+            <v-col xl="4" md="3" lg="3" sm="6" xs="12" style="margin: auto">
                 <span>{{ item.name }}</span>
             </v-col>
-            <v-col xl="2" md="2" lg="2" sm="4" xs="12" justify="center"
-                   style="background-color: #000000;  color:#eeeeee ;border-radius:20px; margin: 0 auto;height: 50%; text-align: center">
+            <v-col xl="4" md="6" lg="4" sm="12" xs="12" justify="center"
+                   style="background-color: #55706D;  color:#eeeeee ;border-radius:20px; margin:auto;text-align: center">
                 <span>{{ item.children_count }} زیر مجموعه</span>
             </v-col>
             <v-col xl="4" lg="4" sm="4" class="flex-justified-left">
                 <v-row justify="center" style="padding: 5px; margin: 0 auto">
-                    <v-tooltip top  style="text-decoration: none;margin: 5px">>
+                    <v-tooltip top  style="text-decoration: none;margin: 5px">
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn
                                 slot="activator"
@@ -18,6 +18,8 @@
                                 style="background-color: lavenderblush"
                                 v-bind="attrs"
                                 v-on="on"
+                                fab
+                                small
                             >
                               <v-icon style="color: darkcyan" dark>fa-edit</v-icon>
                             </v-btn>
@@ -31,6 +33,8 @@
                                 v-bind="attrs"
                                 v-on="on"
                                 style="background-color: lavenderblush"
+                                fab
+                                small
                                 @click.native="deleteDialog = true"
                             >
                               <v-icon style="color: red" dark>fa-trash</v-icon>
@@ -45,6 +49,8 @@
                                 slot="activator"
                                 v-bind="attrs"
                                 v-on="on"
+                                fab
+                                small
                                 @click.native="plusDialog = true"
                             >
                               <v-icon style="color: darkgreen" dark>fa-plus</v-icon>
@@ -96,11 +102,7 @@ export default {
 </script>
 <style lang="scss">
 .category {
-    padding: 10px 10px 0px;
-    border: 1px solid #eeeeee;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    margin-right: 0px;
-    margin-left: 0px;
+    border: 1px ;
+    border-radius: 10px;
 }
 </style>

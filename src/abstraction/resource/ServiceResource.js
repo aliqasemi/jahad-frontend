@@ -9,8 +9,8 @@ const getJson = (data) => {
         description: data.description,
         thumbnail: data.main_image ? data.main_image.image : null,
         url: data.main_image ? data.main_image.image : null,
-        category_id: data.category ? data.category.id : null,
         category: data.category ? data.category : null,
+        category_id: data.category ? data.category.id : null,
         user: data.user,
         city: data.city.name,
         city_id: data.city.id,
@@ -46,7 +46,7 @@ const setData = (data, hasUpdate = false) => {
         available_province_ids: data.available_province_ids,
         crop_data: data.crop_data,
         main_image: data.image,
-        category_id: data.category_id[0],
+        category_id: data.category_id.length ? data.category_id[0] : data.category_id,
         city_id: data.city_id,
         _method: hasUpdate ? "put" : "post",
     };

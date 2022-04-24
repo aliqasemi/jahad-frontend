@@ -51,6 +51,7 @@
                             reverse></v-textarea>
               </v-col>
               <v-col lg="4">
+             dvwe   {{form.category_id}}
                 <category-select v-model="form.category_id"/>
               </v-col>
               <v-col lg="5">
@@ -114,7 +115,7 @@ var defaultForm = {
   description: null,
   city_id: null,
   address: null,
-  category_id: [],
+  category_id: null,
   available_province_ids: [],
   crop_data: "",
   image: "",

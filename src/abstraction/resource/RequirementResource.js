@@ -37,7 +37,7 @@ const setData = (data, hasUpdate = false) => {
         description: data.description,
         crop_data: data.crop_data,
         main_image: data.image,
-        category_id: data.category_id[0],
+        category_id: data.category_id.length ? data.category_id[0] : data.category_id,
         city_id: data.city_id,
         _method: hasUpdate ? "put" : "post",
     };
