@@ -13,6 +13,7 @@ const getJson = (data) => {
                     description: data[key].description,
                     project: data[key].project,
                     category: data[key].category,
+                    projects: data[key].projects,
                     available_province: data[key].available_province,
                 }
             )

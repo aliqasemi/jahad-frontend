@@ -29,7 +29,7 @@
         <div class="title-en">
           <div
               style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
-            requirement
+            service
           </div>
         </div>
         <hr style="display: block; width: 100%"/>

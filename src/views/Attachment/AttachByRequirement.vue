@@ -35,113 +35,123 @@
         <hr style="display: block; width: 100%"/>
         <br>
         <v-container>
-          <v-row style="background-color: #8DCCC4; padding: 15px; border-radius: 10px; margin: 10px">
+          <v-row
+              style="margin: 5px; background-color: #d6d6d6;border-radius: 5px; color: black">
             <v-col
-                cols="12"
-                md="4"
+                xl="3"
+                lg="3"
+                md="6"
+                sm="12"
+                xs="12"
             >
               <v-card-text>
-                عنوان:
-              </v-card-text>
-              <v-card-text>
-                {{ requirement.title }}
+                عنوان: {{ requirement.title }}
               </v-card-text>
             </v-col>
-
             <v-col
-                cols="12"
-                md="4"
+                xl="9"
+                lg="9"
+                md="12"
+                sm="12"
+                xs="12"
             >
               <v-card-text>
-                توضیحات:
-              </v-card-text>
-              <v-card-text>
-                {{ requirement.description }}
+                آدرس: {{ requirement.address }}
               </v-card-text>
             </v-col>
-
             <v-col
-                cols="12"
-                md="4"
+                xl="6"
+                lg="6"
+                md="12"
+                sm="12"
+                xs="12"
             >
               <v-card-text>
-                آدرس:
+                توضیحات: {{ requirement.description }}
               </v-card-text>
+
+            </v-col>
+            <v-col
+                xl="6"
+                lg="6"
+                md="6"
+                sm="12"
+                xs="12"
+            >
               <v-card-text>
-                {{ requirement.address }}
+                دسته بندی: {{ requirement.category ? requirement.category.name : '' }}
               </v-card-text>
             </v-col>
+            <v-col cols="12">
+              <v-row>
+                <v-col
+                    xl="4"
+                    lg="4"
+                    md="4"
+                    sm="12"
+                    xs="12"
+                >
+                  <v-card-text>
+                    استان: {{ requirement.province }}
+                  </v-card-text>
+                </v-col>
 
-            <v-col
-                cols="12"
-                md="4"
-            >
-              <v-card-text>
-                دسته بندی:
-              </v-card-text>
-              <v-card-text>
-                {{ requirement.category ? requirement.category.name : '' }}
-              </v-card-text>
+                <v-col
+                    xl="4"
+                    lg="4"
+                    md="4"
+                    sm="12"
+                    xs="12"
+                >
+                  <v-card-text>
+                    شهر: {{ requirement.county }}
+                  </v-card-text>
+                </v-col>
+
+                <v-col
+                    xl="4"
+                    lg="4"
+                    md="4"
+                    sm="12"
+                    xs="12"
+                >
+                  <v-card-text>
+                    مرکز: {{ requirement.city }}
+                  </v-card-text>
+                </v-col>
+              </v-row>
             </v-col>
-
             <v-col
+                xl="12"
+                lg="12"
+                md="12"
+                sm="12"
+                xs="12"
             >
-              <v-card-text>
-                مستندات:
-              </v-card-text>
-              <v-img v-if="requirement.thumbnail" :src="requirement.thumbnail" width="700px" height="300px"
-                     alt="مستندات"/>
-              <v-card-text v-else>
-                ندارد
-              </v-card-text>
-            </v-col>
-
-            <v-col
-                cols="12"
-                md="4"
-            >
-              <v-card-text>
-                استان:
-              </v-card-text>
-              <v-card-text>
-                {{ requirement.province }}
-              </v-card-text>
-            </v-col>
-
-            <v-col
-                cols="12"
-                md="4"
-            >
-              <v-card-text>
-                شهر:
-              </v-card-text>
-              <v-card-text>
-                {{ requirement.county }}
-              </v-card-text>
-            </v-col>
-
-            <v-col
-                cols="12"
-                md="4"
-            >
-              <v-card-text>
-                مرکز:
-              </v-card-text>
-              <v-card-text>
-                {{ requirement.city }}
-              </v-card-text>
+              <v-expansion-panels style="direction: ltr; background-color: #d6d6d6">
+                <v-expansion-panel style="background-color: #d6d6d6">
+                  <v-expansion-panel-header style="background-color: #d6d6d6;">مستندات</v-expansion-panel-header>
+                  <v-expansion-panel-content style="background-color: #d6d6d6">
+                    <v-img style="margin: 0 auto" v-if="requirement.thumbnail" title="مستندات" :src="requirement.thumbnail"
+                           width="700px"
+                           height="300px"
+                           alt="مستندات"/>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
             </v-col>
           </v-row>
         </v-container>
-        <div v-if="attachment" style="background-color: white; padding: 15px; border-radius: 10px">
+
+        <div v-if="attachment" style="background-color: whitesmoke; padding: 15px; border-radius: 10px">
           <v-row style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
-            خدمت پیشنهاد شده
+            خدمت های پیشنهاد شده
           </v-row>
           <br>
           <div class="title-en">
             <div
                 style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
-              Services recommend
+              service recommend
             </div>
           </div>
           <hr style="display: block; width: 100%"/>

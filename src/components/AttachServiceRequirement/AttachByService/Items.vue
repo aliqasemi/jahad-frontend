@@ -83,10 +83,10 @@
         </p>
       </template>
     </v-data-table>
-    <!--    <div v-if="attachments">-->
-    <!--      <item v-for="(attachment , key) in attachments" :item="attachment" v-bind:key="key" :index="key"-->
-    <!--            :maxPoint="maxPoint" :service_id="service_id"/>-->
-    <!--    </div>-->
+<!--    <div v-if="attachments">-->
+<!--      <item v-for="(attachment , key) in attachments" :item="attachment" v-bind:key="key" :index="key"-->
+<!--            :maxPoint="maxPoint" :service_id="service_id"/>-->
+<!--    </div>-->
   </div>
 </template>
 
