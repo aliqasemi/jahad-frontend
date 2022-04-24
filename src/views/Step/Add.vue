@@ -35,11 +35,11 @@
             <div class="title-en">
               <div v-if="step_id"
                    style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
-                Edit Services
+                Edit Step
               </div>
               <div v-else
                    style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
-                Add Services
+                Add Step
               </div>
             </div>
             <hr style="display: block; width: 100%"/>
@@ -59,7 +59,7 @@
               </v-col>
             </v-row>
             <v-row>
-              <v-col lg="6" v-if="form.send_sms">
+              <v-col style="margin: 0 auto" lg="6" v-if="form.send_sms">
                 <template-search v-model="form.template_id"/>
               </v-col>
             </v-row>
