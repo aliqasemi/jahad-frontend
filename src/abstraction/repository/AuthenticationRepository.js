@@ -11,12 +11,13 @@ import basic_url from "@/router/url";
 export default class AuthenticationRepository {
     async logIn(body) {
         try {
-            console.log(body)
             let response = await axios.post(basic_url + "login", body);
-            setAuthToken(response.data.token);
-            setAuthUser(response.data.user);
             if (response && response.status === 200) {
+                setAuthToken(response.data.token);
+                setAuthUser(response.data.user);
                 return response.data;
+            } else if (!response.data.data.verify) {
+                return response.data.data;
             }
         } catch (e) {
             return e;

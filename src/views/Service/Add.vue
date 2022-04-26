@@ -51,7 +51,6 @@
                             reverse></v-textarea>
               </v-col>
               <v-col lg="4">
-             dvwe   {{form.category_id}}
                 <category-select v-model="form.category_id"/>
               </v-col>
               <v-col lg="5">

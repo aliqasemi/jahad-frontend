@@ -80,7 +80,8 @@
         </v-tooltip>
       </template>
       <template v-slot:item.user="{item}">
-        {{ item.user.firstname }} {{ item.user.lastname }}
+        <span v-if="item.user">{{ item.user.firstname }} {{ item.user.lastname }}</span>
+        <span v-else style="color: brown">کابر وجود ندارد</span>
       </template>
       <template v-slot:item.category="{item}">
         {{ item.category.name }}

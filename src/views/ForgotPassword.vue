@@ -33,7 +33,7 @@
       <v-form @submit.prevent="confirmPassRequest" style="padding-top: 20px" v-if="confirm">
         <v-container class="login">
           <v-row style="margin: 0 auto;text-align: right; direction: rtl">
-            <v-col style="margin: 0 auto"
+            <v-col style="margin: 0 auto;text-align: center"
                    cols="12"
                    md="4"
             >
@@ -43,6 +43,10 @@
                   reverse
                   required
               ></v-text-field>
+              <br>
+              کد تایید را در یافت نکرده اید؟
+              <br>
+              <v-btn @click="forgotPassRequestRepeat">کلیک کنید</v-btn>
             </v-col>
           </v-row>
           <v-row style="margin: 0 auto;text-align: right; direction: rtl">
@@ -121,6 +125,12 @@ export default {
       if (!(response instanceof Error)) {
         this.confirm = true;
       }
+    },
+    async forgotPassRequestRepeat(){
+      const body = {
+        phoneNumber: this.phoneNumber,
+      };
+      await this.confirmForgotPassword({formData: body});
     },
     async confirmPassRequest() {
       const body = {

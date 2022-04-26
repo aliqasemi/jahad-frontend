@@ -11,6 +11,9 @@ export default {
             if (!(response instanceof Error)) {
                 commit("SET_LOGIN_STATUS", true);
             }
+            if (response.verify === false){
+                commit("SET_LOGIN_STATUS", false);
+            }
             return response;
         } catch (e) {
             return e;

@@ -95,8 +95,12 @@ export default {
         password: this.password,
       };
       let response = await this.login(body);
-
-      if (!(response instanceof Error)) {
+      if (!response.verify && response.verify !== undefined) {
+        this.$router.push({
+          name: "register",
+          params: {user_id: response.user.id}
+        });
+      } else if (!(response instanceof Error)) {
         await this.$router.replace("/");
       }
     },

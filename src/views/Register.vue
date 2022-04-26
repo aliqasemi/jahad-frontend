@@ -4,49 +4,56 @@
       <v-form v-if="show" @submit.prevent="registerRequest" style="padding-top: 20px">
         <v-container class="register">
           <v-stepper
-              style=""
-              v-model="e6"
+              v-model="iterative"
               vertical
               tag="span"
               alt-labels
+              dark
+              non-linear
+              class="stepper"
           >
             <v-stepper-step
-                :complete="e6 > 1"
+                :complete="iterative > 1"
                 step="1"
             >
-               اطلاعات هویتی
+              اطلاعات هویتی
             </v-stepper-step>
 
-            <v-stepper-content v-if="!confirm" style="text-align: center" step="1">
+            <v-stepper-content style="text-align: center;margin-left: 0" step="1">
               <v-card
-                  height="200px"
-                  style="background-color: #d6d6d6;margin: 5px"
+                  style="background-color: #55706D;margin-bottom: 5px"
               >
-                <v-row style="margin: auto; text-align: right; direction: rtl;">
-                  <v-col style="margin: 0 auto"
-                         xl="6" lg="6" md="6" sm="12" xs="12"
-                  >
-                    <v-text-field
-                        v-model="form.firstname"
-                        label="نام"
-                        required
-                        reverse
-                    ></v-text-field>
-                  </v-col>
-                  <v-col style="margin: 0 auto"
-                         xl="6" lg="6" md="6" sm="12" xs="12"
-                  >
-                    <v-text-field
-                        v-model="form.lastname"
-                        label="نام خانوادگی"
-                        required
-                        reverse
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
+                <v-form ref="step1" lazy-validation>
+                  <v-row style="margin: auto; text-align: right; direction: rtl;">
+                    <v-col style="margin: 0 auto"
+                           xl="6" lg="6" md="6" sm="12" xs="12"
+                    >
+                      <v-text-field
+                          v-model="form.firstname"
+                          label="نام"
+                          required
+                          reverse
+                          :counter="15"
+                          :rules="firstNameRules"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col style="margin: 0 auto"
+                           xl="6" lg="6" md="6" sm="12" xs="12"
+                    >
+                      <v-text-field
+                          v-model="form.lastname"
+                          label="نام خانوادگی"
+                          required
+                          reverse
+                          :counter="20"
+                          :rules="lastNameRules"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-form>
               </v-card>
               <v-btn
-                  @click="e6 = 2"
+                  @click="goStep2"
                   color="primary"
               >
                 ثبت اطلاعات
@@ -54,47 +61,52 @@
             </v-stepper-content>
 
             <v-stepper-step
-                :complete="e6 > 2"
+                :complete="iterative > 2"
                 step="2"
             >
               اطلاعات ارتباطی
             </v-stepper-step>
 
-            <v-stepper-content v-if="!confirm" style="text-align: center" step="2">
+            <v-stepper-content style="text-align: center;margin-left: 0" step="2">
               <v-card
-                  height="200px"
-                  style="background-color: #d6d6d6;margin: 5px"
+                  style="background-color: #55706D;margin-bottom: 5px"
               >
-                <v-row style="margin: 0 auto; text-align: right; direction: rtl">
-                  <v-col style="margin: 0 auto"
-                         xl="6" lg="6" md="6" sm="12" xs="12"
-                  >
-                    <v-text-field
-                        v-model="form.phoneNumber"
-                        label="شماره تلفن"
-                        required
-                        reverse
-                    ></v-text-field>
-                  </v-col>
-                  <v-col style="margin: 0 auto"
-                         xl="6" lg="6" md="6" sm="12" xs="12"
-                  >
-                    <v-text-field
-                        v-model="form.email"
-                        label="ایمیل"
-                        required
-                        reverse
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
+                <v-form ref="step2" lazy-validation>
+                  <v-row style="margin: 0 auto; text-align: right; direction: rtl">
+                    <v-col style="margin: 0 auto"
+                           xl="6" lg="6" md="6" sm="12" xs="12"
+                    >
+                      <v-text-field
+                          v-model="form.phoneNumber"
+                          label="شماره تلفن"
+                          required
+                          type="number"
+                          reverse
+                          :rules="phoneNumberRules"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col style="margin: 0 auto"
+                           xl="6" lg="6" md="6" sm="12" xs="12"
+                    >
+                      <v-text-field
+                          v-model="form.email"
+                          label="ایمیل"
+                          required
+                          type="email"
+                          reverse
+                          :rules="emailRules"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-form>
               </v-card>
-              <v-btn @click="e6 = 1" color="warning">
+              <v-btn @click="iterative = 1" color="warning">
                 برگشت به مرحله قبل
               </v-btn>
               <br>
               <br>
               <v-btn
-                  @click="e6 = 3"
+                  @click="goStep3"
                   color="primary"
               >
                 ثبت اطلاعات
@@ -102,54 +114,56 @@
             </v-stepper-content>
 
             <v-stepper-step
-                :complete="e6 > 3"
+                :complete="iterative > 3"
                 step="3"
             >
-             اطلاعات امنیتی
+              اطلاعات امنیتی
             </v-stepper-step>
 
-            <v-stepper-content v-if="!confirm"  style="text-align: center" step="3">
+            <v-stepper-content style="text-align: center;margin-left:0;" step="3">
               <v-card
-                  style="background-color: #d6d6d6;margin: 5px"
-                  height="200px"
+                  style="background-color: #55706D;margin-bottom: 5px"
               >
-                <v-row >
-                  <v-col style="margin: 0 auto"
-                         xl="6" lg="6" md="6" sm="12" xs="12"
-                  >
-                    <v-text-field
-                        v-model="form.password"
-                        label="رمز عبور"
-                        required
-                        reverse
-                        :type="visiblePass ? 'text' : 'password'"
-                        :append-icon="visiblePass ? 'fa fa-eye-slash' : 'fa fa-eye'"
-                        @click:append="visiblePass = !visiblePass"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col style="margin: 0 auto"
-                         xl="6" lg="6" md="6" sm="12" xs="12"
-                  >
-                    <v-text-field
-                        v-model="form.password_confirmation"
-                        label="تکرار رمز عبور"
-                        required
-                        reverse
-                        :type="visibleRepPass ? 'text' : 'password'"
-                        :append-icon="visibleRepPass ? 'fa fa-eye-slash' : 'fa fa-eye'"
-                        @click:append="visibleRepPass = !visibleRepPass"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
+                <v-form ref="step3" lazy-validation>
+                  <v-row style="margin: auto; text-align: right; direction: rtl;">
+                    <v-col style="margin: 0 auto"
+                           xl="6" lg="6" md="6" sm="12" xs="12"
+                    >
+                      <v-text-field
+                          v-model="form.password"
+                          label="رمز عبور"
+                          required
+                          reverse
+                          :rules="passwordRules"
+                          :type="visiblePass ? 'text' : 'password'"
+                          :append-icon="visiblePass ? 'fa fa-eye-slash' : 'fa fa-eye'"
+                          @click:append="visiblePass = !visiblePass"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col style="margin: 0 auto"
+                           xl="6" lg="6" md="6" sm="12" xs="12"
+                    >
+                      <v-text-field
+                          v-model="form.password_confirmation"
+                          label="تکرار رمز عبور"
+                          required
+                          reverse
+                          :rules="repeatPasswordRules"
+                          :type="visibleRepPass ? 'text' : 'password'"
+                          :append-icon="visibleRepPass ? 'fa fa-eye-slash' : 'fa fa-eye'"
+                          @click:append="visibleRepPass = !visibleRepPass"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-form>
               </v-card>
-              <v-btn @click="e6 = 2" color="warning">
+              <v-btn @click="iterative = 2" style="margin-top: 5px" color="warning">
                 برگشت به مرحله قبل
               </v-btn>
               <br>
               <br>
               <v-btn
                   color="primary"
-                  @click="e6 = 4"
                   type="submit"
               >
                 تایید نهایی
@@ -159,8 +173,9 @@
             <v-stepper-step step="4">
               کد تایید
             </v-stepper-step>
-            <v-stepper-content  step="4">
+            <v-stepper-content style="text-align: center;margin-left:0;" step="4">
               <v-card
+                  style="background-color: #55706D;margin: 5px"
               >
                 <v-container class="register" style="width: 100%">
                   <v-col style="margin: 0 auto"
@@ -177,6 +192,10 @@
                       <v-btn type="submit" elevation="2" block>
                         تایید کد
                       </v-btn>
+                      <br>
+                      کد تایید را در یافت نکرده اید؟
+                      <br>
+                      <v-btn @click="confirmRegisterRepeat">کلیک کنید</v-btn>
                     </v-form>
                   </v-col>
                 </v-container>
@@ -219,6 +238,9 @@ let defaultConfirmForm = {
 export default {
   name: 'Register',
   components: {},
+  props: {
+    user_id: {default: null},
+  },
   data: () => ({
     show: false,
     error: null,
@@ -226,26 +248,50 @@ export default {
     confirmForm: defaultConfirmForm,
     visiblePass: false,
     visibleRepPass: false,
-    confirm: false,
     userId: null,
-    e6: 1,
+    iterative: 1,
+    firstNameRules: [
+      v => !!v || 'وارد کردن فیلد نام الزامیست',
+      v => (v && v.length <= 15) || 'مقدار فیلد نام حداکثر 15 کاراکتر است',
+    ],
+    lastNameRules: [
+      v => !!v || 'وارد کردن فیلد نام خانوادگی الزامیست',
+      v => (v && v.length <= 15) || 'مقدار فیلد نام خانوادگی حداکثر 20 کاراکتر است',
+    ],
+    emailRules: [
+      v => !v || /.+@.+\..+/.test(v) || 'فرمت ایمیل صحیح نیست',
+    ],
+    phoneNumberRules: [
+      v => !!v || 'وارد کردن فیلد تلفن همراه الزامیست',
+    ],
+    passwordRules: [
+      v => !!v || 'وارد کردن فیلد رمز عبور الزامیست',
+    ],
   }),
+  computed: {
+    repeatPasswordRules() {
+      return [
+        (v) => !!v || 'وارد کردن این فیلد الزامی است',
+        (v) => (v && v.length >= 6) || 'حداقل باید 6 کاراکتر وارد شود',
+        (v) => (v === this.form.password) || 'رمز عبور وارد شده با رمز فعلی مطابقت ندارد',
+      ];
+    },
+  },
   methods: {
     ...mapActions("user", ['register', 'confirmRegister', 'verifyRegister']),
-    changeRTL () {
-      this.$vuetify.rtl = true
-    },
     async registerRequest() {
       let response = await this.register({formData: this.form});
 
       if (!(response instanceof Error)) {
-
         this.userId = response.user.id;
         await this.confirmRegister({userId: this.userId});
-        this.confirm = true;
+        this.iterative = 4;
       } else {
         await this.$router.replace("/register");
       }
+    },
+    async confirmRegisterRepeat() {
+      await this.confirmRegister({userId: this.userId});
     },
     async confirmRegisterRequest() {
       let response = await this.verifyRegister({formData: this.confirmForm, userId: this.userId})
@@ -254,14 +300,28 @@ export default {
       } else {
         await this.$router.replace("/register");
       }
+    },
+    goStep2() {
+      if (this.$refs.step1.validate())
+        this.iterative = 2;
+    },
+    goStep3() {
+      if (this.$refs.step2.validate()) {
+        this.iterative = 3;
+      }
     }
   },
   async created() {
     this.show = await true;
+    if (this.user_id) {
+      this.iterative = 4;
+      this.userId = this.user_id;
+      await this.confirmRegister({userId: this.userId});
+    }
   }
 }
 </script>
-<style>
+<style lang="scss">
 .loader-transition-enter-active {
   transition: all .8s ease;
 }
@@ -284,4 +344,7 @@ export default {
   direction: rtl;
 }
 
+.stepper .v-stepper__content {
+  border: 1px none !important;
+}
 </style>

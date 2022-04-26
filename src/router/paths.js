@@ -58,6 +58,7 @@ const routes = [
         path: '/register',
         component: Register,
         name: "register",
+        props: true,
     },
     {
         path: '/profile',
