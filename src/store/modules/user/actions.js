@@ -10,8 +10,9 @@ export default {
             const response = await repository.logIn(body);
             if (!(response instanceof Error)) {
                 commit("SET_LOGIN_STATUS", true);
+                commit("SET_AUTHORIZE_USER", response.user.role);
             }
-            if (response.verify === false){
+            if (response.verify === false) {
                 commit("SET_LOGIN_STATUS", false);
             }
             return response;
@@ -187,7 +188,7 @@ export default {
             return user;
         } catch (e) {
             return e;
-        }finally {
+        } finally {
             commit("SET_LOADING", false);
         }
     },
@@ -197,7 +198,7 @@ export default {
             return await repository.show(userId);
         } catch (e) {
             return e;
-        }finally {
+        } finally {
             commit("SET_LOADING", false);
         }
     },

@@ -1,77 +1,85 @@
 <template>
-  <div style="background-color: #55706D; height: 1000px">
+  <div style="background-color: #55706D; height: 1200px">
     <transition name="loader-transition">
-      <v-form v-if="show" @submit.prevent="loginRequest" style="padding-top: 20px">
-        <v-container class="login">
-          <v-row style="margin: 0 auto">
-            <v-col style="margin: 0 auto"
-                   cols="12"
-                   md="4"
-            >
-              <v-text-field
-                  v-model="username"
-                  label="شماره تلفن"
-                  required
-              ></v-text-field>
-            </v-col>
-          </v-row>
+      <v-row>
+        <v-col xl="6" lg="6" md="6" sm="12" xs="12">
+          <v-form v-if="show" @submit.prevent="loginRequest" style="padding-top: 20px">
+            <v-container>
+              <v-row style="margin: 0 auto">
+                <v-col style="margin: 0 auto"
+                       cols="12"
+                       md="4"
+                >
+                  <v-text-field
+                      v-model="username"
+                      label="شماره تلفن"
+                      required
+                  ></v-text-field>
+                </v-col>
+              </v-row>
 
-          <v-row style="margin: 0 auto">
-            <v-col style="margin: 0 auto"
-                   cols="12"
-                   md="4"
-            >
-              <v-text-field
-                  v-model="password"
-                  type="password"
-                  label="رمز عبور"
-                  required
-              ></v-text-field>
-            </v-col>
-          </v-row>
+              <v-row style="margin: 0 auto">
+                <v-col style="margin: 0 auto"
+                       cols="12"
+                       md="4"
+                >
+                  <v-text-field
+                      v-model="password"
+                      type="password"
+                      label="رمز عبور"
+                      required
+                  ></v-text-field>
+                </v-col>
+              </v-row>
 
-          <v-row style="text-align: center">
-            <v-col style="margin: 0 auto"
-                   cols="12"
-                   md="4"
-            >
-              <v-btn type="submit" elevation="2" block>
-                ورود
-              </v-btn>
-              <router-link :to="{name:'ForgotPassword'}" style="text-decoration: none">
-                <v-btn elevation="2" style="margin-top: 20px">
-                  فراموشی رمز عبور
-                </v-btn>
-              </router-link>
+              <v-row style="text-align: center">
+                <v-col style="margin: 0 auto"
+                       cols="12"
+                       md="4"
+                >
+                  <v-btn type="submit" elevation="2" block>
+                    ورود
+                  </v-btn>
+                  <router-link :to="{name:'ForgotPassword'}" style="text-decoration: none">
+                    <v-btn elevation="2" style="margin-top: 20px">
+                      فراموشی رمز عبور
+                    </v-btn>
+                  </router-link>
 
-            </v-col>
-          </v-row>
-          <v-row style="text-align: center">
-            <v-col style="margin: 0 auto"
-                   cols="12"
-                   md="4"
-            >
-              <router-link to="register" style="text-decoration: none">
-                <v-btn type="submit" elevation="2" block>
-                  ثبت نام
-                </v-btn>
-              </router-link>
-            </v-col>
-          </v-row>
-          <v-row style="text-align: center">
-            <v-col style="margin: 0 auto"
-                   cols="12"
-                   md="4"
-            >
-              <router-link to="/" style="text-decoration: none">
-                <v-btn type="submit" elevation="2" block>
-                  صفحه اصلی
-                </v-btn>
-              </router-link>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-form>
+                </v-col>
+              </v-row>
+              <v-row style="text-align: center">
+                <v-col style="margin: 0 auto"
+                       cols="12"
+                       md="4"
+                >
+                  <router-link to="register" style="text-decoration: none">
+                    <v-btn type="submit" elevation="2" block>
+                      ثبت نام
+                    </v-btn>
+                  </router-link>
+                </v-col>
+              </v-row>
+              <v-row style="text-align: center">
+                <v-col style="margin: 0 auto"
+                       cols="12"
+                       md="4"
+                >
+                  <router-link to="/" style="text-decoration: none">
+                    <v-btn type="submit" elevation="2" block>
+                      صفحه اصلی
+                    </v-btn>
+                  </router-link>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-form>
+        </v-col>
+        <v-col xl="6" lg="6" md="6" sm="12" xs="12" style="padding-top: 20px">
+          <v-img style="border-radius: 10px" height="600px" width="450px" :src="require('@/images/jahad.jpg')">
+          </v-img>
+        </v-col>
+      </v-row>
     </transition>
   </div>
 </template>
@@ -127,7 +135,7 @@ export default {
 .login {
   animation: pulse 5s infinite;
   margin-top: 20px;
-  width: 50%;
+  width: 100%;
   background: linear-gradient(30deg, #b1b1b1, cadetblue);
   border-radius: 20px;
 }
