@@ -60,8 +60,8 @@
       </div>
       <v-row v-if="getLoginStatus" style="padding: 20px;width: 100%;margin: 0 auto">
         <v-col xl="3" lg="3" md="4" sm="12" xs="12" style="border-radius: 20px">
-          <v-list class="pa-1" style="background-color: whitesmoke;border-radius: 20px" >
-            <v-row class="ma-0" >
+          <v-list class="pa-1" style="background-color: whitesmoke;border-radius: 20px">
+            <v-row class="ma-0">
               <v-col lg="3" class="flex-justified-left">
                 <a class="LogOut">
                   <v-tooltip bottom color="black" transition="slide-x-transition">
@@ -85,10 +85,11 @@
             </v-row>
           </v-list>
           <br>
-          <v-list style="background-color: whitesmoke;border-radius: 20px">
+          <v-list style="background-color: whitesmoke;border-radius: 20px;">
             <v-list-item
                 v-if="getAuthorizeUser !== 'user'"
                 link
+                class="list-item"
                 :to="{name:'ListCategories'}"
             >
               <v-list-item-icon>
@@ -102,6 +103,7 @@
             <v-list-item
                 link
                 :to="{name:'ListServices'}"
+                class="list-item"
             >
               <v-list-item-icon>
                 <v-icon>fa-list-alt</v-icon>
@@ -114,6 +116,7 @@
             <v-list-item
                 link
                 :to="{name:'ListRequirements'}"
+                class="list-item"
             >
               <v-list-item-icon>
                 <v-icon>fa-list-alt</v-icon>
@@ -127,6 +130,7 @@
                 v-if="getAuthorizeUser !== 'user'"
                 link
                 :to="{name:'ListSteps', params: {project_id: 0}}"
+                class="list-item"
             >
               <v-list-item-icon>
                 <v-icon>fa-list-alt</v-icon>
@@ -139,6 +143,7 @@
             <v-list-item
                 v-if="getAuthorizeUser !== 'user'"
                 link
+                class="list-item"
                 :to="{name:'ListProjects'}"
             >
               <v-list-item-icon>
@@ -152,6 +157,7 @@
             <v-list-item
                 v-if="getAuthorizeUser !== 'user'"
                 link
+                class="list-item"
                 :to="{name:'ListProducts'}"
             >
               <v-list-item-icon>
@@ -165,6 +171,7 @@
             <v-list-item
                 v-if="getAuthorizeUser !== 'user' && getAuthorizeUser !== 'admin'"
                 link
+                class="list-item"
                 :to="{name:'ListTemplates'}"
             >
               <v-list-item-icon>
@@ -178,6 +185,7 @@
             <v-list-item
                 v-if="getAuthorizeUser !== 'user'"
                 link
+                class="list-item"
                 :to="{name:'ListBranches'}"
             >
               <v-list-item-icon>
@@ -191,6 +199,7 @@
             <v-list-item
                 v-if="getAuthorizeUser !== 'user'"
                 link
+                class="list-item"
                 :to="{name:'AttachProduct', params: {project_id: 0}}"
             >
               <v-list-item-icon>
@@ -203,6 +212,7 @@
             </v-list-item>
             <v-list-item
                 link
+                class="list-item"
                 :to="{name:'ResetPassword'}"
             >
               <v-list-item-icon>
@@ -215,7 +225,9 @@
             </v-list-item>
             <v-list-item
                 link
+                class="list-item"
                 :to="{name:'ListUsers'}"
+                v-if="getAuthorizeUser !== 'user' && getAuthorizeUser !== 'admin'"
             >
               <v-list-item-icon>
                 <v-icon>fa-users</v-icon>
@@ -229,7 +241,7 @@
         </v-col>
         <v-col xl="9" lg="9" md="8" sm="12" xs="12">
           <v-row>
-            <v-col lg="12" style="margin-bottom: 20px">
+            <v-col lg="6" xl="6" md="12" sm="12" xs="12" style="margin-bottom: 20px">
               <router-link :to="{name:'ListServices'}" style="text-decoration: none;color: black">
                 <v-row class="flex-justified-space-between title-big">
                   <div>
@@ -249,7 +261,7 @@
                 </v-row>
               </router-link>
             </v-col>
-            <v-col lg="12" style="margin-bottom: 20px">
+            <v-col lg="6" xl="6" md="12" sm="12" xs="12" style="margin-bottom: 20px">
               <router-link :to="{name:'ListRequirements'}" style="text-decoration: none;color: black">
                 <v-row class="flex-justified-space-between title-big">
                   <div>
@@ -270,28 +282,7 @@
                 </v-row>
               </router-link>
             </v-col>
-            <v-col lg="12" style="margin-bottom: 20px" v-if="getAuthorizeUser !== 'user'">
-              <router-link :to="{name:'ListCategories'}"
-                           style="text-decoration: none;color: black">
-                <v-row class="flex-justified-space-between title-big">
-                  <div>
-                    <div>
-                      <div class="desc"> جهت مشاهده دسته بندی و بررسی آن ها کلیک کنید</div>
-                      <div class="title-fa"> دسته بندی</div>
-                      <div class="title-en">
-                        <div style="position: absolute;text-align: left"> Category</div>
-                      </div>
-                    </div>
-                  </div>
-                  <v-row style="direction: ltr">
-                    <v-icon size="75px" style="text-align: left">
-                      fa fa-sitemap
-                    </v-icon>
-                  </v-row>
-                </v-row>
-              </router-link>
-            </v-col>
-            <v-col lg="12" style="margin-bottom: 20px" v-if="getAuthorizeUser !== 'user'">
+            <v-col lg="6" xl="6" md="12" sm="12" xs="12" style="margin-bottom: 20px" v-if="getAuthorizeUser !== 'user'">
               <router-link :to="{name:'ListProjects'}" style="text-decoration: none;color: black">
                 <v-row class="flex-justified-space-between title-big">
                   <div>
@@ -311,7 +302,7 @@
                 </v-row>
               </router-link>
             </v-col>
-            <v-col lg="12" style="margin-bottom: 20px" v-if="getAuthorizeUser !== 'user'">
+            <v-col lg="6" xl="6" md="12" sm="12" xs="12" style="margin-bottom: 20px" v-if="getAuthorizeUser !== 'user'">
               <router-link :to="{name:'ListProducts'}" style="text-decoration: none;color: black">
                 <v-row class="flex-justified-space-between title-big">
                   <div>
@@ -339,7 +330,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import {mapGetters, mapActions} from "vuex";
 
 export default {
   name: "Main",
@@ -361,6 +352,16 @@ export default {
     authUser() {
       return JSON.parse(localStorage.getItem('user'))
     },
+  },
+  methods: {
+    ...mapActions("user", ['logout']),
+    async logoutRequest() {
+      let response = await this.logout();
+
+      if (!(response instanceof Error)) {
+        await this.$router.replace("/login");
+      }
+    }
   },
   async created() {
     this.show = await true;
@@ -396,18 +397,17 @@ export default {
   border-radius: 20px;
   padding: 15px 30px;
   overflow: hidden;
-  width: 80%;
+  width: 100%;
+  height: 300px;
   transition: all 1.2s,
-  border 0.5s 1.2s,
   box-shadow 0.3s 1.5s;
-  white-space: nowrap;
   text-indent: 23px;
   font-weight: bold;
 }
 
 .title-big:hover {
   text-indent: 0;
-  background: rgba(118, 118, 35, 0.83);
+  background: #55706D;
   color: white;
   width: 100%;
   border: 5px solid rgba(118, 118, 35, 0.83);
@@ -458,5 +458,11 @@ export default {
 .back-icon-sm i {
   display: none;
   font-size: 25px;
+}
+
+.list-item{
+  border-radius: 20px;
+  padding: 5px;
+  margin: 5px;
 }
 </style>

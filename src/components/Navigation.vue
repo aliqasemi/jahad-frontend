@@ -159,6 +159,7 @@
         </v-list-item>
         <v-list-item
             link
+            v-if="getAuthorizeUser !== 'user' && getAuthorizeUser !== 'admin'"
             :to="{name:'ListUsers'}"
         >
           <v-list-item-icon>
@@ -225,10 +226,10 @@ export default {
     background-color: #b1b1b1;
   }
   50% {
-    background-color: #8DCCC4;
+    background-color: #eeeeee;
   }
   100% {
-    background-color: cadetblue;
+    background-color: #d6d6d6;
   }
 }
 </style>

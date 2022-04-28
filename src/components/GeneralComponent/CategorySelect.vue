@@ -7,7 +7,7 @@
         :value="selectItem"
         :normalizer="normalizer"
         :options="getTreeCategories"
-        placeholder="نوع خدمت خود را انتخاب کنید"
+        :placeholder="body"
     />
   </v-row>
 </template>
@@ -23,6 +23,7 @@ export default {
     value: {
       default: null,
     },
+    body: {default: 'نوع خدمت خود را انتخاب کنید'},
     selectionType: {default: 'single'}
   },
   components: {
@@ -39,7 +40,7 @@ export default {
   methods: {
     ...mapActions("category", ['loadCategoryList']),
     normalizer(node) {
-      if (node.children == null || node.children == 'null') {
+      if (node.children == null || node.children === 'null') {
         delete node.children;
       }
     }
@@ -48,6 +49,7 @@ export default {
     await this.loadCategoryList();
     if (this.selectionType === 'single') {
       this.selectItem = [this.value];
+      this.selectItem = this.selectItem[0] === null ? null : this.selectItem;
     } else {
       this.selectItem = this.value;
     }

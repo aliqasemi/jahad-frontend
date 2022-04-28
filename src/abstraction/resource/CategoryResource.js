@@ -6,7 +6,7 @@ const getJson = (data) => {
         created_at: data.created_at,
         parent_id: data.parent_id,
         children_count: data.children_count,
-        children: data.children.length ? getArray(data.children) : null,
+        children: data.children ? getArray(data.children) : null,
     };
 };
 
