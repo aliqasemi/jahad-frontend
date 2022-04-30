@@ -1,7 +1,7 @@
 <template>
   <div style="width: 90%;margin: 0 auto; direction: rtl;font-size: 20px;"
        v-if="getAuthorizeUser === 'admin' || getAuthorizeUser === 'superAdmin'">
-    <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
+    <div style="direction: rtl; background-color: #1976D2;border-radius: 10px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>
           <v-icon>fa fa-chevron-left</v-icon>
@@ -29,7 +29,7 @@
           <br>
           <div class="title-en">
             <div
-                style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                style="position: absolute;text-align: left; background-color: #1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
               Products
             </div>
           </div>
@@ -39,7 +39,8 @@
         </div>
         <router-link :to="{name:'AddProduct'}" style="text-decoration: none">
           <v-btn
-              style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white">
+              color="blue darken-2"
+              style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;color: white">
             اضافه کردن محصول
           </v-btn>
         </router-link>

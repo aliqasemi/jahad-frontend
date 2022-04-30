@@ -1,7 +1,7 @@
 <template>
   <div style="width: 90%;margin: 0 auto; direction: rtl;font-size: 20px;"
        v-if="getAuthorizeUser === 'admin' || getAuthorizeUser === 'superAdmin'">
-    <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
+    <div style="direction: rtl; background-color: #1976D2;border-radius: 10px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>
           <v-icon>fa fa-chevron-left</v-icon>
@@ -22,13 +22,13 @@
     </div>
     <transition name="loader-transition">
       <div v-if="show" style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
-        <v-row style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+        <v-row style="direction: rtl;margin-top: 10px;color:  #1976D2;  letter-spacing: 3px;">
           لیست مراحل
         </v-row>
         <br>
         <div class="title-en">
           <div
-              style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+              style="position: absolute;text-align: left; background-color: #1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
             Steps
           </div>
         </div>
@@ -39,7 +39,7 @@
           <router-link :to="{name:'AddStep', params:{project_id: project_id}}"
                        style="text-decoration: none; padding: 20px;">
             <v-btn
-                style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white;margin-top: 50px">
+                style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: #1976D2;color: white;margin-top: 50px">
               افزودن مرحله جدید
             </v-btn>
           </router-link>

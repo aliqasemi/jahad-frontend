@@ -1,6 +1,6 @@
 <template>
   <div style="width: 90%;margin: 0 auto; direction: rtl">
-    <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
+    <div style="direction: rtl; background-color: #1976D2;border-radius: 10px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>
           <v-icon>fa fa-chevron-left</v-icon>
@@ -25,20 +25,20 @@
         <v-form @submit.prevent="registerRequest" style="margin-top: 20px">
           <div style="margin: 0 auto; direction: rtl">
             <v-row v-if="step_id"
-                   style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+                   style="direction: rtl;margin-top: 10px;color: #1976D2;  letter-spacing: 3px;">
               ویرایش مرحله
             </v-row>
-            <v-row v-else style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+            <v-row v-else style="direction: rtl;margin-top: 10px;color: #1976D2;  letter-spacing: 3px;">
               افزودن مرحله
             </v-row>
             <br>
             <div class="title-en">
               <div v-if="step_id"
-                   style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                   style="position: absolute;text-align: left; background-color: #1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
                 Edit Step
               </div>
               <div v-else
-                   style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                   style="position: absolute;text-align: left; background-color: #1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
                 Add Step
               </div>
             </div>
@@ -67,12 +67,14 @@
               <v-col>
                 <v-col>
                   <v-btn v-if="step_id"
-                         style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white"
+                         color="blue darken-2"
+                         style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;color: white"
                          type="submit">
                     ویرایش مرحله
                   </v-btn>
                   <v-btn v-else
-                         style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white"
+                         color="blue darken-2"
+                         style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;color: white"
                          type="submit">
                     اضافه کردن مرحله
                   </v-btn>

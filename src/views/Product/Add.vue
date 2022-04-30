@@ -1,6 +1,6 @@
 <template>
   <div style="width: 90%;margin: 0 auto; direction: rtl">
-    <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
+    <div style="direction: rtl; background-color: #1976D2;border-radius: 10px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>
           <v-icon>fa fa-chevron-left</v-icon>
@@ -24,20 +24,20 @@
         <v-form @submit.prevent="registerRequest" style="margin-top: 20px">
           <div style="margin: 0 auto; direction: rtl">
             <v-row v-if="product_id"
-                   style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+                   style="direction: rtl;margin-top: 10px;color:  #1976D2;  letter-spacing: 3px;">
               ویرایش محصول
             </v-row>
-            <v-row v-else style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+            <v-row v-else style="direction: rtl;margin-top: 10px;color:  #1976D2;  letter-spacing: 3px;">
               افزودن محصول
             </v-row>
             <br>
             <div class="title-en">
               <div v-if="product_id"
-                   style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                   style="position: absolute;text-align: left; background-color: #1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
                 Edit Product
               </div>
               <div v-else
-                   style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                   style="position: absolute;text-align: left; background-color: #1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
                 Add Product
               </div>
             </div>
@@ -62,13 +62,13 @@
             <v-row>
               <v-col lg="6" style="margin: 0 auto">
                 <div style="background-color: whitesmoke; border-radius: 10px">
-                  <v-row style="direction: rtl;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+                  <v-row style="direction: rtl;color:  #1976D2;  letter-spacing: 3px;">
                     مدیریت شعب
                   </v-row>
                   <br>
                   <div class="title-en">
                     <div
-                        style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                        style="position: absolute;text-align: left; background-color: #1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
                       Branches manage
                     </div>
                   </div>
@@ -86,7 +86,7 @@
                 <v-row>
                   <v-btn
                       @click="addBranches"
-                      style="background-color: cadetblue; border-radius: 10px; text-align: center;padding: 5px;margin: 15px auto; width: 70%;">
+                      style="background-color: #1976D2; border-radius: 10px; text-align: center;padding: 5px;margin: 15px auto; width: 70%;">
                     <v-icon style="margin: 0 auto" dark>fa fa-plus</v-icon>
                   </v-btn>
                 </v-row>
@@ -95,12 +95,12 @@
             <v-row>
               <v-col>
                 <v-btn v-if="product_id"
-                       style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white"
+                       style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: #1976D2;color: white"
                        type="submit">
                   ویرایش محصول
                 </v-btn>
                 <v-btn v-else
-                       style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white"
+                       style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: #1976D2;color: white"
                        type="submit">
                   اضافه کردن محصول
                 </v-btn>

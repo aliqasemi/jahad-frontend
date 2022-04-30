@@ -23,6 +23,7 @@
           v-model="page"
           :length="getPageNumber"
           :total-visible="7"
+          color="blue darken-2"
       ></v-pagination>
     </div>
   </div>

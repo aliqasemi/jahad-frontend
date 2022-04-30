@@ -62,7 +62,7 @@
         {{ item.requirement.title }}
       </template>
       <template v-slot:item.services="{item}">
-        <div class="pa-2 ma-1 rounded-pill"
+        <div class="pa-2 ma-1 rounded-pill blue darken-1 white--text"
              style="background-color: #90caf9; font-size: 12px;width: fit-content; display: inline-block"
              v-for="(service,key) in item.services"
              v-bind:key="key">
@@ -88,6 +88,7 @@
           v-model="page"
           :length="getPageNumber"
           :total-visible="7"
+          color="blue darken-2"
       ></v-pagination>
     </div>
   </div>
@@ -108,13 +109,13 @@ export default {
       itemsPerPage: 10,
       headers: [
         {
-          text: 'نام', value: 'name', class: "blue lighten-3", align: 'center',
+          text: 'نام', value: 'name', class: "blue darken-1 white--text", align: 'center',
           divider: true,
         },
-        {text: 'نیازمندی', value: 'requirement', class: "blue lighten-3", align: 'center'},
-        {text: 'سرویس ها', value: 'services', class: "blue lighten-3", align: 'center'},
-        {text: 'مرحله', value: 'step', class: "blue lighten-3", align: 'center'},
-        {text: 'عملیات', value: 'actions', sortable: false, class: "blue lighten-3", align: 'center'},
+        {text: 'نیازمندی', value: 'requirement', class: "blue darken-1 white--text", align: 'center'},
+        {text: 'سرویس ها', value: 'services', class: "blue darken-1 white--text", align: 'center'},
+        {text: 'مرحله', value: 'step', class: "blue darken-1 white--text", align: 'center'},
+        {text: 'عملیات', value: 'actions', sortable: false, class: "blue darken-1 white--text", align: 'center'},
       ],
       deleteDialog: false
     }

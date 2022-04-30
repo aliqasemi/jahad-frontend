@@ -98,6 +98,7 @@
           v-model="page"
           :length="getPageNumber"
           :total-visible="7"
+          color="blue darken-2"
       ></v-pagination>
     </div>
   </div>
@@ -120,13 +121,13 @@ export default {
       deleteDialog: false,
       headers: [
         {
-          text: 'عنوان نیازمندی', value: 'title', class: "blue lighten-3", align: 'center',
+          text: 'عنوان نیازمندی', value: 'title', class: "blue darken-1 white--text", align: 'center',
           divider: true,
         },
-        {text: 'نام کاربر', value: 'user', class: "blue lighten-3", align: 'center'},
-        {text: 'شهر', value: 'city', class: "blue lighten-3", align: 'center'},
-        {text: 'دسته بندی', value: 'category', class: "blue lighten-3", align: 'center',},
-        {text: 'عملیات', value: 'actions', sortable: false, class: "blue lighten-3", align: 'center',},
+        {text: 'نام کاربر', value: 'user', class: "blue darken-1 white--text", align: 'center'},
+        {text: 'شهر', value: 'city', class: "blue darken-1 white--text", align: 'center'},
+        {text: 'دسته بندی', value: 'category', class: "blue darken-1 white--text", align: 'center',},
+        {text: 'عملیات', value: 'actions', sortable: false, class: "blue darken-1 white--text", align: 'center',},
       ],
     }
   },

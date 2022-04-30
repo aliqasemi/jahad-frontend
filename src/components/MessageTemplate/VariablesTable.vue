@@ -9,13 +9,13 @@
         <v-card-text
         >
           <v-row
-              style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+              style="direction: rtl;margin-top: 10px;color:   #1565C0;  letter-spacing: 3px;">
             متغیر ها
           </v-row>
           <br>
           <div class="title-en">
             <div
-                style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                style="position: absolute;text-align: left; background-color:  #1565C0; color: #eeeeee; border-radius: 10px;padding: 7px;">
               variables
             </div>
           </div>
@@ -24,7 +24,7 @@
       </v-col>
       <v-row style="background-color: #eeeeee; margin-top: 10px;border-radius: 10px">
         <div
-            class="content pa-1 ma-2"
+            class="content pa-1 ma-2 blue darken-1"
             @click="$emit('click', commonVariable.value)"
             v-for="(commonVariable, i) in commonVariables"
             :key="i"
@@ -57,8 +57,9 @@ export default {
   border: 1px solid #d6d6d6;
   padding: 4px 12px;
   cursor: pointer;
+  color: white;
   transition: 0.2s cubic-bezier(1, 0, 0.2, 1);
-  background: linear-gradient(to right, #b1b1b1 50%, #96989a 50%);
+  background: linear-gradient(to right, #1976D2 50%, #1565C0 50%);
   background-size: 200% 100%;
   background-position: left bottom;
 }

@@ -1,6 +1,6 @@
 <template>
   <v-row
-      style="background-color: #90caf9; border-radius: 10px 10px 0 0; margin: 0 auto; border-bottom: inset lightslategray">
+      style="background-color: #1E88E5; border-radius: 10px 10px 0 0; margin: 0 auto; border-bottom: inset lightslategray">
     <v-col lg="10" xl="10" md="10" sm="12" xs="12">
       <v-text-field label="نام قالب" color="white" reverse v-model="filter.name">
 

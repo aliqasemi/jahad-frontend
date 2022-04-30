@@ -1,14 +1,14 @@
 <template>
   <v-row
-      style="background-color: #90caf9; border-radius: 10px 10px 0 0; margin: 0 auto; border-bottom: inset lightslategray">
+      style="background-color: #1E88E5; border-radius: 10px 10px 0 0; margin: 0 auto; border-bottom: inset lightslategray">
     <v-col lg="3" xl="3" md="6" sm="12" xs="12">
-      <v-text-field label="نام شعبه" reverse v-model="filter.name"></v-text-field>
+      <v-text-field color="white" label="نام شعبه" reverse v-model="filter.name"></v-text-field>
     </v-col>
     <v-col lg="3" xl="3" md="6" sm="12" xs="12">
-      <v-text-field label="شهر" reverse v-model="filter.city"></v-text-field>
+      <v-text-field color="white" label="شهر" reverse v-model="filter.city"></v-text-field>
     </v-col>
     <v-col lg="3" xl="3" md="6" sm="12" xs="12">
-      <v-text-field label="شماره تلفن" reverse v-model="filter.cell_number"></v-text-field>
+      <v-text-field color="white" label="شماره تلفن" reverse v-model="filter.cell_number"></v-text-field>
     </v-col>
     <v-col lg="2" xl="2" md="2" sm="12" xs="12" style="margin: auto;text-align: center">
       <v-tooltip top style="margin: 5px">

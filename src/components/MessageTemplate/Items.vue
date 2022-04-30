@@ -83,10 +83,10 @@ export default {
       deleteDialog: false,
       headers: [
         {
-          text: 'نام', value: 'name', class: "blue lighten-3", align: 'center',
+          text: 'نام', value: 'name', class: "blue darken-1 white--text", align: 'center',
           divider: true,
         },
-        {text: 'عملیات', value: 'actions', sortable: false, class: "blue lighten-3", align: 'center',},
+        {text: 'عملیات', value: 'actions', sortable: false, class: "blue darken-1 white--text", align: 'center',},
       ],
     }
   },

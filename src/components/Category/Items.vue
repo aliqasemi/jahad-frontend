@@ -13,7 +13,6 @@
             :items="getTreeCategories"
             list-view="tree"
             parent-id-key="parent_id"
-            style="background: linear-gradient(30deg, cadetblue, #b1b1b1);"
         >
           <template v-slot:default="{ item, subCategoriesCount, index }">
             <item
@@ -81,6 +80,6 @@ export default {
   right: 25px;
   width: 75px;
   height: 75px;
-  background-color: cadetblue;
+  background-color: #1E88E5;
 }
 </style>

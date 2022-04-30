@@ -1,6 +1,6 @@
 <template>
   <div style="width: 90%;margin: 0 auto; direction: rtl;font-size: 20px;">
-    <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
+    <div style="direction: rtl; background-color: #1976D2;border-radius: 10px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>
           <v-icon>fa fa-chevron-left</v-icon>

@@ -2,13 +2,13 @@
   <v-expansion-panels flat>
     <v-expansion-panel v-for="(item, i) in items" :key="i"
                        style="background: whitesmoke;padding: 5px">
-      <v-expansion-panel-header expand-icon="WMi-down-open" style="background-color: #d6d6d6">
+      <v-expansion-panel-header expand-icon="WMi-down-open" style="background-color: #42A5F5;color: white">
         <slot :item="item" :subCategoriesCount="getSubCategoriesCount(item)" :index="i"></slot>
         <template v-slot:actions>
-          <v-icon color="primary">
+          <v-icon color="warning">
             fa fa-level-down
           </v-icon>
-          <v-icon color="primary">
+          <v-icon color="warning">
             fa fa-superpowers
           </v-icon>
         </template>

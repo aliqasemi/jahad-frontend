@@ -1,20 +1,20 @@
 <template>
   <v-row
-      style="background-color: #90caf9; border-radius: 10px 10px 0 0; margin: 0 auto; border-bottom: inset lightslategray">
+      style="background-color: #1E88E5; border-radius: 10px 10px 0 0; margin: 0 auto; border-bottom: inset lightslategray">
     <v-col lg="2">
-      <v-text-field label="نام" reverse v-model="filter.firstname"></v-text-field>
+      <v-text-field color="white"  label="نام" reverse v-model="filter.firstname"></v-text-field>
     </v-col>
     <v-col lg="2">
-      <v-text-field label="نام خانوادگی" reverse v-model="filter.lastname"></v-text-field>
+      <v-text-field color="white"  label="نام خانوادگی" reverse v-model="filter.lastname"></v-text-field>
     </v-col>
     <v-col lg="2">
-      <v-text-field label="شماره تلفن" reverse v-model="filter.phoneNumber"></v-text-field>
+      <v-text-field color="white"  label="شماره تلفن" reverse v-model="filter.phoneNumber"></v-text-field>
     </v-col>
     <v-col lg="2">
-      <v-text-field label="آدرس" reverse v-model="filter.address"></v-text-field>
+      <v-text-field color="white"  label="آدرس" reverse v-model="filter.address"></v-text-field>
     </v-col>
     <v-col lg="2">
-      <v-text-field label="نقش" reverse v-model="filter.role"></v-text-field>
+      <v-text-field color="white"  label="نقش" reverse v-model="filter.role"></v-text-field>
     </v-col>
     <v-col lg="2" xl="2" md="2" sm="12" xs="12" style="margin: auto;text-align: center">
       <v-tooltip top style="margin: 5px">

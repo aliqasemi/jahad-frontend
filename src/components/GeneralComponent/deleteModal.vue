@@ -7,13 +7,13 @@
   >
     <v-card style="direction: rtl">
       <div style="background-color: whitesmoke; padding: 20px; border-radius: 10px">
-        <v-row style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+        <v-row style="direction: rtl;margin-top: 10px;color:  #1976D2;  letter-spacing: 3px;">
           مدیریت آیتم
         </v-row>
         <br>
         <div class="title-en">
           <div
-              style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+              style="position: absolute;text-align: left; background-color: #1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
             Manage Item
           </div>
         </div>

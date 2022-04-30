@@ -74,6 +74,7 @@
           v-model="page"
           :length="getPageNumber"
           :total-visible="7"
+          color="blue darken-2"
       ></v-pagination>
     </div>
   </div>
@@ -94,12 +95,12 @@ export default {
       itemsPerPage: 10,
       headers: [
         {
-          text: 'عنوان خدمت', value: 'name', class: "blue lighten-3", align: 'center',
+          text: 'عنوان خدمت', value: 'name', class: "blue darken-1 white--text", align: 'center',
           divider: true,
         },
-        {text: 'شهر', value: 'city', class: "blue lighten-3", align: 'center'},
-        {text: 'شماره تلفن', value: 'cell_number', class: "blue lighten-3", align: 'center'},
-        {text: 'عملیات', value: 'actions', sortable: false, class: "blue lighten-3", align: 'center',},
+        {text: 'شهر', value: 'city', class: "blue darken-1 white--text", align: 'center'},
+        {text: 'شماره تلفن', value: 'cell_number', class: "blue darken-1 white--text", align: 'center'},
+        {text: 'عملیات', value: 'actions', sortable: false, class: "blue darken-1 white--text", align: 'center',},
       ],
       deleteDialog: false
     }

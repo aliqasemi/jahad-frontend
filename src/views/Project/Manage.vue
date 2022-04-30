@@ -1,7 +1,7 @@
 <script src="../../abstraction/repository/AuthenticationRepository.js"></script>
 <template>
   <div style="width: 90%;margin: 0 auto; direction: rtl">
-    <div style="direction: rtl; background-color: rgba(13,75,118,0.83);border-radius: 10px">
+    <div style="direction: rtl; background-color:#1976D2;border-radius: 10px">
       <v-breadcrumbs :items="items">
         <template v-slot:divider>
           <v-icon>fa fa-chevron-left</v-icon>
@@ -25,34 +25,34 @@
         <v-form @submit.prevent="registerRequest" style="margin-top: 20px">
           <div style="margin: 0 auto; direction: rtl">
             <v-row v-if="project_id"
-                   style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+                   style="direction: rtl;margin-top: 10px;color: #1976D2;  letter-spacing: 3px;">
               مدیریت پروژه
             </v-row>
-            <v-row v-else style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 3px;">
+            <v-row v-else style="direction: rtl;margin-top: 10px;color: #1976D2;  letter-spacing: 3px;">
               افزودن پروژه
             </v-row>
             <br>
             <div class="title-en">
               <div v-if="project_id"
-                   style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                   style="position: absolute;text-align: left; background-color:#1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
                 Manage project
               </div>
               <div v-else
-                   style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                   style="position: absolute;text-align: left; background-color:#1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
                 Add project
               </div>
             </div>
             <hr style="display: block; width: 100%"/>
             <br>
             <!--            <v-container v-if="step.name"-->
-            <!--                         style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">-->
+            <!--                         style="direction: rtl;margin-top: 10px;color: #1976D2;  letter-spacing: 2px; background-color: white; border-radius: 5px;padding: 30px">-->
             <!--              <div class="title-en-sec">-->
             <!--                <v-row style="direction: rtl;padding: 10px">-->
             <!--                  مرحله و مدیریت آن-->
             <!--                </v-row>-->
             <!--                <br>-->
             <!--                <div-->
-            <!--                    style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">-->
+            <!--                    style="position: absolute;text-align: left; background-color:#1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">-->
             <!--                  manage step-->
             <!--                </div>-->
             <!--              </div>-->
@@ -120,21 +120,21 @@
               </v-row>
             </v-container>
             <v-container v-if="step.name"
-                         style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px;  border-radius: 5px;padding: 30px">
+                         style="direction: rtl;margin-top: 10px;color: #1976D2;  letter-spacing: 2px;  border-radius: 5px;padding: 30px">
               <div class="title-en-sec">
-                <v-row style="direction: rtl;padding: 10px">
+                <v-row style="direction: rtl;padding: 10px; color: #1976D2">
                   مرحله و مدیریت آن
                 </v-row>
                 <br>
                 <div
-                    style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                    style="position: absolute;text-align: left; background-color:#1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
                   manage step
                 </div>
               </div>
               <hr style="display: block; width: 100%;"/>
               <br>
               <v-stepper v-model="iterate">
-                <v-stepper-header style="height: auto; background-color: whitesmoke">
+                <v-stepper-header style="height: auto; background-color: whitesmoke; color: #1976D2">
                   <template v-for="(v,n) in steps">
                     <v-stepper-step
                         :key="`${n}-step`"
@@ -142,7 +142,7 @@
                         :step="n + 1"
                         editable
                         edit-icon="fa fa-check"
-                        color="rgba(13,75,118,0.83)"
+                        color="#1976D2"
                         @click="nextStep(n, v.id)"
                     >
                       {{ v.name }}
@@ -163,7 +163,7 @@
                   >
                     <v-card
                         class="mb-12"
-                        color="rgba(13,75,118,0.83)"
+                        color="#1976D2"
                         dark
                         style="margin: 0 auto;min-height: 150px"
                     >
@@ -204,7 +204,7 @@
                              :to="{name:'ListSteps', params:{project_id: project_id}}">
                   <v-btn
                       color="rgba(13,75,118,1)"
-                      style="color: white;"
+                      style="color: white;background-color: #1976D2"
                   >
                     مراحل و مدیریت آن
                   </v-btn>
@@ -220,14 +220,14 @@
                     color="red"
                 >
                   <v-container
-                      style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; border-radius: 5px;padding: 30px">
+                      style="direction: rtl;margin-top: 10px;color: #1976D2;  letter-spacing: 2px; border-radius: 5px;padding: 30px">
                     <div class="title-en-sec">
-                      <v-row style="direction: rtl;padding: 10px">
+                      <v-row style="direction: rtl;padding: 10px;color: #1976D2">
                         مشخصات نیازمندی
                       </v-row>
                       <br>
                       <div
-                          style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                          style="position: absolute;text-align: left; background-color:#1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
                         requirement
                       </div>
                     </div>
@@ -342,16 +342,16 @@
 
                   </v-container>
                 </v-timeline-item>
-                <v-timeline-item color="rgba(13,75,118,1)" v-for="(service, key) in services" v-bind:key="key">
+                <v-timeline-item color="#1976D2" v-for="(service, key) in services" v-bind:key="key">
                   <v-container
-                      style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; border-radius: 5px;padding: 30px">
+                      style="direction: rtl;margin-top: 10px;color: #1976D2;  letter-spacing: 2px; border-radius: 5px;padding: 30px">
                     <div class="title-en-sec">
-                      <v-row style="direction: rtl;padding: 10px">
+                      <v-row style="direction: rtl;padding: 10px;color: #1976D2">
                         مشخصات سرویس
                       </v-row>
                       <br>
                       <div
-                          style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                          style="position: absolute;text-align: left; background-color:#1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
                         service
                       </div>
                     </div>
@@ -485,14 +485,14 @@
               </v-timeline>
             </v-container>
             <v-container
-                style="direction: rtl;margin-top: 10px;color:  rgba(13,75,118,0.83);  letter-spacing: 2px; border-radius: 5px;padding: 30px">
+                style="direction: rtl;margin-top: 10px;color: #1976D2;  letter-spacing: 2px; border-radius: 5px;padding: 30px">
               <div class="title-en-sec">
-                <v-row style="direction: rtl;padding: 10px">
+                <v-row style="direction: rtl;padding: 10px;color: #1976D2">
                   مدیریت محصولات مورد نیاز
                 </v-row>
                 <br>
                 <div
-                    style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                    style="position: absolute;text-align: left; background-color:#1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
                   manage require product
                 </div>
               </div>
@@ -510,7 +510,7 @@
               <v-row>
                 <v-btn
                     @click="addRequireProducts"
-                    style="background-color: rgba(13,75,118,1); border-radius: 10px; text-align: center;padding: 5px;margin: 15px auto; width: 70%;">
+                    style="background-color: #1976D2; border-radius: 10px; text-align: center;padding: 5px;margin: 15px auto; width: 70%;">
                   <v-icon style="margin: 0 auto" dark>fa fa-plus</v-icon>
                 </v-btn>
               </v-row>
@@ -518,12 +518,12 @@
             <v-row>
               <v-col>
                 <v-btn v-if="project_id"
-                       style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white; margin: 5px"
+                       style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color:#1976D2;color: white; margin: 5px"
                        type="submit">
                   ثبت تغییرات پروژه
                 </v-btn>
                 <v-btn v-else
-                       style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: rgba(13,75,118,0.83);color: white; margin: 5px"
+                       style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color:#1976D2;color: white; margin: 5px"
                        type="submit">
                   ایجاد پروژه
                 </v-btn>

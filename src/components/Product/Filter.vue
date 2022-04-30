@@ -1,8 +1,8 @@
 <template>
   <v-row
-      style="background-color: #1F7087; border-radius: 10px 10px 0 0; margin: 0 auto; border-bottom: inset lightslategray">
+      style="background-color: #1E88E5; border-radius: 10px 10px 0 0; margin: 0 auto; border-bottom: inset lightslategray">
     <v-col lg="10" xl="10" md="10" sm="12" xs="12">
-      <v-text-field label="نام محصول" color="white" reverse v-model="filter.name">
+      <v-text-field  label="نام محصول" color="white" reverse v-model="filter.name">
 
       </v-text-field>
     </v-col>

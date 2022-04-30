@@ -1,19 +1,19 @@
 <template>
   <v-row
-      style="background-color: #90caf9; border-radius: 10px 10px 0 0; margin: 0 auto; border-bottom: inset lightslategray">
+      style="background-color: #1E88E5; border-radius: 10px 10px 0 0; margin: 0 auto; border-bottom: inset lightslategray">
     <v-col lg="3" xl="3" md="6" sm="12" xs="12">
-      <v-text-field label="نام پروژه" reverse v-model="filter.name"></v-text-field>
+      <v-text-field color="white" label="نام پروژه" reverse v-model="filter.name"></v-text-field>
     </v-col>
     <v-col lg="2" xl="2" md="6" sm="12" xs="12">
-      <v-text-field label="عنوان نیازمندی" reverse v-model="filter.requirement_title"></v-text-field>
+      <v-text-field color="white" label="عنوان نیازمندی" reverse v-model="filter.requirement_title"></v-text-field>
     </v-col>
     <v-col lg="2" xl="2" md="6" sm="12" xs="12">
-      <v-text-field label="عنوان خدمت" reverse v-model="filter.service_title"></v-text-field>
+      <v-text-field color="white" label="عنوان خدمت" reverse v-model="filter.service_title"></v-text-field>
     </v-col>
     <v-col lg="2" xl="2" md="6" sm="12" xs="12">
-      <v-text-field label="مرحله" reverse v-model="filter.step_name"></v-text-field>
+      <v-text-field color="white" label="مرحله" reverse v-model="filter.step_name"></v-text-field>
     </v-col>
-    <v-col lg="2" xl="2" md="2" sm="12" xs="12" style="margin: auto;text-align: center">
+    <v-col lg="2" color="white" xl="2" md="2" sm="12" xs="12" style="margin: auto;text-align: center">
       <v-tooltip top style="margin: 5px">
         <template v-slot:activator="{ on , attrs}">
           <v-btn

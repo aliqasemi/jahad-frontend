@@ -13,22 +13,22 @@
         <v-row class="item">
           <v-col lg="2" xl="2" style="border-radius: 5px;text-align: center;margin-top: 90px">
             <v-col lg="12" style="font-weight: bolder;text-align: center;width: 20%;margin: 0 auto">
-              <p class="-bold" style="background-color: #b1b1b1; border-radius: 100%">{{ key + 1 }}</p>
+              <p class="-bold" style="background-color: #F4511E;color: white; border-radius: 100%">{{ key + 1 }}</p>
             </v-col>
             <v-list-item two-line>
-              <v-list-item-content style="background-color: rgba(13, 75, 118, 0.5);border-radius: 10px">
+              <v-list-item-content style="background-color: #1E88E5;color:white;border-radius: 10px">
                 <v-list-item-title style="font-size: 35px">{{ requireProduct.name }}</v-list-item-title>
-                <v-list-item-subtitle style="font-size: 20px">{{ requireProduct.description }}</v-list-item-subtitle>
+                <v-list-item-subtitle style="font-size: 20px;color: white">{{ requireProduct.description }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
             <v-col lg="12">
-              <p style="background-color: darkred; color: #eeeeee; border-radius: 10px">
+              <p style="background-color: #F57C00; color: #eeeeee; border-radius: 10px">
                 تعداد : {{ requireProduct.number }}
               </p>
             </v-col>
           </v-col>
           <v-col lg="1" xl="1" style="text-align: center">
-            <v-icon style="transform: rotate(180deg);margin-top:160px;text-align: center" size="75">
+            <v-icon color="success" style="transform: rotate(180deg);margin-top:160px;text-align: center" size="75">
               fa fa-random
             </v-icon>
           </v-col>
@@ -40,21 +40,21 @@
               <product-search v-model="product.product.id" style="border-radius: 5px; margin: 5px"/>
               <branch-search v-model="product.branch.id" style="border-radius: 5px; margin: 5px"/>
               <v-btn @click="deleteDialog = true"
-                     style="width: 75%; margin: 0 auto;background-color: darkred; color: #eeeeee;display: block">
+                     style="width: 75%; margin: 0 auto;background-color: #D50000; color: #eeeeee;display: block">
                 <v-icon>fa fa-trash</v-icon>
               </v-btn>
               <delete-modal v-model="deleteDialog" @action="deleteProduct(key, index, product.id)"/>
             </v-col>
           </v-slide-x-reverse-transition>
           <v-btn @click="addProduct(key)" lg="1"
-                 style="background-color: #d6d6d6;border-radius: 10px; margin: 10px; height: 420px">
-            <v-icon style="transform: rotate(180deg);" size="75">
+                 style="background-color: #FB8C00;border-radius: 10px; margin: 10px; height: 420px">
+            <v-icon color="primary" style="transform: rotate(180deg);" size="75">
               fa fa-plus
             </v-icon>
           </v-btn>
           <v-btn @click="attachProducts(requireProduct)" lg="1"
-                 style="background-color: rgba(13, 75, 118, 0.6);border-radius: 10px; margin: 10px; height: 420px">
-            <v-icon size="75">
+                 style="background-color: #1E88E5;border-radius: 10px; margin: 10px; height: 420px">
+            <v-icon color="warning" size="75">
               fa fa-check-square
             </v-icon>
           </v-btn>

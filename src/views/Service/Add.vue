@@ -37,7 +37,7 @@
                 Edit Services
               </div>
               <div v-else
-                   style="position: absolute;text-align: left; background-color: rgba(13,75,118,0.83); color: #eeeeee; border-radius: 10px;padding: 7px;">
+                   style="position: absolute;text-align: left; background-color: #1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
                 Add Services
               </div>
             </div>

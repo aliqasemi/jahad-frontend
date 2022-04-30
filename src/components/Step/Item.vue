@@ -1,7 +1,7 @@
 <template>
   <v-col lg="3" xl="3" md="4" sm="6" xs="12" style=" margin-bottom: 10px">
     <v-card
-        color="#1F7087"
+        color="#1E88E5"
         dark
         style="height: 280px"
     >

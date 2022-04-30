@@ -95,6 +95,7 @@
           v-model="page"
           :length="getPageNumber"
           :total-visible="7"
+          color="blue darken-2"
       ></v-pagination>
     </div>
   </div>
@@ -120,14 +121,14 @@ export default {
       userId: {default: null},
       headers: [
         {
-          text: 'نام', value: 'firstname', class: "blue lighten-3", align: 'center',
+          text: 'نام', value: 'firstname', class: "blue darken-1 white--text", align: 'center',
           divider: true,
         },
-        {text: 'نام خانوادگی', value: 'lastname', class: "blue lighten-3", align: 'center'},
-        {text: 'سطح دسترسی', value: 'role', class: "blue lighten-3", align: 'center',},
-        {text: 'شماره تلفن', value: 'phoneNumber', class: "blue lighten-3", align: 'center',},
-        {text: 'فعال/غیرفعال', value: 'active', class: "blue lighten-3", align: 'center',},
-        {text: 'عملیات', value: 'actions', sortable: false, class: "blue lighten-3", align: 'center',},
+        {text: 'نام خانوادگی', value: 'lastname', class: "blue darken-1 white--text", align: 'center'},
+        {text: 'سطح دسترسی', value: 'role', class: "blue darken-1 white--text", align: 'center',},
+        {text: 'شماره تلفن', value: 'phoneNumber', class: "blue darken-1 white--text", align: 'center',},
+        {text: 'فعال/غیرفعال', value: 'active', class: "blue darken-1 white--text", align: 'center',},
+        {text: 'عملیات', value: 'actions', sortable: false, class: "blue darken-1 white--text", align: 'center',},
       ],
     }
   },
