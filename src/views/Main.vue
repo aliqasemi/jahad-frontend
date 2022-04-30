@@ -2,7 +2,7 @@
   <transition name="loader-transition">
     <div v-if="show" style="width: 100%;margin: 0 auto; direction: rtl; ">
       <div v-if="getLoginStatus"
-           style="direction: rtl; width: 95%; margin: 0 auto; background-color: rgba(13,75,118,0.83);border-radius: 10px">
+           style="direction: rtl; width: 95%; margin: 0 auto; background-color:#1976D2;border-radius: 10px">
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
             <v-icon>fa fa-chevron-left</v-icon>
@@ -60,14 +60,14 @@
       </div>
       <v-row v-if="getLoginStatus" style="padding: 20px;width: 100%;margin: 0 auto">
         <v-col xl="3" lg="3" md="4" sm="12" xs="12" style="border-radius: 20px">
-          <v-list class="pa-1" style="background-color: whitesmoke;border-radius: 20px">
+          <v-list class="pa-1" style="background-color: #1976D2;color:white;border-radius: 20px">
             <v-row class="ma-0">
               <v-col lg="3" class="flex-justified-left">
                 <a class="LogOut">
                   <v-tooltip bottom color="black" transition="slide-x-transition">
                     <template v-slot:activator="{ on }">
                       <v-btn small @click.native.stop="logoutRequest" slot="activator" outlined fab
-                             color="black"
+                             color="white"
                              dark v-on="on">
                         <v-icon dark>fa fa-power-off</v-icon>
                       </v-btn>
@@ -85,11 +85,11 @@
             </v-row>
           </v-list>
           <br>
-          <v-list style="background-color: whitesmoke;border-radius: 20px;">
+          <v-list style="background-color: #1976D2;border-radius: 20px;">
             <v-list-item
                 v-if="getAuthorizeUser !== 'user'"
                 link
-                class="list-item"
+                class="list-item white--text"
                 :to="{name:'ListCategories'}"
             >
               <v-list-item-icon>
@@ -103,7 +103,7 @@
             <v-list-item
                 link
                 :to="{name:'ListServices'}"
-                class="list-item"
+                class="list-item white--text"
             >
               <v-list-item-icon>
                 <v-icon>fa-list-alt</v-icon>
@@ -116,7 +116,7 @@
             <v-list-item
                 link
                 :to="{name:'ListRequirements'}"
-                class="list-item"
+                class="list-item white--text"
             >
               <v-list-item-icon>
                 <v-icon>fa-list-alt</v-icon>
@@ -130,7 +130,7 @@
                 v-if="getAuthorizeUser !== 'user'"
                 link
                 :to="{name:'ListSteps', params: {project_id: 0}}"
-                class="list-item"
+                class="list-item white--text"
             >
               <v-list-item-icon>
                 <v-icon>fa-list-alt</v-icon>
@@ -143,7 +143,7 @@
             <v-list-item
                 v-if="getAuthorizeUser !== 'user'"
                 link
-                class="list-item"
+                class="list-item white--text"
                 :to="{name:'ListProjects'}"
             >
               <v-list-item-icon>
@@ -157,7 +157,7 @@
             <v-list-item
                 v-if="getAuthorizeUser !== 'user'"
                 link
-                class="list-item"
+                class="list-item white--text"
                 :to="{name:'ListProducts'}"
             >
               <v-list-item-icon>
@@ -171,7 +171,7 @@
             <v-list-item
                 v-if="getAuthorizeUser !== 'user' && getAuthorizeUser !== 'admin'"
                 link
-                class="list-item"
+                class="list-item white--text"
                 :to="{name:'ListTemplates'}"
             >
               <v-list-item-icon>
@@ -185,7 +185,7 @@
             <v-list-item
                 v-if="getAuthorizeUser !== 'user'"
                 link
-                class="list-item"
+                class="list-item white--text"
                 :to="{name:'ListBranches'}"
             >
               <v-list-item-icon>
@@ -199,7 +199,7 @@
             <v-list-item
                 v-if="getAuthorizeUser !== 'user'"
                 link
-                class="list-item"
+                class="list-item white--text"
                 :to="{name:'AttachProduct', params: {project_id: 0}}"
             >
               <v-list-item-icon>
@@ -212,7 +212,7 @@
             </v-list-item>
             <v-list-item
                 link
-                class="list-item"
+                class="list-item white--text"
                 :to="{name:'ResetPassword'}"
             >
               <v-list-item-icon>
@@ -225,7 +225,7 @@
             </v-list-item>
             <v-list-item
                 link
-                class="list-item"
+                class="list-item white--text"
                 :to="{name:'ListUsers'}"
                 v-if="getAuthorizeUser !== 'user' && getAuthorizeUser !== 'admin'"
             >
@@ -460,7 +460,7 @@ export default {
   font-size: 25px;
 }
 
-.list-item{
+.list-item {
   border-radius: 20px;
   padding: 5px;
   margin: 5px;
