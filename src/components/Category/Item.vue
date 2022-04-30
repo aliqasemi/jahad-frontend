@@ -5,7 +5,7 @@
                 <span>{{ item.name }}</span>
             </v-col>
             <v-col xl="4" md="6" lg="4" sm="12" xs="12" justify="center"
-                   style="background-color: #F57C00;  color:#eeeeee ;border-radius:20px; margin:auto;text-align: center">
+                   style="background-color: #26A69A;  color:#eeeeee ;border-radius:20px; margin:auto;text-align: center">
                 <span>{{ item.children_count }} زیر مجموعه</span>
             </v-col>
             <v-col xl="4" lg="4" sm="4" class="flex-justified-left">

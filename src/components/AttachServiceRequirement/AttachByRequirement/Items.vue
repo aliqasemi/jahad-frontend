@@ -60,7 +60,7 @@
             :size="80"
             :width="15"
             :value="(item.point  / maxPoint) * 100"
-            color="teal"
+            color="blue darken-1"
         >
           {{ (item.point / maxPoint) * 100 }} %
         </v-progress-circular>
@@ -98,15 +98,15 @@ export default {
       attachments: [],
       headers: [
         {
-          text: 'عنوان خدمت', value: 'title', class: "blue lighten-3", align: 'center',
+          text: 'عنوان خدمت', value: 'title', class: "blue darken-1 white--text", align: 'center',
           divider: true,
         },
-        {text: 'نام کاربر', value: 'user', class: "blue lighten-3", align: 'center'},
-        {text: 'شهر', value: 'city', class: "blue lighten-3", align: 'center'},
-        {text: 'دسته بندی', value: 'category', class: "blue lighten-3", align: 'center',},
-        {text: 'میزان شباهت', value: 'point', class: "blue lighten-3", align: 'center',},
-        {text: 'پروژه در حال انجام', value: 'projects', class: "blue lighten-3", align: 'center',},
-        {text: 'عملیات', value: 'actions', sortable: false, class: "blue lighten-3", align: 'center',},
+        {text: 'نام کاربر', value: 'user', class: "blue darken-1 white--text", align: 'center'},
+        {text: 'شهر', value: 'city', class: "blue darken-1 white--text", align: 'center'},
+        {text: 'دسته بندی', value: 'category', class: "blue darken-1 white--text", align: 'center',},
+        {text: 'میزان شباهت', value: 'point', class: "blue darken-1 white--text", align: 'center',},
+        {text: 'پروژه در حال انجام', value: 'projects', class: "blue darken-1 white--text", align: 'center',},
+        {text: 'عملیات', value: 'actions', sortable: false, class: "blue darken-1 white--text", align: 'center',},
       ],
     }
   },
