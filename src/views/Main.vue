@@ -1,8 +1,8 @@
 <template>
   <transition name="loader-transition">
-    <div v-if="show" style="width: 100%;margin: 0 auto; direction: rtl; ">
+    <div v-if="show" style="width: 85%;margin: 0 auto; direction: rtl; ">
       <div v-if="getLoginStatus"
-           style="direction: rtl; width: 95%; margin: 0 auto; background-color:#1976D2;border-radius: 10px">
+           style="direction: rtl; width: 100%; margin: 0 auto; background-color:#1976D2;border-radius: 10px">
         <v-breadcrumbs :items="items">
           <template v-slot:divider>
             <v-icon>fa fa-chevron-left</v-icon>
@@ -239,24 +239,43 @@
             </v-list-item>
           </v-list>
         </v-col>
-        <v-col xl="9" lg="9" md="8" sm="12" xs="12">
+        <v-col xl="9" lg="9" md="8" sm="12" xs="12" style="margin-top: 15px">
           <v-row>
             <v-col lg="6" xl="6" md="12" sm="12" xs="12" style="margin-bottom: 20px">
               <router-link :to="{name:'ListServices'}" style="text-decoration: none;color: black">
                 <v-row class="flex-justified-space-between title-big">
                   <div>
                     <div>
-                      <div class="desc"> جهت مشاهده لیست خدمات و اضافه کردن خدمت درخواستی کلیک کنید</div>
                       <div class="title-fa"> خدمات</div>
-                      <div class="title-en En Bold">
+                      <div class="title-en En Bold warning--text">
                         <div style="position: absolute;text-align: left"> services</div>
                       </div>
                     </div>
                   </div>
-                  <v-row style="direction: ltr">
-                    <v-icon size="75px" style="text-align: left">
-                      fa fa-cog
-                    </v-icon>
+                  <v-row style="direction: ltr; margin: auto;width: 100%">
+                    <v-col lg="6">
+                      <v-icon size="75px" color="warning" style="text-align: left">
+                        fa fa-cog
+                      </v-icon>
+                    </v-col>
+                    <v-col lg="6">
+                      <v-row style="margin: auto">
+                        <v-sparkline
+                            style="margin: auto"
+                            :value="serviceChartValue"
+                            :gradient="gradient"
+                            :smooth="radius || false"
+                            :padding="padding"
+                            :line-width="width"
+                            :stroke-linecap="lineCap"
+                            :gradient-direction="gradientDirection"
+                            :fill="fill"
+                            :type="type"
+                            :auto-line-width="autoLineWidth"
+                            auto-draw
+                        ></v-sparkline>
+                      </v-row>
+                    </v-col>
                   </v-row>
                 </v-row>
               </router-link>
@@ -266,18 +285,36 @@
                 <v-row class="flex-justified-space-between title-big">
                   <div>
                     <div class="texts">
-                      <div class="desc"> جهت مشاهده لیست نیازمندی ها و اضافه کردن نیازمندی درخواستی کلیک کنید
-                      </div>
                       <div class="title-fa"> نیازمندی ها</div>
-                      <div class="title-en">
+                      <div class="title-en warning--text">
                         <div style="position: absolute;text-align: left">Requirement</div>
                       </div>
                     </div>
                   </div>
-                  <v-row style="direction: ltr">
-                    <v-icon size="75px" style="text-align: left">
-                      fa fa-hand-paper-o
-                    </v-icon>
+                  <v-row style="direction: ltr; margin: auto;width: 100%">
+                    <v-col lg="6">
+                      <v-icon size="75px" color="warning" style="text-align: left">
+                        fa fa-hand-paper-o
+                      </v-icon>
+                    </v-col>
+                    <v-col lg="6">
+                      <v-row style="margin: auto">
+                        <v-sparkline
+                            style="margin: auto"
+                            :value="requirementChartValue"
+                            :gradient="gradient"
+                            :smooth="radius || false"
+                            :padding="padding"
+                            :line-width="width"
+                            :stroke-linecap="lineCap"
+                            :gradient-direction="gradientDirection"
+                            :fill="fill"
+                            :type="type"
+                            :auto-line-width="autoLineWidth"
+                            auto-draw
+                        ></v-sparkline>
+                      </v-row>
+                    </v-col>
                   </v-row>
                 </v-row>
               </router-link>
@@ -287,17 +324,36 @@
                 <v-row class="flex-justified-space-between title-big">
                   <div>
                     <div>
-                      <div class="desc"> جهت مشاهده پروژه های تعریف شده و بررسی آن ها کلیک کنید</div>
                       <div class="title-fa"> پروژه ها</div>
-                      <div class="title-en">
+                      <div class="title-en warning--text">
                         <div style="position: absolute;text-align: left"> Project</div>
                       </div>
                     </div>
                   </div>
-                  <v-row style="direction: ltr">
-                    <v-icon size="75px" style="text-align: left">
-                      fa fa-cog
-                    </v-icon>
+                  <v-row style="direction: ltr; margin: auto;width: 100%">
+                    <v-col lg="6">
+                      <v-icon size="75px" color="warning" style="text-align: left">
+                        fa fa-hand-paper-o
+                      </v-icon>
+                    </v-col>
+                    <v-col lg="6">
+                      <v-row style="margin: auto">
+                        <v-sparkline
+                            style="margin: auto"
+                            :value="projectChartValue"
+                            :gradient="gradient"
+                            :smooth="radius || false"
+                            :padding="padding"
+                            :line-width="width"
+                            :stroke-linecap="lineCap"
+                            :gradient-direction="gradientDirection"
+                            :fill="fill"
+                            :type="type"
+                            :auto-line-width="autoLineWidth"
+                            auto-draw
+                        ></v-sparkline>
+                      </v-row>
+                    </v-col>
                   </v-row>
                 </v-row>
               </router-link>
@@ -307,17 +363,36 @@
                 <v-row class="flex-justified-space-between title-big">
                   <div>
                     <div>
-                      <div class="desc"> جهت مشاهده محصولات و کوجودی آن در انبار و بررسی آن ها کلیک کنید</div>
                       <div class="title-fa"> محصولات و موجودی</div>
-                      <div class="title-en">
+                      <div class="title-en warning--text">
                         <div style="position: absolute;text-align: left">Product</div>
                       </div>
                     </div>
                   </div>
-                  <v-row style="direction: ltr">
-                    <v-icon size="75px" style="text-align: left">
-                      fa fa-cogs
-                    </v-icon>
+                  <v-row style="direction: ltr; margin: auto;width: 100%">
+                    <v-col lg="6">
+                      <v-icon size="75px" color="warning" style="text-align: left">
+                        fa fa-cogs
+                      </v-icon>
+                    </v-col>
+                    <v-col lg="6">
+                      <v-row style="margin: auto">
+                        <v-sparkline
+                            style="margin: auto"
+                            :value="productChartValue"
+                            :gradient="gradient"
+                            :smooth="radius || false"
+                            :padding="padding"
+                            :line-width="width"
+                            :stroke-linecap="lineCap"
+                            :gradient-direction="gradientDirection"
+                            :fill="fill"
+                            :type="type"
+                            :auto-line-width="autoLineWidth"
+                            auto-draw
+                        ></v-sparkline>
+                      </v-row>
+                    </v-col>
                   </v-row>
                 </v-row>
               </router-link>
@@ -331,11 +406,37 @@
 
 <script>
 import {mapGetters, mapActions} from "vuex";
+import MainRepository from "@/abstraction/repository/MainRepository";
+
+let repository = new MainRepository();
+
+const gradients = [
+  ['#222'],
+  ['#42b3f4'],
+  ['red', 'orange', 'yellow'],
+  ['purple', 'violet'],
+  ['#00c6ff', '#F0F', '#FF0'],
+  ['#f72047', '#ffd200', '#1feaea'],
+]
 
 export default {
   name: "Main",
   data() {
     return {
+      width: 5,
+      radius: 100,
+      padding: 1,
+      lineCap: 'round',
+      gradient: gradients[5],
+      serviceChartValue: [],
+      projectChartValue: [],
+      requirementChartValue: [],
+      productChartValue: [],
+      gradientDirection: 'top',
+      gradients,
+      fill: false,
+      type: 'trend',
+      autoLineWidth: false,
       show: false,
       items: [
         {
@@ -365,6 +466,11 @@ export default {
   },
   async created() {
     this.show = await true;
+    let response = await repository.getInfo();
+    this.productChartValue = response.product;
+    this.projectChartValue = response.project;
+    this.serviceChartValue = response.service;
+    this.requirementChartValue = response.requirement;
   }
 }
 </script>
@@ -391,9 +497,9 @@ export default {
 }
 
 .title-big {
-  border: 5px solid transparent;
-  background: cadetblue;
-  color: #eeeeea;
+  border: 5px inset transparent;
+  background: #eeeeea;
+  color: #1E88E5;
   border-radius: 20px;
   padding: 15px 30px;
   overflow: hidden;
@@ -407,36 +513,19 @@ export default {
 
 .title-big:hover {
   text-indent: 0;
-  background: #55706D;
-  color: white;
+  background: #eeeeee;
   width: 100%;
-  border: 5px solid rgba(118, 118, 35, 0.83);
   box-shadow: 3px 3px 2px rgba(black, 0.15);
 }
 
-.title-big:hover .desc {
-  display: inline-block;
-  color: #eeeeea;
-  transition: all 0.5s;
-  transform: translateX(0);
-  opacity: 1;
-}
-
-.title-big * {
-  flex-shrink: 0;
-}
 
 .title-big .title-fa {
   font-size: 50px;
 }
 
 .title-big .desc {
-  display: none;
-  transform: translateX(300px);
   font-weight: normal;
   opacity: 0;
-  transition: opacity 0.1s 0.5s,
-  transform 0.4s 0.5s;
 }
 
 .title-big .title-en {
@@ -445,8 +534,6 @@ export default {
   padding-bottom: 10px;
   white-space: nowrap;
   text-transform: uppercase;
-  color: rgba(13, 75, 118, 0.70);
-  opacity: 0.1;
 }
 
 .title-big .title-en .text {
