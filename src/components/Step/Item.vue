@@ -45,7 +45,8 @@
         <v-icon :disabled="index === 0" @click="moveUp(item.id)" style="margin: 5px auto; padding: 10px" class="angle">
           fa-angle-right
         </v-icon>
-        <router-link :to="{name:'EditStep',  params: { step_id: item.id },}" style="text-decoration: none;margin: 5px">
+        <router-link :to="{name:'EditStep',  params: { step_id: item.id , project_id:project_id },}"
+                     style="text-decoration: none;margin: 5px">
           <v-tooltip top>
 
             <template v-slot:activator="{ on,attrs }">
@@ -97,6 +98,7 @@ export default {
     item: {default: null},
     index: {default: 0},
     number: {default: 0},
+    project_id: {default: null},
   },
   components: {
     DeleteModal

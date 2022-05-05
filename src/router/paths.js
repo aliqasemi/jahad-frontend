@@ -157,7 +157,7 @@ const routes = [
         props: true,
     },
     {
-        path: '/steps/edit/:step_id',
+        path: '/steps/edit/:step_id/project/:project_id',
         name: 'EditStep',
         component: AddStep,
         beforeEnter: isAuthenticated,

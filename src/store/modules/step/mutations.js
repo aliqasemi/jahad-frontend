@@ -6,10 +6,12 @@ export default {
     },
 
     UPDATE_STEP(state, step) {
-        const index = state.steps.findIndex(
-            (x) => x.id === step.id
-        );
-        Vue.set(state.steps, index, step);
+        if (state.steps !== undefined) {
+            const index = state.steps.findIndex(
+                (x) => x.id === step.id
+            );
+            Vue.set(state.steps, index, step);
+        }
     },
 
     REMOVE_STEP(state, id) {
@@ -18,11 +20,13 @@ export default {
     },
 
     ADD_STEP(state, step) {
-        Vue.set(
-            state.steps,
-            state.steps.length,
-            step
-        );
+        if (state.steps !== undefined) {
+            Vue.set(
+                state.steps,
+                state.steps.length,
+                step
+            );
+        }
     },
 
     SET_LOADING(state, value) {

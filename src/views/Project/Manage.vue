@@ -542,8 +542,8 @@ import {mapActions} from "vuex";
 import RequireProductRowDuplicator from "@/components/RequireProduct/RequireProductRowDuplicator";
 
 var defaultForm = {
-  description: 'پروژه ..',
-  name: 'پروژه ..',
+  description: '',
+  name: '',
   requireProducts: [{}],
 };
 

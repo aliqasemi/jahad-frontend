@@ -59,7 +59,11 @@
         {{ item.category.name }}
       </template>
       <template v-slot:item.project="{item}">
-        <div v-if="item.project">{{ item.project.name }}</div>
+        <div v-if="item.project" class="pa-2 ma-1 rounded-pill"
+             style="background-color: #90caf9; font-size: 12px;width: fit-content; display: inline-block"
+        >
+          {{ item.project.name }}
+        </div>
         <div v-else>ندارد</div>
       </template>
       <template v-slot:item.city="{item}">
@@ -84,10 +88,10 @@
         </p>
       </template>
     </v-data-table>
-<!--    <div v-if="attachments">-->
-<!--      <item v-for="(attachment , key) in attachments" :item="attachment" v-bind:key="key" :index="key"-->
-<!--            :maxPoint="maxPoint" :service_id="service_id"/>-->
-<!--    </div>-->
+    <!--    <div v-if="attachments">-->
+    <!--      <item v-for="(attachment , key) in attachments" :item="attachment" v-bind:key="key" :index="key"-->
+    <!--            :maxPoint="maxPoint" :service_id="service_id"/>-->
+    <!--    </div>-->
   </div>
 </template>
 
