@@ -44,16 +44,30 @@
             <hr style="display: block; width: 100%"/>
             <br>
             <v-row>
-              <v-col lg="3">
+              <v-col lg="3" xl="3" md="6" sm="12" xs="12">
                 <v-text-field style="text-align: right" label="عنوان" v-model="form.title"
                               reverse></v-text-field>
                 <v-textarea style="text-align: right" label="توضیحات" v-model="form.description"
                             reverse></v-textarea>
+                <v-row style="margin: 0 auto; width: 80%">
+                  <v-col cols="6" style="margin: auto">
+                    امکان خدمت تا :
+                  </v-col>
+                  <v-col style="margin: 0 auto" cols="6">
+                    <date-picker input-format="YYYY-MM-DD"
+                                 format="jYYYY/jMM/jDD"
+                                 placeholder="سال-ماه-روز"
+                                 @input="date=$event"
+                                 :wrapper-submit="true"
+                                 v-model="form.timeout" color="#1976D2" view="year">
+                    </date-picker>
+                  </v-col>
+                </v-row>
               </v-col>
-              <v-col lg="4">
+              <v-col lg="4" xl="4" md="12" sm="12" xs="12">
                 <category-select v-model="form.category_id"/>
               </v-col>
-              <v-col lg="5">
+              <v-col lg="5" xl="5" md="12" sm="12" xs="12">
                 <!--                      :url.sync="form.thumbnail"-->
                 <cropper-image
                     :crop_data.sync="form.crop_data"
@@ -61,12 +75,12 @@
                     :url="form.thumbnail"
                 />
               </v-col>
-              <v-col lg="12">
+              <v-col lg="12" xl="12" md="12" sm="12" xs="12">
                 <city-select v-model="form.city_id"/>
                 <v-text-field style="text-align: right; width: 60%" label="آدرس" v-model="form.address"
                               reverse></v-text-field>
               </v-col>
-              <v-col lg="6" md="12" style="direction: ltr">
+              <v-col lg="6" xl="6" md="12" sm="12" xs="12" style="direction: ltr">
                 <v-select
                     v-model="form.available_province_ids"
                     :items="provinces"
@@ -109,11 +123,13 @@ import CropperImage from "../../components/GeneralComponent/CropperImage";
 import CategorySelect from "../../components/GeneralComponent/CategorySelect";
 import {mapActions} from "vuex";
 import CityRepository from "../../abstraction/repository/CityRepository";
+import * as shamsi from 'shamsi-date-converter';
 
 let repository = new CityRepository();
 var defaultForm = {
   title: null,
   description: null,
+  timeout: null,
   city_id: null,
   address: null,
   category_id: null,
@@ -138,6 +154,7 @@ export default {
       show: false,
       form: {...defaultForm},
       provinces: [],
+      lastDateTime: {default: null},
       items: [
         {
           text: 'صفحه اصلی',
@@ -164,6 +181,10 @@ export default {
     ...mapActions("service", ['storeService', 'showService', 'updateService']),
     async registerRequest() {
       if (this.service_id) {
+        if (this.lastDateTime === this.form.timeout) {
+          let separator = this.form.timeout.split('-');
+          this.form.timeout = shamsi.gregorianToJalali(parseInt(separator[0]), parseInt(separator[1]), parseInt(separator[2])).join('/');
+        }
         let response = await this.updateService({data: this.form});
         if (!(response instanceof Error)) {
           await this.$router.replace("/services");
@@ -179,6 +200,7 @@ export default {
   async created() {
     if (this.service_id) {
       this.form = await this.showService(this.service_id)
+      this.lastDateTime = this.form.timeout;
     }
     this.provinces = await repository.indexProvinces();
     this.show = await true;

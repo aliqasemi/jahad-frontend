@@ -560,6 +560,7 @@
 import {mapActions} from "vuex";
 // import StepModal from "@/components/GeneralComponent/StepModal";
 import RequireProductRowDuplicator from "@/components/RequireProduct/RequireProductRowDuplicator";
+import * as shamsi from 'shamsi-date-converter';
 
 var defaultForm = {
   description: '',
@@ -587,6 +588,7 @@ export default {
       provinces: [],
       stepDialog: false,
       iterate: 1,
+      lastDateTime: {default: null},
       items: [
         {
           text: 'صفحه اصلی',
@@ -625,6 +627,10 @@ export default {
     },
     async registerRequest() {
       if (this.project_id) {
+        if (this.lastDateTime === this.form.timeout) {
+          let separator = this.form.timeout.split('-');
+          this.form.timeout = shamsi.gregorianToJalali(parseInt(separator[0]), parseInt(separator[1]), parseInt(separator[2])).join('/');
+        }
         let response = await this.updateProject({data: this.form});
         if (!(response instanceof Error)) {
           await this.$router.replace("/projects");
@@ -651,6 +657,7 @@ export default {
   async created() {
     if (this.project_id) {
       this.form = await this.showProject(this.project_id);
+      this.lastDateTime = this.form.timeout;
       this.steps = await this.loadStepList(this.project_id);
       this.services = this.form.services;
       this.requirement = this.form.requirement;

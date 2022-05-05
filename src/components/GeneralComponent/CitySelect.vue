@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col lg="4">
+    <v-col xl="4" lg="4" md="4" xs="12" sm="12">
       <v-autocomplete
           style="direction: ltr"
           v-model="province_id"
@@ -13,7 +13,7 @@
           label="استان"
       ></v-autocomplete>
     </v-col>
-    <v-col lg="4">
+    <v-col xl="4" lg="4" md="4" xs="12" sm="12">
       <v-autocomplete
           style="direction: ltr"
           v-model="county_id"
@@ -27,7 +27,7 @@
       ></v-autocomplete>
     </v-col>
 
-    <v-col lg="4">
+    <v-col xl="4" lg="4" md="4" xs="12" sm="12">
       <v-autocomplete
           style="direction: ltr"
           v-model="city_id"

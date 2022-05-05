@@ -1,5 +1,6 @@
 import {SetPagination, SetQueries} from "../../service/SetPagination";
 import {serialize} from 'object-to-formdata';
+import * as shamsi from 'shamsi-date-converter';
 
 const getJson = (data) => {
     let result = {
@@ -7,6 +8,7 @@ const getJson = (data) => {
         title: data.title,
         address: data.address,
         description: data.description,
+        timeout: data.timeout,
         thumbnail: data.main_image ? data.main_image.image : null,
         url: data.main_image ? data.main_image.image : null,
         category: data.category ? data.category : null,
@@ -39,10 +41,19 @@ const setQuery = (data) => {
 };
 
 const setData = (data, hasUpdate = false) => {
+
+    let time = null;
+    console.log(data.timeout);
+    if (data.timeout) {
+        let separator = data.timeout.split('/');
+        time = shamsi.jalaliToGregorian(parseInt(separator[0]), parseInt(separator[1]), parseInt(separator[2])).join('-')
+    }
+
     let params = {
         title: data.title,
         address: data.address,
         description: data.description,
+        timeout: time,
         available_province_ids: data.available_province_ids,
         crop_data: data.crop_data,
         main_image: data.image,
