@@ -1,11 +1,13 @@
 import {SetPagination, SetQueries} from "../../service/SetPagination";
 import {serialize} from 'object-to-formdata';
+import * as shamsi from 'shamsi-date-converter';
 
 const getJson = (data) => {
     let result = {
         id: data.id,
         name: data.name,
         description: data.description,
+        timeout: data.timeout,
         step: data.step,
         requirement: data.requirement,
         services: data.services,
@@ -69,7 +71,6 @@ const setQuery = (data) => {
 };
 
 const setFilterQuery = (values, type = 'and') => {
-
     let query = {
         type: type,
     };
@@ -85,9 +86,17 @@ const setFilterQuery = (values, type = 'and') => {
 }
 
 const setData = (data, hasUpdate = false) => {
+
+    let time = null;
+    if (data.timeout) {
+        let separator = data.timeout.split('/');
+        time = shamsi.jalaliToGregorian(parseInt(separator[0]), parseInt(separator[1]), parseInt(separator[2])).join('-')
+    }
+
     let params = {
         name: data.name,
         description: data.description,
+        timeout: time,
         service_id: data.service_id,
         requirement_id: data.requirement_id,
         step_id: data.step_id,

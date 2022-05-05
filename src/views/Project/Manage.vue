@@ -117,6 +117,22 @@
                   <v-textarea style="text-align: right" aria-level="2" label="توضیحات" v-model="form.description"
                               reverse></v-textarea>
                 </v-col>
+                <v-col xl="12" lg="12" md="12" sm="12" xs="12" style="margin: 0 auto">
+                  <v-row style="margin: 0 auto; width: 80%">
+                    <v-col cols="6">
+                      زمان پایان پروژه :
+                    </v-col>
+                    <v-col style="margin: 0 auto" cols="6">
+                      <date-picker input-format="YYYY-MM-DD"
+                                   format="jYYYY/jMM/jDD"
+                                   placeholder="سال-ماه-روز"
+                                   @input="date=$event"
+                                   :wrapper-submit="true"
+                                   v-model="form.timeout" color="#1976D2" view="year">
+                      </date-picker>
+                    </v-col>
+                  </v-row>
+                </v-col>
               </v-row>
             </v-container>
             <v-container v-if="step.name"
@@ -328,9 +344,11 @@
                       >
                         <v-expansion-panels style="direction: ltr; background-color: #d6d6d6">
                           <v-expansion-panel style="background-color: #d6d6d6">
-                            <v-expansion-panel-header style="background-color: #d6d6d6;">مستندات</v-expansion-panel-header>
+                            <v-expansion-panel-header style="background-color: #d6d6d6;">مستندات
+                            </v-expansion-panel-header>
                             <v-expansion-panel-content style="background-color: #d6d6d6">
-                              <v-img style="margin: 0 auto" v-if="requirement.thumbnail" title="مستندات" :src="requirement.thumbnail" width="700px"
+                              <v-img style="margin: 0 auto" v-if="requirement.thumbnail" title="مستندات"
+                                     :src="requirement.thumbnail" width="700px"
                                      height="300px"
                                      alt="مستندات"/>
                             </v-expansion-panel-content>
@@ -443,23 +461,23 @@
                           </v-col>
                         </v-row>
                       </v-col>
-                     <v-col>
-                       <v-col xl="12"
-                              lg="12"
-                              md="12"
-                              sm="12"
-                              xs="12" v-if="service.available_province">
-                         <v-card-text>
-                           شهر های در دسترس:
-                         </v-card-text>
-                         <v-card-actions style="padding: 10px">
+                      <v-col>
+                        <v-col xl="12"
+                               lg="12"
+                               md="12"
+                               sm="12"
+                               xs="12" v-if="service.available_province">
+                          <v-card-text>
+                            شهر های در دسترس:
+                          </v-card-text>
+                          <v-card-actions style="padding: 10px">
                   <span style="padding: 5px;background-color: #96989a;border-radius: 10px;margin: 5px"
                         v-for="(available,key) in service.available_province" v-bind:key="key">
                     {{ available.name }}
                 </span>
-                         </v-card-actions>
-                       </v-col>
-                     </v-col>
+                          </v-card-actions>
+                        </v-col>
+                      </v-col>
                       <v-col
                           xl="12"
                           lg="12"
@@ -469,9 +487,11 @@
                       >
                         <v-expansion-panels style="direction: ltr; background-color: #d6d6d6">
                           <v-expansion-panel style="background-color: #d6d6d6">
-                            <v-expansion-panel-header style="background-color: #d6d6d6;">مستندات</v-expansion-panel-header>
+                            <v-expansion-panel-header style="background-color: #d6d6d6;">مستندات
+                            </v-expansion-panel-header>
                             <v-expansion-panel-content style="background-color: #d6d6d6">
-                              <v-img style="margin: 0 auto" v-if="service.thumbnail" title="مستندات" :src="service.thumbnail" width="700px"
+                              <v-img style="margin: 0 auto" v-if="service.thumbnail" title="مستندات"
+                                     :src="service.thumbnail" width="700px"
                                      height="300px"
                                      alt="مستندات"/>
                             </v-expansion-panel-content>
@@ -544,6 +564,7 @@ import RequireProductRowDuplicator from "@/components/RequireProduct/RequireProd
 var defaultForm = {
   description: '',
   name: '',
+  timeout: '',
   requireProducts: [{}],
 };
 

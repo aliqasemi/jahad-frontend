@@ -3,8 +3,11 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import {router} from './router/paths'
 import {store} from './store'
+import VuePersianDatetimePicker from 'vue-persian-datetime-picker';
 
 Vue.config.productionTip = false
+
+Vue.component('date-picker', VuePersianDatetimePicker);
 
 Vue.mixin({});
 
