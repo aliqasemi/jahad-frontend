@@ -41,7 +41,7 @@
             <span>تنظیمات</span>
           </v-tooltip>
         </router-link>
-        <v-tooltip top style="margin: 5px">
+        <v-tooltip top style="margin: 5px" v-if="item.canDelete">
           <template v-slot:activator="{ on , attrs}">
             <v-btn
                 style="background-color: #eeeeee"

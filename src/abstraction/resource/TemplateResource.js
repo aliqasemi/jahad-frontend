@@ -3,6 +3,7 @@ const getJson = (data) => {
         id: data.id,
         name: data.name,
         template: data.template,
+        canDelete: data.can_delete,
     };
 
     if (data.variables) {
