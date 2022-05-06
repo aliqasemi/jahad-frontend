@@ -56,7 +56,7 @@
             </v-btn>
           </template>
           <span>حذف</span>
-          <delete-modal v-model="deleteDialog" @action="deleteService(item.id)"/>
+          <delete-modal v-model="deleteDialog" @action="removeTemplate(item.id)"/>
         </v-tooltip>
       </template>
       <template v-slot:no-data>
@@ -94,7 +94,7 @@ export default {
     ...mapGetters("template", ['getListTemplate', 'getTemplateLoading'])
   },
   methods: {
-    ...mapActions("template", ['loadTemplateList']),
+    ...mapActions("template", ['loadTemplateList', 'removeTemplate']),
     ...mapMutations("template", ['SET_TEMPLATE_FILTER'])
   },
   async created() {

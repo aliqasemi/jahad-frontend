@@ -2,7 +2,9 @@
   <div>
     <v-row>
       <v-col xl="5" lg="5" md="12" sm="12" xs="12">
-        <variables-table @click="addVar" :commonVariables="variables"/>
+        <variables-table @click="addVar" v-if="serviceVariables.length" title="متغیر های سرویس" title_en="service variables" :commonVariables="serviceVariables"/>
+        <variables-table @click="addVar" v-if="requirementVariables.length" title="متغیر های نیازمندی" title_en="requirement variables" :commonVariables="requirementVariables"/>
+        <variables-table @click="addVar" v-if="!serviceVariables.length"  :commonVariables="defaultVariables"/>
       </v-col>
       <v-col xl="5" lg="5" md="12" sm="12" xs="12" style="margin: 60px auto;">
         <v-textarea
@@ -13,6 +15,7 @@
             label="محتوای پیامکی خود را وارد نمایید"
         >
         </v-textarea>
+        <v-card style="padding: 5px" v-if="serviceVariables.length">نکته! در انتخاب متغیر ها فقط یکی از این دو گروه را انتخاب نمایید. در صورتی که قالب شما برای نیازمندان باشد متغیر های نیازمندی و در غیر این صورت از متغیر های سرویس استفاده نمایید</v-card>
       </v-col>
     </v-row>
   </div>
@@ -28,44 +31,41 @@ export default {
     value: {default: ""},
     isDisabled: {type: Boolean, default: false},
     init: {default: null},
-    variables: [],
+    serviceVariables: [],
+    requirementVariables: [],
   },
   data() {
     return {
-      // variables: [
-      //   {
-      //     title: "نام نیازمند",
-      //     value: " {requirement_user_firstname} ",
-      //   },
-      //   {
-      //     title: "نام خانوادگی نیازمند",
-      //     value: " {requirement_user_lastname} ",
-      //   },
-      //   {
-      //     title: "نام خدمت دهنده",
-      //     value: " {service_user_firstname} ",
-      //   },
-      //   {
-      //     title: "نام خانوادگی خدمت دهنده",
-      //     value: " {service_user_lastname} ",
-      //   },
-      //   {
-      //     title: "نام مرحله",
-      //     value: " {step_name} ",
-      //   },
-      //   {
-      //     title: "نام نیازمندی",
-      //     value: " {requirement_name} ",
-      //   },
-      //   {
-      //     title: "نام سرویس",
-      //     value: " {service_name} ",
-      //   },
-      //   {
-      //     title: "نام دسته بندی",
-      //     value: " {category_name} ",
-      //   },
-      // ],
+      defaultVariables: [
+        {
+          title: "نام نیازمند",
+          value: " {requirement_user_firstname} ",
+        },
+        {
+          title: "نام خانوادگی نیازمند",
+          value: " {requirement_user_lastname} ",
+        },
+        {
+          title: "نام خدمت دهنده",
+          value: " {service_user_firstname} ",
+        },
+        {
+          title: "نام خانوادگی خدمت دهنده",
+          value: " {service_user_lastname} ",
+        },
+        {
+          title: "نام مرحله",
+          value: " {step_name} ",
+        },
+        {
+          title: "نام نیازمندی",
+          value: " {requirement_name} ",
+        },
+        {
+          title: "نام سرویس",
+          value: " {service_name} ",
+        },
+      ],
     }
   },
   components: {

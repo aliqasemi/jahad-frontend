@@ -61,7 +61,7 @@ export default {
 
     async changeStep({commit}, {data}) {
         try {
-            const project = await repository.update(data);
+            const project = await repository.changeStep(data);
             commit("UPDATE_PROJECT", project);
             store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true});
             store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'مرحله با موفقیت تغییر کرد'});

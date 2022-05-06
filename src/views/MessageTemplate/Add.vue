@@ -46,7 +46,7 @@
               <v-col lg="10" style="margin: 20px auto">
                 <v-text-field style="text-align: right; width: 50%" label="نام قالب" v-model="form.name"
                               reverse></v-text-field>
-                <message-template v-model="form.template" :variables="variables"/>
+                <message-template v-model="form.template" :service-variables="serviceVariables" :requirement-variables="requirementVariables"/>
               </v-col>
             </v-row>
             <v-row>
@@ -91,7 +91,8 @@ export default {
     return {
       show: false,
       form: {...defaultForm},
-      variables: [],
+      serviceVariables: [],
+      requirementVariables: [],
       items: [
         {
           text: 'صفحه اصلی',
@@ -133,7 +134,8 @@ export default {
   async created() {
     if (this.template_id) {
       this.form = await this.showTemplate(this.template_id);
-      this.variables = this.form.variables;
+      this.serviceVariables = this.form.serviceVariables;
+      this.requirementVariables = this.form.requirementVariables;
     }
     this.show = await true;
   }

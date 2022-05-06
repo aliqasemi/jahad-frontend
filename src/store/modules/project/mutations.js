@@ -4,6 +4,7 @@ export default {
     SET_PROJECT(state, project) {
         Vue.set(state, "project", project);
     },
+
     UPDATE_PROJECT(state, project) {
         const index = state.project.findIndex(
             (x) => x.id === project.id

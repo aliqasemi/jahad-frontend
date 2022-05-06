@@ -10,13 +10,13 @@
         >
           <v-row
               style="direction: rtl;margin-top: 10px;color:   #1565C0;  letter-spacing: 3px;">
-            متغیر ها
+            {{ title }}
           </v-row>
           <br>
           <div class="title-en">
             <div
                 style="position: absolute;text-align: left; background-color:  #1565C0; color: #eeeeee; border-radius: 10px;padding: 7px;">
-              variables
+              {{ title_en }}
             </div>
           </div>
           <hr style="display: block; width: 100%"/>
@@ -42,6 +42,8 @@ export default {
   name: "VariablesTable",
   components: {},
   props: {
+    title: {default: 'متغیر ها'},
+    title_en: {default: 'variables'},
     commonVariables: {default: ""},
   },
   data: () => ({}),

@@ -60,7 +60,14 @@
             </v-row>
             <v-row>
               <v-col style="margin: 0 auto" lg="6" v-if="form.send_sms">
-                <template-search v-model="form.template_id"/>
+                <p> قالب خود را جهت کاربران خدمت دهنده انتخاب نمایید</p>
+                <template-search v-model="form.service_template_id"/>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col style="margin: 0 auto" lg="6" v-if="form.send_sms">
+                <p>قالب خود را جهت کاربران نیازمند انتخاب نمایید</p>
+                <template-search v-model="form.requirement_template_id"/>
               </v-col>
             </v-row>
             <v-row>
@@ -96,7 +103,8 @@ var defaultForm = {
   name: null,
   description: null,
   send_sms: 0,
-  template_id: null,
+  service_template_id: null,
+  requirement_template_id: null,
 };
 
 export default {

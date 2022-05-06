@@ -99,7 +99,6 @@ export default {
     async assignRoleUser(value) {
       let response;
       response = await this.assignRole({role: value, userId: this.item.id});
-      console.log(response);
       if (!(response instanceof Error)) {
         this.roleDialog = false;
       }

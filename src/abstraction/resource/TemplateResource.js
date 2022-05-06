@@ -5,9 +5,17 @@ const getJson = (data) => {
         template: data.template,
         canDelete: data.can_delete,
     };
+    if (data.service_variables) {
+        result.serviceVariables = Object.entries(data.service_variables).map(value => {
+            return {
+                title: value[1],
+                value: '{' + value[0] + '}',
+            }
+        });
+    }
 
-    if (data.variables) {
-        result.variables = Object.entries(data.variables).map(value => {
+    if (data.requirement_variables) {
+        result.requirementVariables = Object.entries(data.requirement_variables).map(value => {
             return {
                 title: value[1],
                 value: '{' + value[0] + '}',

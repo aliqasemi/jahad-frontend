@@ -43,7 +43,6 @@ const setQuery = (data) => {
 const setData = (data, hasUpdate = false) => {
 
     let time = null;
-    console.log(data.timeout);
     if (data.timeout) {
         let separator = data.timeout.split('/');
         time = shamsi.jalaliToGregorian(parseInt(separator[0]), parseInt(separator[1]), parseInt(separator[2])).join('-')

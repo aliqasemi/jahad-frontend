@@ -69,6 +69,17 @@ export default class ProjectRepository {
         }
     }
 
+    async changeStep(data) {
+        try {
+            let response = await axios.post(basic_url + "projects/" + data.project_id + "/change-step", {step_id: data.step_id});
+            if (response && response.status === 200) {
+                return getJson(response.data.data);
+            }
+        } catch (e) {
+            return Promise.reject(e.response.data.errors);
+        }
+    }
+
     async destroy(id) {
         try {
             let response = await axios.delete(

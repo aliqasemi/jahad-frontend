@@ -3,9 +3,11 @@ const getJson = (data) => {
         id: data.id,
         name: data.name,
         description: data.description,
-        template: data.template,
+        serviceTemplate: data.serviceTemplate,
+        requirementTemplate: data.requirementTemplate,
         send_sms: data.send_sms,
-        template_id: data.template ? data.template.id : null,
+        service_template_id: data.serviceTemplate ? data.serviceTemplate.id : null,
+        requirement_template_id: data.requirementTemplate ? data.requirementTemplate.id : null,
         sort: data.sort,
     };
 };
@@ -20,7 +22,8 @@ const setData = (data, hasUpdate = false) => {
         name: data.name,
         description: data.description,
         send_sms: data.send_sms,
-        template_id: data.template_id,
+        service_template_id: data.service_template_id,
+        requirement_template_id: data.requirement_template_id,
         project_id: data.project_id,
         _method: hasUpdate ? "put" : "post",
     };

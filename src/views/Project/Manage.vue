@@ -620,9 +620,12 @@ export default {
       if (n !== this.steps.length) {
         this.iterate += 1;
       }
-      Object.assign(this.form, {step_id: step_id});
-      Object.assign(this.form, {project_id: this.project_id});
-      let response = await this.changeStep({data: this.form});
+      let response = await this.changeStep({
+        data: {
+          step_id: step_id,
+          project_id: this.project_id
+        }
+      });
       this.step = response.step;
     },
     async registerRequest() {
