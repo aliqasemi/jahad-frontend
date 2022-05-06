@@ -564,7 +564,7 @@ import * as shamsi from 'shamsi-date-converter';
 
 var defaultForm = {
   description: '',
-  name: '',
+  name: '.',
   timeout: '',
   requireProducts: [{}],
 };
