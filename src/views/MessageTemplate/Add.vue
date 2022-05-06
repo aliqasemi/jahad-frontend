@@ -46,13 +46,13 @@
               <v-col lg="10" style="margin: 20px auto">
                 <v-text-field style="text-align: right; width: 50%" label="نام قالب" v-model="form.name"
                               reverse></v-text-field>
-                <message-template v-model="form.template"/>
+                <message-template v-model="form.template" :variables="variables"/>
               </v-col>
             </v-row>
             <v-row>
               <v-col>
                 <v-btn v-if="template_id"
-                       style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: #1565C0;color: white"
+                       style="font-weight: bolder; font-size: 15px; letter-spacing: 3px;background-color: #1565C0;color: white"
                        type="submit">
                   ویرایش قالب
                 </v-btn>
@@ -91,6 +91,7 @@ export default {
     return {
       show: false,
       form: {...defaultForm},
+      variables: [],
       items: [
         {
           text: 'صفحه اصلی',
@@ -131,7 +132,8 @@ export default {
   },
   async created() {
     if (this.template_id) {
-      this.form = await this.showTemplate(this.template_id)
+      this.form = await this.showTemplate(this.template_id);
+      this.variables = this.form.variables;
     }
     this.show = await true;
   }
@@ -151,6 +153,7 @@ export default {
   transform: translateX(10px);
   opacity: 0;
 }
+
 .bredRoute:hover {
   background-color: cadetblue;
   color: white;

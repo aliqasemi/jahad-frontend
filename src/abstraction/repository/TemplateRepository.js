@@ -36,7 +36,7 @@ export default class TemplateRepository {
     async show(id) {
         let response = await axios.get(basic_url + "templates/" + id);
         if (response && response.status === 200) {
-            return getJson(response.data.data);
+            return getJson(response.data);
         }
     }
 

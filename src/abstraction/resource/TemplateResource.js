@@ -1,9 +1,20 @@
 const getJson = (data) => {
-    return {
+    let result = {
         id: data.id,
         name: data.name,
         template: data.template,
     };
+
+    if (data.variables) {
+        result.variables = Object.entries(data.variables).map(value => {
+            return {
+                title: value[1],
+                value: '{' + value[0] + '}',
+            }
+        });
+    }
+
+    return result;
 };
 
 const getArray = (data) => {

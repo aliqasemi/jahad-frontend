@@ -28,43 +28,44 @@ export default {
     value: {default: ""},
     isDisabled: {type: Boolean, default: false},
     init: {default: null},
+    variables: [],
   },
   data() {
     return {
-      variables: [
-        {
-          title: "نام نیازمند",
-          value: " {requirement_user_firstname} ",
-        },
-        {
-          title: "نام خانوادگی نیازمند",
-          value: " {requirement_user_lastname} ",
-        },
-        {
-          title: "نام خدمت دهنده",
-          value: " {service_user_firstname} ",
-        },
-        {
-          title: "نام خانوادگی خدمت دهنده",
-          value: " {service_user_lastname} ",
-        },
-        {
-          title: "نام مرحله",
-          value: " {step_name} ",
-        },
-        {
-          title: "نام نیازمندی",
-          value: " {requirement_name} ",
-        },
-        {
-          title: "نام سرویس",
-          value: " {service_name} ",
-        },
-        {
-          title: "نام دسته بندی",
-          value: " {category_name} ",
-        },
-      ],
+      // variables: [
+      //   {
+      //     title: "نام نیازمند",
+      //     value: " {requirement_user_firstname} ",
+      //   },
+      //   {
+      //     title: "نام خانوادگی نیازمند",
+      //     value: " {requirement_user_lastname} ",
+      //   },
+      //   {
+      //     title: "نام خدمت دهنده",
+      //     value: " {service_user_firstname} ",
+      //   },
+      //   {
+      //     title: "نام خانوادگی خدمت دهنده",
+      //     value: " {service_user_lastname} ",
+      //   },
+      //   {
+      //     title: "نام مرحله",
+      //     value: " {step_name} ",
+      //   },
+      //   {
+      //     title: "نام نیازمندی",
+      //     value: " {requirement_name} ",
+      //   },
+      //   {
+      //     title: "نام سرویس",
+      //     value: " {service_name} ",
+      //   },
+      //   {
+      //     title: "نام دسته بندی",
+      //     value: " {category_name} ",
+      //   },
+      // ],
     }
   },
   components: {
