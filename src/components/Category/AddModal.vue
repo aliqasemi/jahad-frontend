@@ -72,6 +72,7 @@ export default {
   components: {CategorySelect},
   props: {
     category_id: {default: null},
+    parent_id: {default: null},
     value: {
       type: Boolean,
     },
@@ -115,6 +116,9 @@ export default {
       async handler() {
         if (this.category_id && this.state === true) {
           this.form = await this.showCategory(this.category_id);
+        }
+        if (this.parent_id && this.state === true) {
+          this.form.parent_id = this.parent_id;
         }
       }
     }
