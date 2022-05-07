@@ -56,7 +56,7 @@ const setData = (data, hasUpdate = false) => {
         available_province_ids: data.available_province_ids,
         crop_data: data.crop_data,
         main_image: data.image,
-        category_id: data.category_id.length ? data.category_id[0] : data.category_id,
+        category_id: data.category_id ? (data.category_id.length ? data.category_id[0] : data.category_id) : null,
         city_id: data.city_id,
         _method: hasUpdate ? "put" : "post",
     };

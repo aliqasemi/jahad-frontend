@@ -22,20 +22,22 @@
         </v-breadcrumbs>
       </div>
       <div v-else>
-        <div style="background-color: #55706D; height: 1200px">
+        <div style="height: 1200px">
           <transition name="loader-transition">
             <v-row>
               <v-col xl="6" lg="6" md="6" sm="12" xs="12">
                 <v-card
-                    style="text-align: center; width: 70%;margin: 20% auto;background-color: #8DCCC4"
+                    style="text-align: center; width: 70%;margin: 20% auto;background-color: #1E88E5; color: white"
                 >
-                  <v-card-title style="display: block"> سامانه جهاد</v-card-title>
-                  <v-card-subtitle>سامانه جهاد سازندگی</v-card-subtitle>
+                  <v-card-title style="display: block;color: white"> سامانه جهاد</v-card-title>
+                  <v-card-subtitle style="color: white">سامانه جهاد سازندگی</v-card-subtitle>
                   <v-card-actions>
                     <router-link to="/login" style="margin: 0 auto;text-decoration: none">
                       <v-btn outlined
                              rounded
                              text
+                             style="background-color: white"
+                             color="success"
                       >ورود
                       </v-btn>
                     </router-link>
@@ -44,6 +46,8 @@
                           outlined
                           rounded
                           text
+                          style="background-color: white"
+                          color="warning"
                       >ثبت نام
                       </v-btn>
                     </router-link>

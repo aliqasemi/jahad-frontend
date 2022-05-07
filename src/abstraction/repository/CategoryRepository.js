@@ -34,20 +34,24 @@ export default class CategoryRepository {
                 return getJson(response.data.data);
             }
         } catch (e) {
-            return e;
+            return Promise.reject(e.response.data.errors);
         }
     }
 
     async update(data) {
-        const params = setData(data, true);
+        try {
+            const params = setData(data, true);
 
-        let response = await axios.post(
-            basic_url + "categories/" + data.id,
-            params
-        );
+            let response = await axios.post(
+                basic_url + "categories/" + data.id,
+                params
+            );
 
-        if (response && response.status === 200) {
-            return getJson(response.data.data);
+            if (response && response.status === 200) {
+                return getJson(response.data.data);
+            }
+        } catch (e) {
+            return Promise.reject(e.response.data.errors);
         }
     }
 

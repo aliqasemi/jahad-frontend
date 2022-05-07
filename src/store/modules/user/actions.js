@@ -17,7 +17,9 @@ export default {
             }
             return response;
         } catch (e) {
-            return e;
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: e})
+            return 422;
         } finally {
             commit("SET_LOADING", false);
         }

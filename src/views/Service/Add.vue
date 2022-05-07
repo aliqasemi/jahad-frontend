@@ -186,12 +186,12 @@ export default {
           this.form.timeout = shamsi.gregorianToJalali(parseInt(separator[0]), parseInt(separator[1]), parseInt(separator[2])).join('/');
         }
         let response = await this.updateService({data: this.form});
-        if (!(response instanceof Error)) {
+        if (response) {
           await this.$router.replace("/services");
         }
       } else {
         let response = await this.storeService({data: this.form});
-        if (!(response instanceof Error)) {
+        if (response) {
           await this.$router.replace("/services");
         }
       }

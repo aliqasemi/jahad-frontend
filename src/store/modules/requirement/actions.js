@@ -38,9 +38,9 @@ export default {
             commit("ADD_REQUIREMENT", requirement);
             return requirement;
         } catch (e) {
-            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
-            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: e})
-            return e;
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true});
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: e});
+            return false;
         }
     },
     async updateRequirement({commit}, {data}) {
@@ -49,7 +49,9 @@ export default {
             commit("UPDATE_REQUIREMENT", requirement);
             return requirement;
         } catch (e) {
-            return e;
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true});
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: e});
+            return false;
         }
     },
     async removeRequirement({commit}, requirementId) {

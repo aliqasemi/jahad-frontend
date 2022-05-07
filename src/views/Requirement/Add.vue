@@ -148,12 +148,12 @@ export default {
     async registerRequest() {
       if (this.requirement_id) {
         let response = await this.updateRequirement({data: this.form});
-        if (!(response instanceof Error)) {
+        if (response) {
           await this.$router.replace("/requirements");
         }
       } else {
         let response = await this.storeRequirement({data: this.form});
-        if (!(response instanceof Error)) {
+        if (response) {
           await this.$router.replace("/requirements");
         }
       }

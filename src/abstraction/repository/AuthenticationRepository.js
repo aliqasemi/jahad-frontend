@@ -16,11 +16,12 @@ export default class AuthenticationRepository {
                 setAuthToken(response.data.token);
                 setAuthUser(response.data.user);
                 return response.data;
-            } else if (!response.data.data.verify) {
-                return response.data.data;
+            } else if (response.data) {
+                if (!response.data.data.verify)
+                    return response.data.data;
             }
         } catch (e) {
-            return e;
+            return Promise.reject(e.response.data.error);
         }
     }
 

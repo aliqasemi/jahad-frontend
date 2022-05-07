@@ -14,7 +14,8 @@
           <v-form v-if="show" @submit.prevent="loginRequest" style="padding-top: 20px">
             <v-container>
               <v-row>
-                <v-col xl="6" lg="6" style="margin: 0 auto; border: solid #b1b1b1; border-radius: 10px; padding: 30px; min-height: 590px">
+                <v-col xl="6" lg="6"
+                       style="margin: 0 auto; border: solid #b1b1b1; border-radius: 10px; padding: 30px; min-height: 590px">
                   <v-row style="margin: 0 auto">
                     <v-col style="margin: 0 auto"
                            cols="10"
@@ -109,11 +110,13 @@ export default {
         password: this.password,
       };
       let response = await this.login(body);
-      if (!response.verify && response.verify !== undefined) {
+      if ((!response.verify) && (response.verify !== undefined)) {
         this.$router.push({
           name: "register",
           params: {user_id: response.user.id}
         });
+      } else if (response === 422) {
+        await this.$router.replace("/login");
       } else if (!(response instanceof Error)) {
         await this.$router.replace("/");
       }

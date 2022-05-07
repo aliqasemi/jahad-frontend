@@ -1,17 +1,25 @@
 <template>
-  <div style="background-color: #55706D; height: 1000px">
-    <transition name="loader-transition">
-      <v-form @submit.prevent="forgotPassRequest" style="padding-top: 20px" v-if="!confirm && show">
-        <v-container class="login">
-          <v-row style="margin: 0 auto">
+  <div style="background-color: #eeeeea; min-height: 1200px">
+    <v-subheader style="text-align: right;direction: rtl; background-color: #1F7087; color: #eeeeea">
+      <v-icon color="white" style="left: 5px">fa fa-cogs</v-icon>
+      سامانه جهاد سازندگی
+    </v-subheader>
+    <v-row>
+      <v-col xl="6" lg="6" md="6" sm="12" xs="12" style="padding-top: 20px;direction: rtl">
+        <v-img style="border-radius: 10px" height="600px" width="450px" :src="require('@/images/jahad.jpg')">
+        </v-img>
+      </v-col>
+      <v-col xl="6" lg="6" md="6" sm="12" xs="12">
+        <v-form @submit.prevent="forgotPassRequest" style="padding-top: 20px" v-if="!confirm && show">
+          <v-row style="margin: 0 auto; width: 60%">
             <v-col style="margin: 0 auto"
                    cols="12"
-                   md="4"
             >
               <v-text-field
                   v-model="phoneNumber"
                   label="شماره تلفن"
                   required
+                  reverse
               ></v-text-field>
             </v-col>
           </v-row>
@@ -21,80 +29,77 @@
                    cols="12"
                    md="4"
             >
-              <v-btn type="submit" elevation="2" block>
+              <v-btn type="submit" color="success" elevation="2" block>
                 تایید
               </v-btn>
             </v-col>
           </v-row>
-        </v-container>
-      </v-form>
-    </transition>
-    <transition name="loader-transition">
-      <v-form @submit.prevent="confirmPassRequest" style="padding-top: 20px" v-if="confirm">
-        <v-container class="login">
-          <v-row style="margin: 0 auto;text-align: right; direction: rtl">
-            <v-col style="margin: 0 auto;text-align: center"
-                   cols="12"
-                   md="4"
-            >
-              <v-text-field
-                  v-model="code"
-                  label="کد تایید"
-                  reverse
-                  required
-              ></v-text-field>
-              <br>
-              کد تایید را در یافت نکرده اید؟
-              <br>
-              <v-btn @click="forgotPassRequestRepeat">کلیک کنید</v-btn>
-            </v-col>
-          </v-row>
-          <v-row style="margin: 0 auto;text-align: right; direction: rtl">
-            <v-col style="margin: 0 auto"
-                   cols="12"
-                   md="4"
-            >
-              <v-text-field
-                  v-model="password"
-                  label="رمز عبور"
-                  required
-                  reverse
-                  :type="visiblePass ? 'text' : 'password'"
-                  :append-icon="visiblePass ? 'fa fa-eye-slash' : 'fa fa-eye'"
-                  @click:append="visiblePass = !visiblePass"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row style="margin: 0 auto;text-align: right; direction: rtl">
-            <v-col style="margin: 0 auto"
-                   cols="12"
-                   md="4"
-            >
-              <v-text-field
-                  v-model="password_confirmation"
-                  label="تکرار رمز عبور"
-                  required
-                  reverse
-                  :type="visibleRepPass ? 'text' : 'password'"
-                  :append-icon="visibleRepPass ? 'fa fa-eye-slash' : 'fa fa-eye'"
-                  @click:append="visibleRepPass = !visibleRepPass"
-              ></v-text-field>
-            </v-col>
-          </v-row>
+        </v-form>
+        <transition name="loader-transition">
+          <v-form @submit.prevent="confirmPassRequest" style="padding-top: 20px" v-if="confirm">
+            <v-row style="margin: 0 auto;text-align: right; direction: rtl">
+              <v-col style="margin: 0 auto;text-align: center"
+                    lg="4" xl="5" md="12" sm="12" xs="12"
+              >
+                <v-text-field
+                    v-model="code"
+                    label="کد تایید"
+                    reverse
+                    required
+                ></v-text-field>
+                <br>
+                کد تایید را در یافت نکرده اید؟
+                <br>
+                <v-btn color="warning" style="margin-top: 10px" @click="forgotPassRequestRepeat">کلیک کنید</v-btn>
+              </v-col>
+            </v-row>
+            <v-row style="margin: 0 auto;text-align: right; direction: rtl">
+              <v-col style="margin: 0 auto"
+                     cols="12"
+                     md="4"
+              >
+                <v-text-field
+                    v-model="password"
+                    label="رمز عبور"
+                    required
+                    reverse
+                    :type="visiblePass ? 'text' : 'password'"
+                    :append-icon="visiblePass ? 'fa fa-eye-slash' : 'fa fa-eye'"
+                    @click:append="visiblePass = !visiblePass"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+            <v-row style="margin: 0 auto;text-align: right; direction: rtl">
+              <v-col style="margin: 0 auto"
+                     cols="12"
+                     md="4"
+              >
+                <v-text-field
+                    v-model="password_confirmation"
+                    label="تکرار رمز عبور"
+                    required
+                    reverse
+                    :type="visibleRepPass ? 'text' : 'password'"
+                    :append-icon="visibleRepPass ? 'fa fa-eye-slash' : 'fa fa-eye'"
+                    @click:append="visibleRepPass = !visibleRepPass"
+                ></v-text-field>
+              </v-col>
+            </v-row>
 
-          <v-row style="text-align: center">
-            <v-col style="margin: 0 auto"
-                   cols="12"
-                   md="4"
-            >
-              <v-btn type="submit" elevation="2" block>
-                تایید
-              </v-btn>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-form>
-    </transition>
+            <v-row style="text-align: center">
+              <v-col style="margin: 0 auto"
+                     cols="12"
+                     md="4"
+              >
+                <v-btn type="submit" color="primary" elevation="2" block>
+                  تایید
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-form>
+        </transition>
+      </v-col>
+    </v-row>
   </div>
 </template>
 <script>
@@ -126,7 +131,7 @@ export default {
         this.confirm = true;
       }
     },
-    async forgotPassRequestRepeat(){
+    async forgotPassRequestRepeat() {
       const body = {
         phoneNumber: this.phoneNumber,
       };

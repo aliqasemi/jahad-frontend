@@ -40,7 +40,7 @@ export default {
         } catch (e) {
             store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
             store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: e})
-            return e;
+            return false;
         }
     },
     async updateService({commit}, {data}) {
@@ -51,7 +51,7 @@ export default {
         } catch (e) {
             store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
             store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: e})
-            return e;
+            return false;
         }
     },
     async removeService({commit}, serviceId) {

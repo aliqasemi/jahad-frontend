@@ -20,8 +20,20 @@
       </v-breadcrumbs>
     </div>
     <transition name="loader-transition">
-      <v-form v-if="show" @submit.prevent="resetPassRequest" style="padding-top: 20px">
-        <v-container class="login">
+      <div v-if="show" style="background-color: whitesmoke; padding: 20px; margin: 10px; border-radius: 10px">
+        <v-row
+            style="direction: rtl;margin-top: 10px;color:  #1565C0;  letter-spacing: 3px;">
+          تغییر رمز عبور
+        </v-row>
+        <br>
+        <div class="title-en">
+          <div
+              style="position: absolute;text-align: left; background-color: #1565C0; color: #eeeeee; border-radius: 10px;padding: 7px;">
+            Change Password
+          </div>
+        </div>
+        <hr style="display: block; width: 100%"/>
+        <v-form @submit.prevent="resetPassRequest" style="padding-top: 20px">
           <v-row style="margin: 0 auto;text-align: right; direction: rtl">
             <v-col style="margin: 0 auto"
                    cols="12"
@@ -59,13 +71,16 @@
                    cols="12"
                    md="4"
             >
-              <v-btn type="submit" elevation="2" block>
+              <v-btn
+                  color="blue darken-2"
+                  style=" font-weight: bolder; font-size: 15px; letter-spacing: 3px;color: white"
+                  type="submit" elevation="2" block>
                 تایید
               </v-btn>
             </v-col>
           </v-row>
-        </v-container>
-      </v-form>
+        </v-form>
+      </div>
     </transition>
   </div>
 </template>
@@ -131,11 +146,13 @@ export default {
   opacity: 0;
 }
 
-.login {
-  animation: pulse 5s infinite;
-  margin-top: 20px;
-  width: 50%;
-  background: linear-gradient(30deg, #b1b1b1, cadetblue);
-  border-radius: 20px;
+.title-en {
+  letter-spacing: 5px;
+  font-size: 10px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: #55706D;
+  display: block;
+  padding-bottom: 15px;
 }
 </style>
