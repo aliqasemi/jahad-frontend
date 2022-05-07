@@ -2,9 +2,18 @@
   <div>
     <v-row>
       <v-col xl="5" lg="5" md="12" sm="12" xs="12">
-        <variables-table @click="addVar" v-if="serviceVariables.length" title="متغیر های سرویس" title_en="service variables" :commonVariables="serviceVariables"/>
-        <variables-table @click="addVar" v-if="requirementVariables.length" title="متغیر های نیازمندی" title_en="requirement variables" :commonVariables="requirementVariables"/>
-        <variables-table @click="addVar" v-if="!serviceVariables.length"  :commonVariables="defaultVariables"/>
+        <variables-table @click="addVar" v-if="serviceVariables" title="متغیر های سرویس" title_en="service variables"
+                         :commonVariables="serviceVariables"/>
+        <variables-table @click="addVar" v-if="requirementVariables" title="متغیر های نیازمندی"
+                         title_en="requirement variables" :commonVariables="requirementVariables"/>
+        <variables-table @click="addVar" v-if="variables" title="متغیر های کاربران" title_en="requirement variables"
+                         :commonVariables="variables"/>
+        <variables-table @click="addVar" title="متغیر های سرویس" title_en="service variables"
+                         v-if="serviceVariables === null && requirementVariables === null && variables === null"
+                         :commonVariables="defaultServiceVariables"/>
+        <variables-table @click="addVar" title="متغیر های نیازمندی" title_en="requirement variables"
+                         v-if="serviceVariables === null && requirementVariables === null && variables === null"
+                         :commonVariables="defaultRequirementVariables"/>
       </v-col>
       <v-col xl="5" lg="5" md="12" sm="12" xs="12" style="margin: 60px auto;">
         <v-textarea
@@ -15,7 +24,10 @@
             label="محتوای پیامکی خود را وارد نمایید"
         >
         </v-textarea>
-        <v-card style="padding: 5px" v-if="serviceVariables.length">نکته! در انتخاب متغیر ها فقط یکی از این دو گروه را انتخاب نمایید. در صورتی که قالب شما برای نیازمندان باشد متغیر های نیازمندی و در غیر این صورت از متغیر های سرویس استفاده نمایید</v-card>
+        <v-card style="padding: 5px" v-if="variables === null">نکته! در انتخاب متغیر ها فقط یکی از این دو گروه را انتخاب
+          نمایید. در صورتی که قالب شما برای نیازمندان باشد متغیر های نیازمندی و در غیر این صورت از متغیر های سرویس
+          استفاده نمایید
+        </v-card>
       </v-col>
     </v-row>
   </div>
@@ -31,12 +43,13 @@ export default {
     value: {default: ""},
     isDisabled: {type: Boolean, default: false},
     init: {default: null},
-    serviceVariables: [],
-    requirementVariables: [],
+    serviceVariables:{default: null},
+    requirementVariables: {default: null},
+    variables:{default: null},
   },
   data() {
     return {
-      defaultVariables: [
+      defaultServiceVariables: [
         {
           title: "نام نیازمند",
           value: " {requirement_user_firstname} ",
@@ -64,6 +77,24 @@ export default {
         {
           title: "نام سرویس",
           value: " {service_name} ",
+        },
+      ],
+      defaultRequirementVariables: [
+        {
+          title: "نام نیازمند",
+          value: " {requirement_user_firstname} ",
+        },
+        {
+          title: "نام خانوادگی نیازمند",
+          value: " {requirement_user_lastname} ",
+        },
+        {
+          title: "نام مرحله",
+          value: " {step_name} ",
+        },
+        {
+          title: "نام نیازمندی",
+          value: " {requirement_name} ",
         },
       ],
     }

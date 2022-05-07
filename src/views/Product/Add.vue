@@ -44,23 +44,21 @@
             <hr style="display: block; width: 100%"/>
             <br>
             <v-row>
-              <v-col lg="4" style="margin: 0 auto">
+              <v-col xl="5" lg="5" md="6" sm="12" xs="12" style="margin: 0 auto">
                 <v-text-field style="text-align: right" label="نام محصول" v-model="form.name"
                               reverse></v-text-field>
                 <v-textarea style="text-align: right" label="توضیحات" v-model="form.description"
                             reverse></v-textarea>
+                <div style="height: content-box">
+                  <cropper-image
+                      style="height: auto"
+                      :crop_data.sync="form.crop_data"
+                      v-model="form.image"
+                      :url="form.thumbnail"
+                  />
+                </div>
               </v-col>
-              <v-col lg="6" style="margin: 0 auto">
-                <!--                      :url.sync="form.thumbnail"-->
-                <cropper-image
-                    :crop_data.sync="form.crop_data"
-                    v-model="form.image"
-                    :url="form.thumbnail"
-                />
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col lg="6" style="margin: 0 auto">
+              <v-col xl="5" lg="5" md="6" sm="12" xs="12">
                 <div style="background-color: whitesmoke; border-radius: 10px">
                   <v-row style="direction: rtl;color:  #1976D2;  letter-spacing: 3px;">
                     مدیریت شعب
