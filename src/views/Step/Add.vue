@@ -147,12 +147,12 @@ export default {
       Object.assign(this.form, {project_id: this.project_id})
       if (this.step_id) {
         let response = await this.updateStep({data: this.form});
-        if (!(response instanceof Error)) {
+        if (response) {
           this.$router.push({name: 'ListSteps', params: {project_id: this.project_id}});
         }
       } else {
         let response = await this.storeStep({data: this.form});
-        if (!(response instanceof Error)) {
+        if (response) {
           this.$router.push({name: 'ListSteps', params: {project_id: this.project_id}});
         }
       }

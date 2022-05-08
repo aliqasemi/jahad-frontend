@@ -122,12 +122,12 @@ export default {
     async registerRequest() {
       if (this.template_id) {
         let response = await this.updateTemplate({data: this.form});
-        if (!(response instanceof Error)) {
+        if (response) {
           await this.$router.replace("/templates");
         }
       } else {
         let response = await this.storeTemplate({data: this.form});
-        if (!(response instanceof Error)) {
+        if (response) {
           await this.$router.replace("/templates");
         }
       }

@@ -20,7 +20,7 @@ export default class AttachProductRepository {
             let response = await axios.post(basic_url + 'attach-product/' + requireProductId, params);
             return response.data.data;
         } catch (e) {
-            return Promise.reject(e.response.data.errors);
+            return Promise.reject(e.response.data.error);
         }
     }
 

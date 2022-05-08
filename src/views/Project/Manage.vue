@@ -635,7 +635,7 @@ export default {
           this.form.timeout = shamsi.gregorianToJalali(parseInt(separator[0]), parseInt(separator[1]), parseInt(separator[2])).join('/');
         }
         let response = await this.updateProject({data: this.form});
-        if (!(response instanceof Error)) {
+        if (response) {
           await this.$router.replace("/projects");
         }
       } else {
@@ -645,7 +645,7 @@ export default {
         Object.assign(this.form, {services: services})
         Object.assign(this.form, {requirement_id: this.requirement_id})
         let response = await this.storeProject({data: this.form});
-        if (!(response instanceof Error)) {
+        if (response) {
           await this.$router.replace("/projects");
         }
       }

@@ -167,12 +167,12 @@ export default {
     async registerRequest() {
       if (this.product_id) {
         let response = await this.updateProduct({data: this.form});
-        if (!(response instanceof Error)) {
+        if (response) {
           await this.$router.replace("/products");
         }
       } else {
         let response = await this.storeProduct({data: this.form});
-        if (!(response instanceof Error)) {
+        if (response) {
           await this.$router.replace("/products");
         }
       }

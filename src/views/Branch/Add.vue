@@ -157,12 +157,12 @@ export default {
     async registerRequest() {
       if (this.branch_id) {
         let response = await this.updateBranch({data: this.form});
-        if (!(response instanceof Error)) {
+        if (response) {
           await this.$router.replace("/branches");
         }
       } else {
         let response = await this.storeBranch({data: this.form});
-        if (!(response instanceof Error)) {
+        if (response) {
           await this.$router.replace("/branches");
         }
       }

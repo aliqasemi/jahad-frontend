@@ -34,7 +34,7 @@ export default {
         } catch (e) {
             store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
             store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: e})
-            return e;
+            return false;
         }
     },
     async updateStep({commit}, {data}) {
@@ -46,7 +46,7 @@ export default {
             console.log(e);
             store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
             store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: e})
-            return e;
+            return false;
         }
     },
     async removeStep({commit}, stepId) {
