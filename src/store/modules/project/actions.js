@@ -22,10 +22,28 @@ export default {
             commit("SET_LOADING", false);
         }
     },
+    async loadProjectUserList({commit, state}) {
+        try {
+            commit("SET_LOADING", true);
+            const project = await repository.indexUser(
+                {
+                    pagination: state.pagination,
+                    filter: state.filter
+                }
+            );
+            commit("SET_PROJECT", project.data);
+            commit("SET_PROJECT_PAGINATION", project.pagination);
+            return project;
+        } catch (e) {
+            return e;
+        } finally {
+            commit("SET_LOADING", false);
+        }
+    },
     async showProject({commit}, id) {
         try {
             commit("SET_LOADING", false);
-            const project = await repository.show(id);
+            const project = await repository.showUser(id);
             commit("SET_LOADING", true);
             return project;
         } catch (e) {

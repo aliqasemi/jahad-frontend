@@ -401,6 +401,45 @@
                 </v-row>
               </router-link>
             </v-col>
+            <v-col lg="6" xl="6" md="12" sm="12" xs="12" style="margin-bottom: 20px">
+              <router-link :to="{name:'ListProjectsUser'}" style="text-decoration: none;color: black">
+                <v-row class="flex-justified-space-between title-big">
+                  <div>
+                    <div>
+                      <div class="title-fa"> پروژه های من</div>
+                      <div class="title-en En Bold warning--text">
+                        <div style="position: absolute;text-align: left"> services</div>
+                      </div>
+                    </div>
+                  </div>
+                  <v-row style="direction: ltr; margin: auto;width: 100%">
+                    <v-col lg="6">
+                      <v-icon size="75px" color="warning" style="text-align: left">
+                        fa fa-cog
+                      </v-icon>
+                    </v-col>
+                    <v-col lg="6">
+                      <v-row style="margin: auto">
+                        <v-sparkline
+                            style="margin: auto"
+                            :value="projectChartValue"
+                            :gradient="gradient"
+                            :smooth="radius || false"
+                            :padding="padding"
+                            :line-width="width"
+                            :stroke-linecap="lineCap"
+                            :gradient-direction="gradientDirection"
+                            :fill="fill"
+                            :type="type"
+                            :auto-line-width="autoLineWidth"
+                            auto-draw
+                        ></v-sparkline>
+                      </v-row>
+                    </v-col>
+                  </v-row>
+                </v-row>
+              </router-link>
+            </v-col>
           </v-row>
         </v-col>
       </v-row>

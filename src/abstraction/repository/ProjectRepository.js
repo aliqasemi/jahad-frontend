@@ -32,8 +32,28 @@ export default class ProjectRepository {
         }
     }
 
+    async indexUser(data) {
+        let params = setFilterQuery(data.filter, data.filter.typeMode);
+        Object.assign(params, setQuery(data));
+        try {
+            let response = await axios.get(basic_url + 'projects-user', {params})
+            if (response && response.status === 200) {
+                return getArray(response.data);
+            }
+        } catch (e) {
+            return e;
+        }
+    }
+
     async show(id) {
         let response = await axios.get(basic_url + "projects/" + id);
+        if (response && response.status === 200) {
+            return getJson(response.data.data);
+        }
+    }
+
+    async showUser(id) {
+        let response = await axios.get(basic_url + "projects-user/" + id);
         if (response && response.status === 200) {
             return getJson(response.data.data);
         }

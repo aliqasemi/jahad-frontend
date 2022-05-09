@@ -27,6 +27,8 @@ import ForgotPassword from "@/views/ForgotPassword";
 import ResetPassword from "@/views/ResetPassword";
 import Users from "@/views/User/Users";
 import EditUser from "@/views/User/Edit";
+import DetailProject from "@/views/Project/DetailProject";
+import ProjectsUser from "@/views/Project/ProjectsUser";
 
 Vue.use(VueRouter)
 
@@ -171,9 +173,22 @@ const routes = [
         beforeEnter: isAuthenticated,
     },
     {
+        path: '/projects-user',
+        name: 'ListProjectsUser',
+        component: ProjectsUser,
+        beforeEnter: isAuthenticated,
+    },
+    {
         path: '/projects/management/:project_id',
         name: 'ManageProject',
         component: ManageProject,
+        beforeEnter: isAuthenticated,
+        props: true,
+    },
+    {
+        path: '/projects/detail/:project_id',
+        name: 'DetailProject',
+        component: DetailProject,
         beforeEnter: isAuthenticated,
         props: true,
     },

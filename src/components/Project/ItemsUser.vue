@@ -1,5 +1,17 @@
 <template>
   <div>
+    <!--    <v-progress-linear-->
+    <!--        v-if="getProjectLoading"-->
+    <!--        color="black accent-4"-->
+    <!--        indeterminate-->
+    <!--        rounded-->
+    <!--        height="10"-->
+    <!--        style="margin: 10px"-->
+    <!--    ></v-progress-linear>-->
+    <!--    <v-row style="margin-top: 5px" v-else>-->
+    <!--      <item :item="project" v-for="(project , key) in getListProject" :index="key" v-bind:key="key"/>-->
+    <!--    </v-row>-->
+
     <project-filter/>
     <v-data-table
         :headers="headers"
@@ -10,7 +22,7 @@
         hide-default-footer
     >
       <template v-slot:item.actions="{item}">
-        <router-link :to="{name:'ManageProject',  params: { project_id: item.id },}"
+        <router-link :to="{name:'DetailProject',  params: { project_id: item.id },}"
                      style="text-decoration: none;margin: 5px">
           <v-tooltip top>
             <template v-slot:activator="{ on,attrs }">
@@ -25,26 +37,9 @@
                 <v-icon style="color: darkcyan" dark>fa-edit</v-icon>
               </v-btn>
             </template>
-            <span>مدیریت</span>
+            <span>مشاهده جزییات</span>
           </v-tooltip>
         </router-link>
-        <v-tooltip top style="margin: 5px">
-          <template v-slot:activator="{ on , attrs}">
-            <v-btn
-                style="background-color: #eeeeee"
-                slot="activator"
-                v-bind="attrs"
-                v-on="on"
-                fab
-                small
-                @click.native="deleteDialog = true"
-            >
-              <v-icon style="color: red" dark>fa-trash</v-icon>
-            </v-btn>
-          </template>
-          <span>حذف</span>
-          <delete-modal v-model="deleteDialog" @action="deleteService(item.id)"/>
-        </v-tooltip>
       </template>
       <template v-slot:item.requirement="{item}">
         {{ item.requirement.title }}
@@ -85,12 +80,11 @@
 <script>
 // import Item from "../Project/Item";
 import {mapActions, mapGetters, mapMutations} from "vuex";
-import DeleteModal from "../GeneralComponent/deleteModal";
-import ProjectFilter from "../Project/Filter";
+import ProjectFilter from "../Project/FilterUser";
 
 export default {
   name: "items",
-  components: {ProjectFilter, DeleteModal},
+  components: {ProjectFilter},
   data() {
     return {
       page: 1,
@@ -113,15 +107,8 @@ export default {
     ...mapGetters("user", ['getAuthorizeUser'])
   },
   methods: {
-    ...mapActions("project", ['loadProjectList', 'removeProject']),
+    ...mapActions("project", ['loadProjectUserList']),
     ...mapMutations("project", ['SET_PROJECT_PAGINATION', 'SET_PAGE_NUMBER', 'SET_PROJECT_FILTER']),
-    async deleteProject(id) {
-      let response;
-      response = await this.removeProject(id);
-      if (!(response instanceof Error)) {
-        this.deleteDialog = false;
-      }
-    },
   },
   watch: {
     page: {
@@ -129,13 +116,13 @@ export default {
       immediate: true,
       async handler() {
         this.SET_PROJECT_PAGINATION({page: this.page, itemsPerPage: this.itemsPerPage});
-        await this.loadProjectList();
+        await this.loadProjectUserList();
       },
     },
   },
   async created() {
     this.SET_PROJECT_FILTER({});
-    let response = await this.loadProjectList();
+    let response = await this.loadProjectUserList();
     this.SET_PAGE_NUMBER(response.pagination.pageCount);
   }
 }
