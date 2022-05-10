@@ -50,12 +50,12 @@
                          style="direction: rtl;margin-top: 10px;color: #1976D2;  letter-spacing: 2px;  border-radius: 5px;padding: 30px">
               <div class="title-en-sec">
                 <v-row style="direction: rtl;padding: 10px; color: #1976D2">
-                  مرحله و مدیریت آن
+                  مرحله و جزییات آن
                 </v-row>
                 <br>
                 <div
                     style="position: absolute;text-align: left; background-color:#1976D2; color: #eeeeee; border-radius: 10px;padding: 7px;">
-                  manage step
+                  step and detail
                 </div>
               </div>
               <hr style="display: block; width: 100%;"/>
