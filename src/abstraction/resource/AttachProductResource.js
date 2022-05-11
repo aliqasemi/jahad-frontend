@@ -6,15 +6,24 @@ const getJson = (data) => {
         number: data.number,
     };
 
-    result.productRequireProduct = data.product_require_product.map((t) => {
-        return {
-            id: t.id,
-            number: t.number,
-            description: t.description,
-            product: t.product,
-            branch: t.branch,
-        };
-    });
+    if (data.product_require_product.length) {
+        result.productRequireProduct = data.product_require_product.map((t) => {
+            let result = {
+                id: t.id,
+                number: t.number,
+                description: t.description,
+                product: t.product,
+                branch: t.branch,
+            };
+            if (result.product === null) {
+                result.product = {id: null}
+            }
+            if (result.branch === null) {
+                result.branch = {id: null}
+            }
+            return result;
+        });
+    }
 
     return result;
 };

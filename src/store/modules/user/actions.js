@@ -162,6 +162,8 @@ export default {
                 store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: 'عملیات با موفقیت انجام شد'})
             }
         } catch (e) {
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: e})
             return e;
         }
     },
@@ -176,6 +178,8 @@ export default {
             }
             return user;
         } catch (e) {
+            store.commit('snackbar/SET_SNACKBAR_STATUS', {value: true})
+            store.commit('snackbar/SET_SNACKBAR_MESSAGE', {value: e})
             return e;
         }
     },

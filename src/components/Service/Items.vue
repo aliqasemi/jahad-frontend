@@ -85,7 +85,7 @@
         <span v-else style="color: brown">کابر وجود ندارد</span>
       </template>
       <template v-slot:item.category="{item}">
-        {{ item.category.name }}
+        {{ item.category ? item.category.name : '' }}
       </template>
       <template v-slot:no-data>
         <img height="400px" :src="require('@/images/nodatafound.gif')">

@@ -113,6 +113,7 @@ export default {
   },
   async created() {
     this.requireProducts = await this.loadRequireProduct(this.project_id);
+    console.log(this.requireProducts);
   }
 }
 </script>

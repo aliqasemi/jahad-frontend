@@ -111,7 +111,7 @@ export default class AuthenticationRepository {
                 return response.data.data;
             }
         } catch (e) {
-            return Promise.reject(e.data.errors);
+            return Promise.reject(e.response.data.message);
         }
     }
 
@@ -135,7 +135,7 @@ export default class AuthenticationRepository {
                 return getJson(response.data.data);
             }
         } catch (e) {
-            return e;
+            return Promise.reject(e.response.data.message);
         }
     }
 
